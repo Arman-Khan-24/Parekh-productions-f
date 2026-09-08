@@ -1,0 +1,11 @@
+@import "../assets/offsiteio.css";
+@import "../assets/vendor/b594fbf2fbed.css";
+@import "../assets/vendor/52246ff05d1c.css";
+@import "./legacy-head.css";
+
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  display: contents;
+}
