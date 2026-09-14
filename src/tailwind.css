@@ -1,11 +1,164 @@
-@import "../assets/offsiteio.css";
-@import "../assets/vendor/b594fbf2fbed.css";
-@import "../assets/vendor/52246ff05d1c.css";
-@import "./legacy-head.css";
+@import "./tailwind-compat.css";
 
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  display: contents;
+@layer base {
+  *, *::before, *::after { @apply box-border; }
+  html { @apply h-full; text-size-adjust: 100%; overflow-x: hidden; }
+  body { @apply m-0 min-h-full bg-white text-[#2b2b2b]; font-family: Satoshi, Arial, sans-serif; overflow-x: hidden; }
+}
+
+#root { display: contents; }
+
+@layer components {
+  .service-card { overflow: hidden; }
+  .fixed-nav-wrapper { will-change: transform, opacity; }
+
+  /* Keep the primary navigation in the document flow. The legacy floating copy
+     is intentionally suppressed so it cannot cover sections while scrolling. */
+  .fixed-nav-wrapper { display: none !important; }
+
+  .nav-link-dot,
+  .nav-link-dot-v2,
+  .footer-link-dot {
+    display: none !important;
+  }
+
+  .navbar .logo {
+    width: 88px !important;
+    height: auto;
+  }
+
+  .navbar .nav-container {
+    flex-wrap: nowrap;
+  }
+
+  .navbar .nav-menu-block {
+    flex: 1 1 auto;
+  }
+
+  .navbar .nav-links-wrapper {
+    gap: 22px;
+  }
+
+  .navbar .nav-cta-block {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 1100px) and (min-width: 992px) {
+    .navbar .nav-container {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .navbar .nav-links-wrapper {
+      gap: 14px;
+    }
+
+    .navbar .menu-link-clas {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .navbar .logo {
+      width: 82px !important;
+    }
+  }
+
+  .navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 20 !important;
+  }
+
+.hero {
+    min-height: calc(100svh - 132px);
+    display: flex;
+    align-items: center;
+  }
+
+  .container,
+  .main-wrapper,
+  section {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      min-height: auto;
+      display: block;
+    }
+
+    .navbar .nav-container {
+      min-height: 64px;
+    }
+  }
+}
+.hero h1 { font-size: clamp(72px, 10vw, 150px) !important; line-height: .92 !important; max-width: 100%; overflow-wrap: anywhere; }
+.navbar { position: sticky !important; top: 0; z-index: 1000 !important; background: var(--white, #fff) !important; }
+.nav-menu-button { display: none; border: 0; background: transparent; cursor: pointer; }
+.nav-menu-button span { display:block; width:24px; height:2px; margin:5px 0; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
+.nav-scroll-cta { opacity:0; transform:translateX(18px); pointer-events:none; transition:opacity .35s ease, transform .35s ease; }
+.nav-scroll-cta.is-visible { opacity:1; transform:translateX(0); pointer-events:auto; }
+.review-slider-arrow { top:50% !important; bottom:auto !important; transform:translateY(-50%); margin:0 !important; }
+.review-slider-arrow img { display:block; margin:auto; }
+.nav-is-open .nav-menu-button span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-is-open .nav-menu-button span:nth-child(2) { opacity: 0; }
+.nav-is-open .nav-menu-button span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.faq-question-trigger { width:100%; border:0; background:transparent; text-align:left; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; cursor:pointer; }
+.faq-answer-block[hidden] { display:none; }
+.faq-answer-block { display:block; padding: 12px 32px 0; position:relative; }
+.faq-answer-wrapper { opacity:1; }
+.faq-icon { flex:none; position:relative; margin-top:8px; }
+.faq-icon::after { content:''; position:absolute; left:4px; right:4px; top:7px; height:2px; background:#fff; }
+.whatsapp-float { position:fixed; right:22px; bottom:22px; z-index:1100; width:56px; height:56px; display:grid; place-items:center; border-radius:50%; background:#20c66b; color:#fff; box-shadow:0 10px 28px #0003; font-size:30px; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease; }
+.whatsapp-float svg { width:30px; height:30px; }
+.whatsapp-float:hover { transform:translateY(-3px); box-shadow:0 14px 32px #0004; }
+.clients-section { background:var(--white, #fff); }
+.clients-heading { max-width:760px; margin:0 auto 56px; text-align:center; }
+.clients-heading p { margin:18px auto 0; max-width:620px; opacity:.72; }
+.clients-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.client-card { min-width:0; padding:28px; border:1px solid var(--border-color-01,#dedede); border-radius:20px; background:#fff; }
+.client-card h3 { margin:0 0 18px; font-size:28px; line-height:1.1; }
+.client-card ul { margin:0; padding-left:20px; display:grid; gap:9px; opacity:.8; }
+.client-card li { overflow-wrap:anywhere; }
+.client-card-media { margin-top:24px; min-height:110px; display:grid; place-items:center; border-radius:14px; background:var(--bg-color-01,#f2f2f0); color:#777; font-size:13px; text-transform:uppercase; letter-spacing:.08em; }
+.faq-item:not(.is-open) .faq-icon::before { content:''; position:absolute; top:4px; bottom:4px; left:7px; width:2px; background:#fff; }
+@media (max-width: 991px) {
+  .nav-cta-block { display:none !important; }
+  .nav-menu-button { display:flex !important; flex-direction:column; justify-content:center; align-items:center; width:44px; height:44px; padding:0 !important; position:relative; z-index:1002; }
+  .nav-menu-block { display:none !important; position:fixed !important; inset:72px 0 auto 0 !important; height:auto !important; max-height:calc(100vh - 72px); overflow:auto; padding:24px 30px 40px; background:var(--bg-color-02, #111) !important; }
+  .nav-menu-block.w--open { display:block !important; }
+  .nav-links-wrapper { display:flex !important; flex-direction:column; align-items:flex-start !important; gap:20px; padding:0 !important; }
+  .nav-links-wrapper .menu-link-clas { color:#fff !important; font-size:22px; }
+  .nav-cta-block-mobile { display:flex !important; margin-top:32px; }
+}
+@media (max-width: 767px) {
+  .hero h1 { font-size: clamp(52px, 15vw, 78px) !important; }
+  .faq-answer-block { padding: 8px 16px 0; }
+  .faq-question { font-size: 21px !important; }
+  .whatsapp-float { right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); width:52px; height:52px; }
+  .clients-heading { margin-bottom:32px; text-align:left; }
+  .clients-grid { grid-template-columns:1fr; gap:14px; }
+  .client-card { padding:20px; border-radius:16px; }
+  .client-card h3 { font-size:24px; }
 }
