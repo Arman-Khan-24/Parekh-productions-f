@@ -1,0 +1,29 @@
+export function Ticker() {
+  const items = [
+    "DIRECTION",
+    "BRANDING",
+    "DESIGN",
+    "MOTION",
+    "ANIMATED REELS",
+    "CREATIVE DIRECTION",
+    "TURNKEY STAGE",
+    "8K BROADCAST",
+    "GERMAN HANGARS",
+    "COMMERCIAL FILMS",
+  ];
+
+  return (
+    <div className="py-12 bg-black overflow-hidden select-none w-full">
+      <div className="flex w-max items-center animate-ticker whitespace-nowrap">
+        {[...items, ...items, ...items, ...items].map((item, idx) => (
+          <div key={idx} className="flex items-center mx-5 sm:mx-8">
+            <span className="text-sm sm:text-base font-black uppercase tracking-widest text-white">
+              {item}
+            </span>
+            <span className="h-2 w-2 rounded-full bg-red-600 mx-5 sm:mx-8 shadow-[0_0_8px_rgba(220,38,38,0.8)]" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
