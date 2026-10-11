@@ -147,10 +147,9 @@ export const siteContent = {
         "Full exhibition floor documentation across 8,000+ delegates"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/client_drive/Finbridge Expo 2024 - Mumbai/Photos/7T6A7663.JPG", caption: "Plenary Stage Keynote" },
-        { type: "image", src: "/assets/client_drive/Finbridge Expo 2024 - Mumbai/Photos/7T6A7682.JPG", caption: "Executive Speaker Select" },
-        { type: "image", src: "/assets/client_drive/Finbridge Expo 2024 - Mumbai/Photos/7T6A7722.JPG", caption: "NESCO Exhibition Floor" },
-        { type: "video", src: "/assets/client_drive/Finbridge Expo 2024 - Mumbai/Highlight Video/Highlites Hd finbridge Expo 2024 -nesco.mp4", caption: "Official Mumbai Aftermovie" }
+        { type: "image", src: "/assets/parekh/portfolio/finbridge-stage.jpg", caption: "Plenary Stage Keynote" },
+        { type: "image", src: "/assets/parekh/portfolio/finbridge-crowd.jpg", caption: "NESCO Exhibition Floor" },
+        { type: "video", src: "/assets/parekh/finbridge-2026-max-quality.mp4", caption: "Official Mumbai Aftermovie" }
       ]
     },
     {
@@ -167,7 +166,8 @@ export const siteContent = {
         "Fast-cut cinema reel edited for investor and public broadcast"
       ],
       galleryItems: [
-        { type: "video", src: "/assets/client_drive/Auto Expo/autoexpo final video.mp4", caption: "Auto Expo Cinematic Recap" }
+        { type: "video", src: "/assets/parekh/autoexpo-max-quality.mp4", caption: "Auto Expo Cinematic Recap" },
+        { type: "image", src: "/assets/parekh/client_media/stage-lighting.jpg", caption: "Pavilion Staging & Lighting" }
       ]
     },
     {
@@ -184,9 +184,9 @@ export const siteContent = {
         "Digital social campaign cuts with precise color grading"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/client_drive/Biryani Of India/ITEM (141).JPG", caption: "Signature Culinary Styling" },
-        { type: "image", src: "/assets/client_drive/Biryani Of India/ITEM (147).JPG", caption: "Deluxe Feast Shoot" },
-        { type: "image", src: "/assets/client_drive/Biryani Of India/_MGL8607.JPG", caption: "Commercial Print Select" }
+        { type: "image", src: "/assets/parekh/client_media/commercial-food-1.jpg", caption: "Signature Culinary Styling" },
+        { type: "image", src: "/assets/parekh/client_media/commercial-food-2.jpg", caption: "Deluxe Feast Shoot" },
+        { type: "image", src: "/assets/parekh/portfolio/biryani-commercial.jpg", caption: "Commercial Print Select" }
       ]
     },
     {
@@ -203,9 +203,8 @@ export const siteContent = {
         "Same-evening curated album for foundation press distribution"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/client_drive/Concern India Foundation - Sports Day/Photos/PEMC- (149).JPG", caption: "Track & Field Action" },
-        { type: "image", src: "/assets/client_drive/Concern India Foundation - Sports Day/Photos/PEMC-200  (120).JPG", caption: "Corporate Team Spirit" },
-        { type: "image", src: "/assets/client_drive/Concern India Foundation - Sports Day/Photos/PEMC-7U (1).JPG", caption: "Award Ceremony" }
+        { type: "image", src: "/assets/parekh/client_media/sports-action-1.jpg", caption: "Track & Field Action" },
+        { type: "image", src: "/assets/parekh/client_media/sports-action-2.jpg", caption: "Corporate Team Spirit" }
       ]
     },
     {
@@ -222,9 +221,8 @@ export const siteContent = {
         "Recap video asset engineered for exhibitor marketing kits"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/client_drive/Screentex/Photos/PE1 (22).JPG", caption: "Machinery Exhibition Staging" },
-        { type: "image", src: "/assets/client_drive/Screentex/Photos/PE1 (73).JPG", caption: "Trade Visitors & Networking" },
-        { type: "video", src: "/assets/client_drive/Screentex/Highlight Video/Final.mp4", caption: "Screentex Showcase Video" }
+        { type: "image", src: "/assets/parekh/client_media/screentex-expo.jpg", caption: "Machinery Exhibition Staging" },
+        { type: "image", src: "/assets/parekh/client_media/expo-booth.jpg", caption: "Trade Visitors & Networking" }
       ]
     },
     {
@@ -241,7 +239,8 @@ export const siteContent = {
         "High-definition product demonstration video reels"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/client_drive/Himalaya - Bangalore India Cricket Team/RCJ09111.JPG", caption: "Athlete Sponsorship Shoot" }
+        { type: "image", src: "/assets/parekh/client_media/rcb-himalaya-press.jpg", caption: "Athlete Sponsorship Shoot" },
+        { type: "image", src: "/assets/parekh/client_media/sports-action-2.jpg", caption: "Brand Ambassador Campaign" }
       ]
     }
   ],

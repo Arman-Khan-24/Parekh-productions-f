@@ -39,35 +39,40 @@ export function StudioShowcase() {
   const current = slides[currentIndex];
 
   return (
-    <section id="showcase" className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
+    <section id="showcase" className="min-h-screen py-10 sm:py-16 px-6 sm:px-12 lg:px-16 w-full max-w-[1400px] mx-auto flex flex-col justify-center">
       
       {/* Header with Circular Arrows */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-12">
-        <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-neutral-900 leading-[0.95]">
-          A CREATIVE VIDEO <br />
-          PRODUCTION STUDIO
-        </h2>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
+        <div>
+          <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-1">
+            [FLAGSHIP STAGING // 100% IN-HOUSE]
+          </span>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-neutral-900 leading-[1]">
+            A CREATIVE VIDEO & <br />
+            STAGING STUDIO
+          </h2>
+        </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={prevSlide}
             aria-label="Previous project"
-            className="h-12 w-12 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer shadow-md active:scale-95"
+            className="h-11 w-11 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer active:scale-95"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
           <button
             onClick={nextSlide}
             aria-label="Next project"
-            className="h-12 w-12 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer shadow-md active:scale-95"
+            className="h-11 w-11 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer active:scale-95"
           >
             <ArrowRight className="h-5 w-5" />
           </button>
         </div>
       </div>
 
-      {/* 100% Unobstructed Image Frame */}
-      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 shadow-xl">
+      {/* 100% Unobstructed Image Frame (Contained within viewport) */}
+      <div className="relative w-full h-[45vh] sm:h-[52vh] lg:h-[58vh] max-h-[620px] rounded-3xl overflow-hidden bg-neutral-900">
         <img
           src={current.image}
           alt={current.title}
@@ -75,21 +80,21 @@ export function StudioShowcase() {
         />
       </div>
 
-      {/* Clean Editorial Caption BELOW Image (Image 100% visible, no messy overlay) */}
-      <div className="mt-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4 text-black">
+      {/* Clean Editorial Caption BELOW Image */}
+      <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-black">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-1">
+          <span className="text-[11px] font-mono uppercase tracking-widest text-red-600 font-bold block">
             [{current.category}]
           </span>
-          <h3 className="text-xl sm:text-3xl font-extrabold text-neutral-900">
+          <h3 className="text-lg sm:text-2xl font-black text-neutral-900 mt-0.5">
             {current.title}
           </h3>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-mono">
+          <p className="text-xs sm:text-sm text-neutral-500 font-mono mt-0.5">
             {current.venue} · {current.desc}
           </p>
         </div>
 
-        <div className="text-xs font-mono text-neutral-400 tracking-widest shrink-0">
+        <div className="text-xs font-mono text-neutral-400 tracking-widest shrink-0 font-bold">
           0{currentIndex + 1} // 0{slides.length}
         </div>
       </div>

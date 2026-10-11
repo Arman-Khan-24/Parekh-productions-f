@@ -6,7 +6,7 @@ export function ThreeColumnFeature() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full">
         
         {/* Left Squarish/Horizontal Card */}
-        <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900 group shadow-xl">
+        <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900 group">
           <img
             src="/assets/parekh/client_media/commercial-food-1.jpg"
             alt="Parekh Commercial Production"
@@ -24,8 +24,8 @@ export function ThreeColumnFeature() {
           </div>
         </div>
 
-        {/* Center Card: Pure Crisp White with Premium Minimalist Accent */}
-        <div className="relative aspect-[16/10] rounded-3xl bg-neutral-50 p-6 sm:p-10 flex flex-col justify-center items-center text-center shadow-lg">
+        {/* Center Card: Pure Crisp White matching page background exactly (Zero Shadow, Zero Border) */}
+        <div className="relative aspect-[16/10] rounded-3xl bg-white p-6 sm:p-10 flex flex-col justify-center items-center text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tight text-neutral-950 leading-[1.08]">
             WE MAKE <br />
             VIDEOS THAT <br />
@@ -37,7 +37,7 @@ export function ThreeColumnFeature() {
         </div>
 
         {/* Right Squarish/Horizontal Card */}
-        <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900 group shadow-xl">
+        <div className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900 group">
           <img
             src="/assets/parekh/client_media/auditorium.jpg"
             alt="Parekh Concert Rigging Arena"

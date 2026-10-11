@@ -1,7 +1,7 @@
-import { ArrowUpRight, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, MessageCircle, Mail, MapPin, Phone, ExternalLink } from "lucide-react";
 import { siteContent } from "../data/siteContent";
 
-export function Footer() {
+export function Footer({ onQuoteClick, onGalleryClick }) {
   const { socials } = siteContent;
 
   const getSocialIcon = (label) => {
@@ -32,8 +32,21 @@ export function Footer() {
     }
   };
 
+  const getSocialHoverClass = (label) => {
+    switch (label.toLowerCase()) {
+      case "instagram":
+        return "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent hover:shadow-[0_8px_20px_rgba(220,39,67,0.4)]";
+      case "facebook":
+        return "hover:bg-[#1877F2] hover:text-white hover:border-transparent hover:shadow-[0_8px_20px_rgba(24,119,242,0.4)]";
+      case "youtube":
+        return "hover:bg-[#FF0000] hover:text-white hover:border-transparent hover:shadow-[0_8px_20px_rgba(255,0,0,0.4)]";
+      default:
+        return "hover:bg-white hover:text-black";
+    }
+  };
+
   return (
-    <footer id="contact" className="pt-24 pb-16 px-6 sm:px-12 lg:px-16 bg-neutral-950 text-white w-full rounded-t-[40px] mt-16 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
+    <footer id="contact" className="pt-20 pb-16 px-6 sm:px-12 lg:px-16 bg-neutral-950 text-white w-full rounded-t-[40px] mt-16 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
       <div className="max-w-7xl mx-auto">
         
         {/* Top Banner Row */}
@@ -43,40 +56,36 @@ export function Footer() {
               <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
               <span>DIRECT DISPATCH // 30-MIN ON-GROUND SLA</span>
             </div>
-            
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white">
-              START A PRODUCTION <br />
-              BRIEF WITH US
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-neutral-400 max-w-xl font-light">
-              From NESCO and Jio World Centre to nationwide concert rigging and cinema sets — let's execute your next flagship production with 100% in-house precision.
+            <h3 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+              Ready to produce <br />
+              your next headline?
+            </h3>
+            <p className="mt-4 text-sm sm:text-base text-neutral-400 max-w-xl">
+              Turnkey event management, arena staging, audio-visual engineering, and cinema film coverage across Mumbai &amp; Pan-India.
             </p>
           </div>
 
-          {/* Quick Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <button
+              onClick={onQuoteClick}
+              className="btn-liquid-water px-8 py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest transition-all cursor-pointer shadow-xl text-center active:scale-95"
+            >
+              Get Instant Quote &rarr;
+            </button>
             <a
               href="https://wa.me/918657754937"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-white text-neutral-950 font-extrabold uppercase tracking-wider text-xs px-8 py-4 hover:bg-neutral-200 transition-all no-underline shadow-xl active:scale-95 cursor-pointer"
+              className="px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#20ba5a] transition-all cursor-pointer shadow-xl text-center flex items-center justify-center gap-2 active:scale-95 no-underline"
             >
-              <MessageCircle className="h-4 w-4 text-green-600 fill-green-600/20" />
-              <span>WhatsApp Desk</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:parekhevents@gmail.com"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-white/10 text-white font-extrabold uppercase tracking-wider text-xs px-8 py-4 hover:bg-white hover:text-black transition-all no-underline cursor-pointer backdrop-blur-md active:scale-95"
-            >
-              <Mail className="h-4 w-4" />
-              <span>Direct Inquiries</span>
+              <MessageCircle className="h-4 w-4" />
+              <span>WhatsApp Crew</span>
             </a>
           </div>
         </div>
 
-        {/* Middle Metadata & Social Links */}
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-white/10 text-xs font-mono">
+        {/* 4 Columns Row */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 text-sm">
           
           {/* Office Address */}
           <div>
@@ -85,9 +94,10 @@ export function Footer() {
               <span>Headquarters</span>
             </div>
             <p className="text-neutral-400 leading-relaxed font-sans text-xs">
-              Kandivali (West), Western Suburbs,<br />
-              Mumbai, Maharashtra 400067<br />
-              Deployment: NESCO · BKC · Pan-India
+              Shop No 18, 1st Floor, V-Mall,<br />
+              Thakur Complex, Western Express Highway,<br />
+              Kandivali East, Mumbai, Maharashtra 400101<br />
+              Deployment: NESCO &bull; BKC &bull; Pan-India
             </p>
           </div>
 
@@ -97,29 +107,44 @@ export function Footer() {
               <Phone className="h-4 w-4 text-red-500" />
               <span>Direct Hotlines</span>
             </div>
-            <div className="space-y-1.5 text-neutral-400">
+            <div className="space-y-1.5 text-neutral-400 text-xs">
               <a href="tel:+918657754937" className="block hover:text-white transition-colors">+91 86577 54937</a>
               <a href="tel:+919594888516" className="block hover:text-white transition-colors">+91 95948 88516</a>
               <a href="tel:+919167090539" className="block hover:text-white transition-colors">+91 91670 90539</a>
+              <a href="mailto:info@parekhevents.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">info@parekhevents.com</a>
             </div>
           </div>
 
-          {/* Special Divisions */}
+          {/* Sister Brand & Key Divisions */}
           <div>
             <div className="text-white font-bold uppercase tracking-wider mb-3">
-              Key Divisions
+              Specialized Labels
             </div>
-            <div className="space-y-1.5 text-neutral-400 font-sans text-xs">
-              <div>• Heavenly Weds (Royal Weddings)</div>
-              <div>• Parekh Rigging & German Hangars</div>
-              <div>• Cinema FX6/FX3 Multicam Units</div>
+            <div className="space-y-2 text-neutral-400 font-sans text-xs">
+              {/* Highlighted Heavenly Weds Reference */}
+              <a
+                href="https://heavenlyweds.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-white/10 transition-all text-white no-underline"
+              >
+                <div className="flex items-center justify-between font-bold text-red-400 text-[11px] uppercase tracking-wider mb-0.5">
+                  <span>Sister Brand</span>
+                  <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+                <div className="text-xs font-semibold text-white">Heavenly Weds</div>
+                <div className="text-[10px] text-neutral-400">Luxury Bridal &amp; Royal Cinematography</div>
+              </a>
+
+              <div className="pt-1 text-neutral-400">• German Hangar Structures &amp; Rigging</div>
+              <div className="text-neutral-400">• Cinema FX6/FX3 Multicam Broadcast</div>
             </div>
           </div>
 
-          {/* Unique Interactive Social Chips */}
+          {/* Colorful Social Channels */}
           <div>
             <div className="text-white font-bold uppercase tracking-wider mb-3">
-              Connect Channels
+              Official Channels
             </div>
             <div className="flex flex-wrap gap-2.5">
               {socials.map((s) => (
@@ -128,9 +153,11 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white hover:text-black border border-white/10 px-3.5 py-2 text-xs font-semibold text-neutral-300 transition-all no-underline group"
+                  className={`inline-flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-3.5 py-2 text-xs font-semibold text-neutral-300 transition-all no-underline group ${getSocialHoverClass(
+                    s.label
+                  )}`}
                 >
-                  <span className="text-neutral-400 group-hover:text-black transition-colors">
+                  <span className="text-neutral-400 group-hover:text-current transition-colors">
                     {getSocialIcon(s.label)}
                   </span>
                   <span>{s.label}</span>
@@ -144,11 +171,11 @@ export function Footer() {
         {/* Bottom Rights Row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
           <div>
-            PAREKH PRODUCTIONS PRIVATE LIMITED · EST. 2021
+            PAREKH PRODUCTIONS PRIVATE LIMITED &bull; EST. 2018
           </div>
           <div className="flex items-center gap-6">
-            <span>Mumbai · London (UK)</span>
-            <span>© {new Date().getFullYear()} All rights reserved.</span>
+            <span>Mumbai &bull; London (UK)</span>
+            <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
           </div>
         </div>
 

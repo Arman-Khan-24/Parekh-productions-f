@@ -21,52 +21,56 @@ export function ClientDossiers() {
         </p>
       </div>
 
-      {/* 6 Client Cards Grid in Horizontal 16:10 format */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* 6 Client Cards Grid: Seamlessly blended with background, zero harsh shadow, smooth editorial hover transitions */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {clients.map((client) => (
           <div
             key={client.id}
             onClick={() => setActiveClient(client)}
-            className="cursor-pointer rounded-3xl bg-neutral-50 overflow-hidden transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group shadow-lg hover:shadow-2xl"
+            className="cursor-pointer group flex flex-col justify-between transition-all duration-500"
           >
-            <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+            {/* Image Container with Smooth Curved Corners & Zoom */}
+            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-neutral-100">
               <img
                 src={client.coverImage}
                 alt={client.name}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
               
+              {/* Top Tag */}
               <div className="absolute top-4 left-4">
-                <span className="inline-flex items-center rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-neutral-900 shadow-sm">
+                <span className="inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold text-neutral-900 tracking-wider uppercase">
                   {client.category}
                 </span>
               </div>
 
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold block">
+              {/* Bottom In-Image Meta */}
+              <div className="absolute bottom-4 left-5 right-5 text-white">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold block mb-0.5">
                   [SCALE // {client.scale}]
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold mt-0.5 text-white">
+                <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
                   {client.name}
                 </h3>
               </div>
             </div>
 
-            <div className="p-6 flex-1 flex flex-col justify-between bg-neutral-50">
+            {/* Below Image Details (Clean and flat with white background, zero box shadow) */}
+            <div className="pt-4 px-1 flex flex-col justify-between">
               <div>
-                <p className="text-xs font-mono text-neutral-400 mb-1">
+                <p className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-1">
                   {client.venue}
                 </p>
-                <p className="text-sm text-neutral-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
                   {client.tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 flex items-center justify-between text-xs font-bold text-neutral-900 group-hover:text-red-600 transition-colors">
-                <span>Inspect Project Dossier</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-red-600" />
+              <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs font-bold text-neutral-900 group-hover:text-red-600 transition-colors">
+                <span className="tracking-wider uppercase text-[11px]">Inspect Project Dossier</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5 text-red-600" />
               </div>
             </div>
           </div>
@@ -119,7 +123,7 @@ export function ClientDossiers() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {activeClient.galleryItems?.map((item, idx) => (
-                  <div key={idx} className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[16/10]">
+                  <div key={idx} className="relative rounded-2xl overflow-hidden bg-neutral-900 aspect-[16/10] group">
                     {item.type === "video" ? (
                       <video
                         src={item.src}
@@ -131,12 +135,17 @@ export function ClientDossiers() {
                       <img
                         src={item.src}
                         alt={item.caption}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/assets/parekh/portfolio/finbridge-stage.jpg";
+                        }}
                       />
                     )}
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-3 text-xs text-white">
-                      {item.caption}
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-4 text-xs font-medium text-white flex items-center justify-between">
+                      <span>{item.caption}</span>
+                      <span className="text-[10px] font-mono text-white/50 uppercase">{item.type}</span>
                     </div>
                   </div>
                 ))}
