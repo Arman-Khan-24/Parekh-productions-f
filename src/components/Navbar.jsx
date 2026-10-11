@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight, ExternalLink } from "lucide-react";
 
 export function Navbar({ onContactClick, onGalleryClick }) {
   const [mobileMenu, setMobileMenu] = useState(false);
 
+  // Lock body scroll when mobile menu is open to prevent underlying website text bleed
+  useEffect(() => {
+    if (mobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenu]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border-b border-neutral-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04)] border-b border-neutral-100">
       <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between px-6 sm:px-12 py-4 sm:py-5">
         
         {/* Brand */}
@@ -48,51 +60,51 @@ export function Navbar({ onContactClick, onGalleryClick }) {
           <a href="#contact" className="hover:text-black transition-colors no-underline">Contact</a>
         </nav>
 
-        {/* Main CTA Button: Get A Quote with clean luxury color hover */}
+        {/* Main CTA Button: Get A Quote with Satisfying Shimmer Glow */}
         <div className="hidden md:flex items-center">
           <button
             onClick={onContactClick}
-            className="text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-neutral-800 rounded-full px-6 py-2.5 transition-colors cursor-pointer flex items-center gap-2"
+            className="btn-satisfying-cta text-xs font-bold uppercase tracking-widest text-white bg-black rounded-full px-6 py-2.5 cursor-pointer flex items-center gap-2"
           >
             <span>Get A Quote</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </button>
         </div>
 
-        {/* Mobile Hamburger with Polished Clean Background */}
+        {/* Mobile Hamburger Button with Clean Solid Neutral Background */}
         <button
           onClick={() => setMobileMenu(!mobileMenu)}
-          className="md:hidden relative flex items-center justify-center h-10 w-10 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200/90 text-neutral-900 shadow-sm transition-all active:scale-95 cursor-pointer"
+          className="md:hidden relative flex items-center justify-center h-10 w-10 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-neutral-900 shadow-sm transition-colors active:scale-95 cursor-pointer z-50"
           aria-label="Toggle mobile navigation menu"
         >
           {mobileMenu ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Mobile Drawer with Clean Editorial Background */}
+      {/* Mobile Drawer (100% Solid Pure White, z-[9999] completely covering screen with zero background bleed) */}
       {mobileMenu && (
-        <div className="md:hidden fixed inset-0 top-[65px] bg-white/98 backdrop-blur-3xl px-8 py-8 flex flex-col justify-between text-base font-bold uppercase tracking-widest z-50 shadow-2xl border-t border-neutral-100">
-          <div className="flex flex-col gap-5">
-            <a href="#about" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">About</a>
-            <a href="#services" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">Services</a>
-            <a href="#clients" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">Clients</a>
-            <a href="#showcase" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">Work</a>
+        <div className="md:hidden fixed inset-0 top-[68px] bg-white text-black px-7 py-8 flex flex-col justify-between text-base font-bold uppercase tracking-widest z-[9999] shadow-2xl overflow-y-auto border-t border-neutral-200">
+          <div className="flex flex-col gap-4">
+            <a href="#about" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">About</a>
+            <a href="#services" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Services</a>
+            <a href="#clients" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Clients</a>
+            <a href="#showcase" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Work</a>
             <a 
               href="#/gallery" 
               onClick={() => {
                 setMobileMenu(false);
                 if (onGalleryClick) onGalleryClick();
               }} 
-              className="text-red-600 font-extrabold flex items-center justify-between py-1"
+              className="text-red-600 font-extrabold flex items-center justify-between py-2 border-b border-neutral-100"
             >
               <span>Gallery Catalog</span>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-50 text-red-600">NEW</span>
             </a>
-            <a href="#map" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">Locations</a>
-            <a href="#contact" onClick={() => setMobileMenu(false)} className="text-neutral-700 hover:text-black py-1">Contact</a>
+            <a href="#map" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Locations</a>
+            <a href="#contact" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Contact</a>
             
             {/* Sister Brand Callout in Mobile Menu */}
-            <div className="mt-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-200">
+            <div className="mt-3 p-4 rounded-2xl bg-neutral-50 border border-neutral-200">
               <span className="text-[10px] font-mono text-neutral-400 block mb-1">SISTER BRAND:</span>
               <a 
                 href="https://heavenlyweds.com" 
@@ -106,13 +118,13 @@ export function Navbar({ onContactClick, onGalleryClick }) {
             </div>
           </div>
 
-          <div className="pt-6">
+          <div className="pt-6 pb-4">
             <button
               onClick={() => {
                 setMobileMenu(false);
                 onContactClick();
               }}
-              className="w-full text-center py-3.5 rounded-full bg-black hover:bg-neutral-800 transition-colors text-white text-xs font-bold uppercase tracking-widest cursor-pointer"
+              className="btn-satisfying-cta w-full text-center py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest cursor-pointer shadow-md"
             >
               Get A Quote
             </button>

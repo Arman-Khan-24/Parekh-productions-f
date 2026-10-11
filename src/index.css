@@ -53,12 +53,40 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Premium Standard Button Hover (Smooth color/background change, ZERO vertical displacement) */
-.btn-premium {
-  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+/* Satisfying Luxury Shimmer + Glow CTA Button Effect (Zero vertical displacement) */
+.btn-satisfying-cta {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 300ms ease, box-shadow 300ms ease;
   transform: none !important;
 }
-.btn-premium:hover {
+
+.btn-satisfying-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.btn-satisfying-cta:hover::before {
+  left: 150%;
+}
+
+.btn-satisfying-cta:hover {
+  background-color: #dc2626 !important; /* Pure cinematic red */
+  color: #ffffff !important;
+  box-shadow: 0 0 24px rgba(220, 38, 38, 0.4) !important;
   transform: none !important;
 }
 

@@ -68,7 +68,7 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <button
               onClick={onQuoteClick}
-              className="px-8 py-3.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors cursor-pointer text-center"
+              className="btn-satisfying-cta px-8 py-3.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest cursor-pointer text-center"
             >
               Get Instant Quote &rarr;
             </button>
@@ -115,29 +115,25 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
             </div>
           </div>
 
-          {/* Sister Brand & Key Divisions */}
+          {/* Sister Brand: Heavenly Weds */}
           <div>
             <div className="text-white font-bold uppercase tracking-wider mb-3">
-              Specialized Labels
+              Sister Brand
             </div>
             <div className="space-y-2 text-neutral-400 font-sans text-xs">
-              {/* Highlighted Heavenly Weds Reference */}
               <a
                 href="https://heavenlyweds.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-white/10 transition-all text-white no-underline"
+                className="group block p-3 rounded-2xl bg-white/5 border border-white/10 hover:border-red-500/50 hover:bg-white/10 transition-all text-white no-underline"
               >
                 <div className="flex items-center justify-between font-bold text-red-400 text-[11px] uppercase tracking-wider mb-0.5">
-                  <span>Sister Brand</span>
+                  <span>Luxury Weddings</span>
                   <ExternalLink className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
                 <div className="text-xs font-semibold text-white">Heavenly Weds</div>
-                <div className="text-[10px] text-neutral-400">Luxury Bridal &amp; Royal Cinematography</div>
+                <div className="text-[10px] text-neutral-400 mt-0.5">Royal Destination Wedding Films &amp; Bridal Cinematography</div>
               </a>
-
-              <div className="pt-1 text-neutral-400">• German Hangar Structures &amp; Rigging</div>
-              <div className="text-neutral-400">• Cinema FX6/FX3 Multicam Broadcast</div>
             </div>
           </div>
 

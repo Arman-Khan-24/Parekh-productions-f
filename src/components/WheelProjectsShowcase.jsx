@@ -15,7 +15,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
 
   const anglePerItem = (Math.PI * 2) / total;
 
-  // Initialize True 3D Half-Wheel Model with Three.js on pure white aesthetic
+  // Initialize True 3D Half-Wheel Model with Three.js on pure white background
   useEffect(() => {
     const mount = canvasRef.current;
     if (!mount) return;
@@ -32,23 +32,23 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
 
-    // Clean Bright Studio Lighting for White Background
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
+    // Studio Lighting for pure white background
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
     keyLight.position.set(5, 5, 5);
     scene.add(keyLight);
 
-    const rimLight = new THREE.DirectionalLight(0xdc2626, 2.8);
-    rimLight.position.set(-5, 0, 3);
-    scene.add(rimLight);
+    const redRim = new THREE.DirectionalLight(0xdc2626, 3.0);
+    redRim.position.set(-5, 0, 3);
+    scene.add(redRim);
 
-    // Main 3D Wheel Group (Pivot placed towards the left so half of the wheel is visible)
+    // Main 3D Wheel Group (Pivot placed hard to the left edge of container)
     const wheel = new THREE.Group();
-    wheel.position.set(-2.8, 0, 0); // Position hub on the left, rim arc sweeps across the viewport
+    wheel.position.set(-3.2, 0, 0); // Stuck cleanly to the left edge
 
-    // 1. Sleek Aluminum Outer Rim (Light graphite metallic)
+    // 1. Sleek Aluminum Outer Rim
     const outerRingGeo = new THREE.TorusGeometry(3.6, 0.22, 24, 80);
     const outerRingMat = new THREE.MeshStandardMaterial({
       color: 0x3f3f46,
@@ -85,7 +85,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
       const spokeGeo = new THREE.BoxGeometry(0.12, 2.3, 0.12);
       const spokeMat = new THREE.MeshStandardMaterial({
         color: 0x71717a,
-        metalness: 0.8,
+        metalness: 0.85,
         roughness: 0.25,
       });
       const spoke = new THREE.Mesh(spokeGeo, spokeMat);
@@ -169,7 +169,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
     if (!isDragging.current) return;
     const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
     const deltaY = clientY - dragStartY.current;
-    if (Math.abs(deltaY) > 40) {
+    if (Math.abs(deltaY) > 35) {
       if (deltaY > 0) {
         handlePrev();
       } else {
@@ -188,7 +188,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
   return (
     <section 
       id="clients" 
-      className="relative w-full min-h-[95vh] py-16 lg:py-20 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
+      className="relative w-full min-h-[92vh] py-14 lg:py-20 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
     >
       {/* Top Header */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -196,7 +196,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
           <div className="flex items-center gap-2 mb-2">
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [INTERACTIVE HALF-WHEEL CINEMA DIAL]
+              [INTERACTIVE CINEMA HALF-WHEEL]
             </span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
@@ -232,12 +232,12 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
         </div>
       </div>
 
-      {/* Main Split Showcase: Pure White Theme, 3D Half-Wheel on Left, Cards Centered Along Rim */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      {/* Main Split Showcase: Pure White Theme, 3D Half-Wheel Stuck to Left, Dynamic Arc Shift on Cards */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-6 lg:my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* Left Column: Pure White Console with Real 3D Half-Wheel */}
+        {/* Left Column: Pure White Canvas with 3D Half-Wheel stuck to screen */}
         <div 
-          className="lg:col-span-5 relative h-[440px] sm:h-[540px] rounded-3xl bg-neutral-50/80 overflow-hidden flex items-center select-none cursor-grab active:cursor-grabbing border border-neutral-200"
+          className="lg:col-span-5 relative h-[440px] sm:h-[520px] rounded-3xl bg-white overflow-hidden flex items-center select-none cursor-grab active:cursor-grabbing border border-neutral-100"
           onMouseDown={onPointerDown}
           onMouseMove={onPointerMove}
           onMouseUp={onPointerUp}
@@ -245,30 +245,40 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
           onTouchMove={onPointerMove}
           onTouchEnd={onPointerUp}
         >
-          {/* 3D WebGL Canvas Rendering Real Rotating Half-Wheel */}
-          <div ref={canvasRef} className="absolute inset-0 pointer-events-none z-0 opacity-90" />
+          {/* 3D WebGL Canvas Rendering Real Rotating Half-Wheel Stuck Hard Left */}
+          <div ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
           {/* Calibrated Hub Meta */}
-          <div className="absolute top-4 left-6 z-10 text-[10px] font-mono text-neutral-500 uppercase tracking-widest font-bold">
-            3D FOCUS WHEEL // DRAG VERTICAL
+          <div className="absolute top-4 left-4 z-10 text-[10px] font-mono text-neutral-400 uppercase tracking-widest font-bold">
+            3D APERTURE // SWIPE VERTICAL
           </div>
 
-          {/* Project Cards Centered Along the Arc Rim */}
-          <div className="absolute inset-y-0 right-3 sm:right-5 w-48 sm:w-56 flex flex-col justify-center space-y-2.5 z-10">
+          {/* Option Cards (1 to 6) Dynamically Translating along the Curved Circumference */}
+          <div className="absolute inset-y-0 right-2 sm:right-4 w-52 sm:w-60 flex flex-col justify-center space-y-2 z-10">
             {projects.map((proj, idx) => {
               const isActive = idx === activeIndex;
+              // Angular offset relative to active project index
+              const offset = idx - activeIndex;
+              // Smooth dynamic translation: active card pushes out while adjacent cards curve along rim
+              const translateX = isActive ? 0 : Math.min(24, Math.abs(offset) * 10);
+              const scale = isActive ? 1.02 : 0.96;
+
               return (
                 <button
                   key={proj.id}
                   onClick={() => selectProject(idx)}
-                  className={`w-full text-left p-2.5 sm:p-3 rounded-2xl transition-colors cursor-pointer border ${
+                  style={{
+                    transform: `translateX(${translateX}px) scale(${scale})`,
+                    transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1), background-color 250ms ease, color 250ms ease",
+                  }}
+                  className={`w-full text-left p-3 rounded-2xl transition-all cursor-pointer border ${
                     isActive
-                      ? "bg-black text-white border-black shadow-lg"
-                      : "bg-white text-neutral-700 hover:bg-neutral-100 hover:text-black border-neutral-200"
+                      ? "bg-black text-white border-black z-20"
+                      : "bg-white text-neutral-800 hover:bg-neutral-100 border-neutral-200 z-10"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className={`text-[9px] sm:text-[10px] font-mono uppercase tracking-wider font-bold ${
+                    <span className={`text-[10px] font-mono uppercase tracking-wider font-bold ${
                       isActive ? "text-red-400" : "text-neutral-500"
                     }`}>
                       0{idx + 1} // {proj.category}
@@ -285,16 +295,16 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
             })}
           </div>
 
-          {/* Active Dial Indicator Needle */}
+          {/* Center Indicator Needle */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-20 flex items-center">
             <div className="w-3.5 h-3.5 bg-red-600 rotate-45 transform translate-x-1.5 shadow-sm" />
           </div>
         </div>
 
-        {/* Right Column: Active Project Video & Specifications */}
+        {/* Right Column: Active Project Media & Specifications (Zero Shadow, Pure White Background) */}
         <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
-          {/* Media Player Container */}
-          <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200 shadow-sm">
+          {/* Media Player Container - Zero Harsh Shadows */}
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200">
             <img
               src={currentProject.coverImage}
               alt={currentProject.name}
@@ -313,7 +323,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               </span>
             </div>
 
-            {/* Project Details */}
+            {/* Project Title */}
             <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 text-white">
               <p className="text-xs font-mono uppercase tracking-widest text-red-400 font-bold mb-1">
                 LOCATION // {currentProject.location}
