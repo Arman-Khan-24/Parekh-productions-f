@@ -53,31 +53,13 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Liquid Wave "Glass of Water Filling Up" CTA Button Effect */
-.btn-liquid-water {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  isolation: isolate;
+/* Premium Standard Button Hover (Smooth color/background change, ZERO vertical displacement) */
+.btn-premium {
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease;
+  transform: none !important;
 }
-
-.btn-liquid-water::before {
-  content: "";
-  position: absolute;
-  left: -20%;
-  right: -20%;
-  bottom: -150%;
-  height: 250%;
-  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
-  border-radius: 40% 45% 35% 40%;
-  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform: translateY(0) rotate(0deg);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.btn-liquid-water:hover::before {
-  transform: translateY(-80%) rotate(360deg);
+.btn-premium:hover {
+  transform: none !important;
 }
 
 /* Smooth Scrollbar */

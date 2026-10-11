@@ -65,10 +65,10 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <button
               onClick={onQuoteClick}
-              className="btn-liquid-water px-8 py-4 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest transition-all cursor-pointer shadow-xl text-center active:scale-95"
+              className="px-8 py-3.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors cursor-pointer text-center"
             >
               Get Instant Quote &rarr;
             </button>
@@ -76,10 +76,10 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
               href="https://wa.me/918657754937"
               target="_blank"
               rel="noreferrer"
-              className="px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#20ba5a] transition-all cursor-pointer shadow-xl text-center flex items-center justify-center gap-2 active:scale-95 no-underline"
+              className="px-6 py-3.5 rounded-full bg-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors cursor-pointer text-center flex items-center justify-center gap-2 border border-white/20 no-underline"
             >
-              <MessageCircle className="h-4 w-4" />
-              <span>WhatsApp Crew</span>
+              <MessageCircle className="h-4 w-4 text-[#25D366]" />
+              <span>WhatsApp Direct</span>
             </a>
           </div>
         </div>

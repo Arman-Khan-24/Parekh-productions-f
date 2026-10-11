@@ -48,11 +48,11 @@ export function Navbar({ onContactClick, onGalleryClick }) {
           <a href="#contact" className="hover:text-black transition-colors no-underline">Contact</a>
         </nav>
 
-        {/* Main CTA Button: Get A Quote with Liquid Wave Effect */}
+        {/* Main CTA Button: Get A Quote with clean luxury color hover */}
         <div className="hidden md:flex items-center">
           <button
             onClick={onContactClick}
-            className="btn-liquid-water text-xs font-bold uppercase tracking-widest text-white bg-black rounded-full px-6 py-2.5 transition-all cursor-pointer shadow-md active:scale-95 flex items-center gap-2"
+            className="text-xs font-bold uppercase tracking-widest text-white bg-black hover:bg-neutral-800 rounded-full px-6 py-2.5 transition-colors cursor-pointer flex items-center gap-2"
           >
             <span>Get A Quote</span>
             <ArrowRight className="h-3.5 w-3.5" />
@@ -112,7 +112,7 @@ export function Navbar({ onContactClick, onGalleryClick }) {
                 setMobileMenu(false);
                 onContactClick();
               }}
-              className="btn-liquid-water w-full text-center py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest cursor-pointer shadow-lg"
+              className="w-full text-center py-3.5 rounded-full bg-black hover:bg-neutral-800 transition-colors text-white text-xs font-bold uppercase tracking-widest cursor-pointer"
             >
               Get A Quote
             </button>
