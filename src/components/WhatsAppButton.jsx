@@ -11,18 +11,12 @@ export function WhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp with Parekh Productions"
-        className="group relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 active:scale-95"
+        className="group relative flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-colors hover:bg-[#20ba5a] active:scale-95"
       >
-        {/* Radar pulse effect */}
-        <span
-          className="absolute -inset-1 rounded-full bg-[#25D366] opacity-40 animate-ping pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Official WhatsApp SVG Logo */}
+        {/* Clean Official WhatsApp SVG Logo */}
         <svg
           viewBox="0 0 32 32"
-          className="relative h-7 w-7 sm:h-8 sm:w-8 fill-current transition-transform duration-300 group-hover:rotate-6"
+          className="h-6 w-6 sm:h-7 sm:w-7 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
@@ -30,8 +24,8 @@ export function WhatsAppButton() {
         </svg>
 
         {/* Hover Tooltip */}
-        <span className="pointer-events-none absolute right-full mr-3 hidden rounded-xl bg-[#1a1a1e] px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap text-white shadow-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100 sm:inline-block">
-          Chat with us on WhatsApp
+        <span className="pointer-events-none absolute right-full mr-3 hidden rounded-xl bg-neutral-900 px-3 py-1.5 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:inline-block">
+          WhatsApp Direct
         </span>
       </a>
     </aside>

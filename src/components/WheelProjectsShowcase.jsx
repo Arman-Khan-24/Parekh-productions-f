@@ -1,108 +1,127 @@
 import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { siteContent } from "../data/siteContent";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
 
 export function WheelProjectsShowcase({ onViewAllProjects }) {
   const projects = siteContent.clients;
   const [activeIndex, setActiveIndex] = useState(0);
   const total = projects.length;
 
-  const mountRef = useRef(null);
-  const gearMeshRef = useRef(null);
-  const targetRotationZ = useRef(0);
-  const currentRotationZ = useRef(0);
+  const canvasRef = useRef(null);
+  const wheelGroupRef = useRef(null);
+  const targetRotation = useRef(0);
+  const currentRotation = useRef(0);
 
-  // Setup 3D Cine-Lens Gear Wheel in Three.js (Facing front directly inside the circular gauge)
+  const anglePerItem = (Math.PI * 2) / total;
+
+  // Initialize True 3D Half-Wheel Model with Three.js on the left curved rim
   useEffect(() => {
-    const mount = mountRef.current;
+    const mount = canvasRef.current;
     if (!mount) return;
 
-    const width = mount.clientWidth || 280;
-    const height = mount.clientHeight || 140;
+    const width = mount.clientWidth || 360;
+    const height = mount.clientHeight || 560;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-    camera.position.set(0, 0, 4.2);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 0, 7.5);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mount.appendChild(renderer.domElement);
 
+    // Studio Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    directionalLight.position.set(0, 3, 3);
-    scene.add(directionalLight);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+    keyLight.position.set(5, 5, 5);
+    scene.add(keyLight);
 
-    const redLight = new THREE.DirectionalLight(0xdc2626, 2.0);
-    redLight.position.set(0, -2, 2);
-    scene.add(redLight);
+    const rimLight = new THREE.DirectionalLight(0xdc2626, 2.5);
+    rimLight.position.set(-5, 0, 3);
+    scene.add(rimLight);
 
-    // Build Circular Focus Wheel Mesh
-    const gearGroup = new THREE.Group();
+    // Main 3D Wheel Group (Pivot placed towards the left so half of the wheel is visible)
+    const wheel = new THREE.Group();
+    wheel.position.set(-2.8, 0, 0); // Position hub on the left, rim arc sweeps across the viewport
 
-    // Outer Gear Rim
-    const outerTorusGeo = new THREE.TorusGeometry(1.6, 0.14, 16, 64);
-    const outerTorusMat = new THREE.MeshStandardMaterial({
+    // 1. Heavy Cine Anodized Aluminum Outer Ring
+    const outerRingGeo = new THREE.TorusGeometry(3.6, 0.22, 24, 80);
+    const outerRingMat = new THREE.MeshStandardMaterial({
       color: 0x18181b,
-      metalness: 0.85,
+      metalness: 0.9,
       roughness: 0.2,
     });
-    const outerTorus = new THREE.Mesh(outerTorusGeo, outerTorusMat);
-    gearGroup.add(outerTorus);
+    const outerRing = new THREE.Mesh(outerRingGeo, outerRingMat);
+    wheel.add(outerRing);
 
-    // Inner Red Aperture Accent Ring
-    const innerTorusGeo = new THREE.TorusGeometry(1.35, 0.06, 16, 64);
-    const innerTorusMat = new THREE.MeshStandardMaterial({
+    // 2. High-Precision Red Calibrated Aperture Accent Ring
+    const innerRingGeo = new THREE.TorusGeometry(3.2, 0.08, 16, 80);
+    const innerRingMat = new THREE.MeshStandardMaterial({
       color: 0xdc2626,
       metalness: 0.6,
       roughness: 0.25,
     });
-    const innerTorus = new THREE.Mesh(innerTorusGeo, innerTorusMat);
-    gearGroup.add(innerTorus);
+    const innerRing = new THREE.Mesh(innerRingGeo, innerRingMat);
+    wheel.add(innerRing);
 
-    // Central Precision Hub
-    const hubGeo = new THREE.CylinderGeometry(0.5, 0.5, 0.12, 32);
+    // 3. Central Mechanical Hub / Core
+    const hubGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.35, 36);
     hubGeo.rotateX(Math.PI / 2);
     const hubMat = new THREE.MeshStandardMaterial({
       color: 0x27272a,
+      metalness: 0.85,
+      roughness: 0.25,
+    });
+    const hub = new THREE.Mesh(hubGeo, hubMat);
+    wheel.add(hub);
+
+    // 4. Heavy-Duty Mechanical Spokes radiating to the rim
+    for (let i = 0; i < 8; i++) {
+      const spokeAngle = (i / 8) * Math.PI * 2;
+      const spokeGeo = new THREE.BoxGeometry(0.12, 2.3, 0.12);
+      const spokeMat = new THREE.MeshStandardMaterial({
+        color: 0x3f3f46,
+        metalness: 0.85,
+        roughness: 0.3,
+      });
+      const spoke = new THREE.Mesh(spokeGeo, spokeMat);
+      spoke.position.x = Math.sin(spokeAngle) * 2.2;
+      spoke.position.y = Math.cos(spokeAngle) * 2.2;
+      spoke.rotation.z = -spokeAngle;
+      wheel.add(spoke);
+    }
+
+    // 5. Calibrated Focus Teeth along Circumference
+    const toothGeo = new THREE.BoxGeometry(0.14, 0.08, 0.26);
+    const toothMat = new THREE.MeshStandardMaterial({
+      color: 0x71717a,
       metalness: 0.9,
       roughness: 0.2,
     });
-    const hubMesh = new THREE.Mesh(hubGeo, hubMat);
-    gearGroup.add(hubMesh);
-
-    // Mechanical Teeth along outer perimeter
-    const toothGeo = new THREE.BoxGeometry(0.12, 0.05, 0.12);
-    const toothMat = new THREE.MeshStandardMaterial({
-      color: 0xa1a1aa,
-      metalness: 0.9,
-      roughness: 0.15,
-    });
-
-    const numTeeth = 32;
-    for (let i = 0; i < numTeeth; i++) {
-      const angle = (i / numTeeth) * Math.PI * 2;
+    const totalTeeth = 48;
+    for (let i = 0; i < totalTeeth; i++) {
+      const toothAngle = (i / totalTeeth) * Math.PI * 2;
       const tooth = new THREE.Mesh(toothGeo, toothMat);
-      tooth.position.x = Math.sin(angle) * 1.68;
-      tooth.position.y = Math.cos(angle) * 1.68;
-      tooth.rotation.z = -angle;
-      gearGroup.add(tooth);
+      tooth.position.x = Math.sin(toothAngle) * 3.75;
+      tooth.position.y = Math.cos(toothAngle) * 3.75;
+      tooth.rotation.z = -toothAngle;
+      wheel.add(tooth);
     }
 
-    scene.add(gearGroup);
-    gearMeshRef.current = gearGroup;
+    scene.add(wheel);
+    wheelGroupRef.current = wheel;
 
+    // Smooth physics loop
     let animId;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      currentRotationZ.current += (targetRotationZ.current - currentRotationZ.current) * 0.1;
-      if (gearMeshRef.current) {
-        gearMeshRef.current.rotation.z = currentRotationZ.current;
+      currentRotation.current += (targetRotation.current - currentRotation.current) * 0.08;
+      if (wheelGroupRef.current) {
+        wheelGroupRef.current.rotation.z = currentRotation.current;
       }
       renderer.render(scene, camera);
     };
@@ -131,18 +150,45 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
   const selectProject = (idx) => {
     const wrapped = (idx + total) % total;
     setActiveIndex(wrapped);
-    targetRotationZ.current = -(wrapped / total) * Math.PI * 2;
+    targetRotation.current = wrapped * anglePerItem;
   };
 
   const handleNext = () => selectProject(activeIndex + 1);
   const handlePrev = () => selectProject(activeIndex - 1);
+
+  // Dragging and touch rotation along vertical arc
+  const isDragging = useRef(false);
+  const dragStartY = useRef(0);
+
+  const onPointerDown = (e) => {
+    isDragging.current = true;
+    dragStartY.current = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+  };
+
+  const onPointerMove = (e) => {
+    if (!isDragging.current) return;
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+    const deltaY = clientY - dragStartY.current;
+    if (Math.abs(deltaY) > 40) {
+      if (deltaY > 0) {
+        handlePrev();
+      } else {
+        handleNext();
+      }
+      dragStartY.current = clientY;
+    }
+  };
+
+  const onPointerUp = () => {
+    isDragging.current = false;
+  };
 
   const currentProject = projects[activeIndex];
 
   return (
     <section 
       id="clients" 
-      className="relative w-full py-16 lg:py-20 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
+      className="relative w-full min-h-[95vh] py-16 lg:py-20 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
     >
       {/* Top Header */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -150,7 +196,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
           <div className="flex items-center gap-2 mb-2">
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [CINEMA DIAL // 0{activeIndex + 1} OF 0{total}]
+              [INTERACTIVE HALF-WHEEL CINEMA DIAL]
             </span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
@@ -163,16 +209,16 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
           <button
             onClick={handlePrev}
             aria-label="Previous Project"
-            className="h-11 w-11 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors flex items-center justify-center cursor-pointer"
+            className="h-10 w-10 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors flex items-center justify-center cursor-pointer"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronUp className="h-4 w-4" />
           </button>
           <button
             onClick={handleNext}
             aria-label="Next Project"
-            className="h-11 w-11 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors flex items-center justify-center cursor-pointer"
+            className="h-10 w-10 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors flex items-center justify-center cursor-pointer"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronDown className="h-4 w-4" />
           </button>
           {onViewAllProjects && (
             <button
@@ -186,22 +232,77 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
         </div>
       </div>
 
-      {/* Main Showcase Body (Media & Dossier Details) */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* Main Split Showcase: Real 3D Half-Wheel Arc on Left + Project Details on Right */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* Left: Active Project Media Showcase */}
-        <div className="lg:col-span-7 relative group">
-          <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200">
+        {/* Left Column: Real 3D Half-Wheel Model with Arc Thumbnails (Reference 5 Style) */}
+        <div 
+          className="lg:col-span-6 relative h-[420px] sm:h-[520px] rounded-3xl bg-neutral-950 overflow-hidden flex items-center select-none cursor-grab active:cursor-grabbing border border-neutral-900"
+          onMouseDown={onPointerDown}
+          onMouseMove={onPointerMove}
+          onMouseUp={onPointerUp}
+          onTouchStart={onPointerDown}
+          onTouchMove={onPointerMove}
+          onTouchEnd={onPointerUp}
+        >
+          {/* 3D WebGL Canvas Rendering Real Rotating Half-Wheel */}
+          <div ref={canvasRef} className="absolute inset-0 pointer-events-none z-0 opacity-80" />
+
+          {/* Calibrated Hub Meta */}
+          <div className="absolute top-4 left-6 z-10 text-[10px] font-mono text-neutral-400 uppercase tracking-widest">
+            3D MECHANICAL FOCUS RIG // DRAG VERTICAL
+          </div>
+
+          {/* Curved Project Cards Anchored to the Wheel Arc (Reference Image 5 Alignment) */}
+          <div className="absolute inset-y-0 right-4 sm:right-6 w-52 sm:w-64 flex flex-col justify-center space-y-3 z-10">
+            {projects.map((proj, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <button
+                  key={proj.id}
+                  onClick={() => selectProject(idx)}
+                  className={`w-full text-left p-3 rounded-2xl transition-colors cursor-pointer border ${
+                    isActive
+                      ? "bg-white text-black border-red-600 shadow-xl"
+                      : "bg-neutral-900/80 text-neutral-400 hover:text-white hover:bg-neutral-800 border-neutral-800"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] font-mono uppercase tracking-wider font-bold text-red-500">
+                      0{idx + 1} // {proj.category}
+                    </span>
+                    {isActive && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+                    )}
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-black uppercase tracking-tight truncate">
+                    {proj.name}
+                  </h4>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Dial Indicator Needle */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-20 flex items-center">
+            <div className="w-4 h-4 bg-red-600 rotate-45 transform translate-x-2" />
+          </div>
+        </div>
+
+        {/* Right Column: Active Project Video & Specifications */}
+        <div className="lg:col-span-6 flex flex-col justify-center space-y-5">
+          {/* Media Player Container */}
+          <div className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200">
             <img
               src={currentProject.coverImage}
               alt={currentProject.name}
               key={currentProject.id}
-              className="h-full w-full object-cover transition-opacity duration-500"
+              className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-            {/* Top Badges */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2">
+            {/* Badges */}
+            <div className="absolute top-4 left-4 flex items-center gap-2">
               <span className="rounded-full bg-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-black">
                 {currentProject.category}
               </span>
@@ -210,25 +311,23 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               </span>
             </div>
 
-            {/* Bottom Title on Media */}
-            <div className="absolute bottom-5 left-5 right-5 sm:bottom-8 sm:left-8 sm:right-8 text-white">
+            {/* Project Details */}
+            <div className="absolute bottom-5 left-5 right-5 text-white">
               <p className="text-xs font-mono uppercase tracking-widest text-red-400 font-bold mb-1">
                 LOCATION // {currentProject.location}
               </p>
-              <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
                 {currentProject.name}
               </h3>
             </div>
           </div>
-        </div>
 
-        {/* Right: Project Dossier Specs & Narrative */}
-        <div className="lg:col-span-5 flex flex-col justify-center space-y-5">
+          {/* Narrative Specs */}
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
               [DELIVERED BRIEF]
             </span>
-            <p className="text-base sm:text-lg text-neutral-800 font-medium leading-relaxed">
+            <p className="text-base text-neutral-800 font-medium leading-relaxed">
               {currentProject.tagline}
             </p>
           </div>
@@ -237,7 +336,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
             {currentProject.description}
           </p>
 
-          {/* Key Deliverables Chips */}
+          {/* Deliverables */}
           <div className="pt-2">
             <span className="text-xs font-mono uppercase tracking-wider text-neutral-500 block mb-2 font-bold">
               Deployment Package:
@@ -253,68 +352,8 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               ))}
             </div>
           </div>
-
-          <div className="pt-2 flex items-center gap-3 text-xs font-mono text-neutral-500">
-            <span>Select any project below or use next/prev arrows</span>
-          </div>
         </div>
 
-      </div>
-
-      {/* CLEAN HALF-CIRCLE DIAL BAR WITH 3D WHEEL & SELECTOR CHIPS */}
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 pt-4 pb-2">
-        <div className="flex items-center justify-between text-xs font-mono text-neutral-400 mb-4 border-b border-neutral-100 pb-2">
-          <span>‹ CALIBRATED PROJECT APERTURE DIAL ›</span>
-          <span className="text-red-600 font-bold font-mono">0{activeIndex + 1} // {projects[activeIndex].name.toUpperCase()}</span>
-        </div>
-
-        {/* Dial & Project Selector Strip */}
-        <div className="relative w-full rounded-2xl bg-neutral-50 border border-neutral-200/80 p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          
-          {/* Left: 3D Procedural Lens Gear Stage */}
-          <div className="flex items-center gap-4">
-            <div 
-              ref={mountRef} 
-              className="w-28 h-28 rounded-2xl bg-white border border-neutral-200 flex-shrink-0 flex items-center justify-center shadow-sm overflow-hidden" 
-            />
-            <div>
-              <span className="text-[10px] font-mono text-red-600 uppercase font-bold block mb-1">
-                CINEMA RIG ANGLE
-              </span>
-              <p className="text-sm font-bold text-neutral-900">
-                {currentProject.name}
-              </p>
-              <span className="text-xs text-neutral-500 font-mono">
-                {currentProject.category} &bull; {currentProject.scale}
-              </span>
-            </div>
-          </div>
-
-          {/* Right: Clean Interactive Project Selection Pills */}
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2.5 max-w-2xl">
-            {projects.map((proj, idx) => {
-              const isActive = idx === activeIndex;
-              return (
-                <button
-                  key={proj.id}
-                  onClick={() => selectProject(idx)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
-                    isActive
-                      ? "bg-black text-white"
-                      : "bg-white text-neutral-700 hover:bg-neutral-200 border border-neutral-200"
-                  }`}
-                >
-                  <span className={`h-1.5 w-1.5 rounded-full ${isActive ? "bg-red-500" : "bg-neutral-300"}`} />
-                  <span>{proj.name}</span>
-                  <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${isActive ? "bg-white/20 text-white" : "text-neutral-400"}`}>
-                    0{idx + 1}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-        </div>
       </div>
 
     </section>
