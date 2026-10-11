@@ -1,15 +1,14 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { preview } from "vite";
-import puppeteer from "puppeteer";
+import { build } from "vite";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 const distDir = path.resolve(projectRoot, "dist");
+const templatePath = path.resolve(distDir, "index.html");
 
-// Dedicated Route Meta Configurations for Clean Prerendering
 const routes = [
   {
     path: "/",
@@ -205,44 +204,42 @@ function injectRouteHead(html, route) {
 }
 
 async function prerender() {
-  console.log("🚀 Starting Puppeteer Build-Time Prerendering via Vite Preview...");
+  console.log("🚀 Starting Native Vite SSR Prerender (100% Linux/Vercel Compatible)...");
 
-  // Launch official Vite preview server programmatically
-  const previewServer = await preview({
+  // Step 1: Build the SSR bundle in memory/dist-server
+  const serverDistDir = path.resolve(projectRoot, "dist-server");
+  await build({
     root: projectRoot,
-    preview: {
-      port: 4173,
-      host: "localhost"
-    }
+    build: {
+      ssr: path.resolve(projectRoot, "src/entry-server.jsx"),
+      outDir: serverDistDir,
+      emptyOutDir: true,
+    },
+    configFile: path.resolve(projectRoot, "vite.config.js"),
   });
 
-  console.log("📦 Official Vite preview server running at http://localhost:4173");
+  // Step 2: Import the compiled server render function
+  const serverBundlePath = path.resolve(serverDistDir, "entry-server.js");
+  const { render } = await import(`file://${serverBundlePath}`);
 
-  const tmpProfileDir = path.resolve(projectRoot, `node_modules/.cache/puppeteer-profile-${Date.now()}`);
-  const browser = await puppeteer.launch({
-    headless: "new",
-    userDataDir: tmpProfileDir,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
-  });
+  // Step 3: Read built client index.html template
+  const rawTemplate = fs.readFileSync(templatePath, "utf8");
 
+  // Step 4: Prerender each route directly to static HTML
   for (const route of routes) {
     console.log(`🌐 Prerendering route: ${route.path} -> dist/${route.outFile}`);
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1440, height: 900 });
+    
+    // Render full React component tree to string
+    const appHtml = render(route.path);
 
-    const url = `http://localhost:4173${route.path}`;
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+    // Inject rendered HTML into <div id="root">
+    let renderedDoc = rawTemplate.replace(
+      '<div id="root"></div>',
+      `<div id="root">${appHtml}</div>`
+    );
 
-    // Wait until root is populated with rendered HTML content
-    await page.waitForFunction(
-      () => document.getElementById("root") && document.getElementById("root").innerHTML.trim().length > 300,
-      { timeout: 15000 }
-    ).catch(() => console.warn(`⚠️ Timeout waiting for #root content on ${route.path}`));
-
-    let content = await page.content();
-    await page.close();
-
-    content = injectRouteHead(content, route);
+    // Inject route-specific meta tags, canonicals, hreflang, and schema
+    renderedDoc = injectRouteHead(renderedDoc, route);
 
     const outPath = path.resolve(distDir, route.outFile);
     const outDir = path.dirname(outPath);
@@ -250,13 +247,13 @@ async function prerender() {
       fs.mkdirSync(outDir, { recursive: true });
     }
 
-    fs.writeFileSync(outPath, content, "utf8");
-    console.log(`✅ Successfully wrote prerendered HTML: ${outPath} (${(content.length / 1024).toFixed(1)} KB)`);
+    fs.writeFileSync(outPath, renderedDoc, "utf8");
+    console.log(`✅ Successfully wrote prerendered HTML: ${outPath} (${(renderedDoc.length / 1024).toFixed(1)} KB)`);
   }
 
-  await browser.close();
-  previewServer.httpServer.close();
-  console.log("🎉 Prerendering complete for all routes!");
+  // Clean up temporary server bundle
+  fs.rmSync(serverDistDir, { recursive: true, force: true });
+  console.log("🎉 Native prerendering complete! 100% Vercel & SEO compliant.");
 }
 
 prerender().catch((err) => {
