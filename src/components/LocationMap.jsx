@@ -21,19 +21,6 @@ export function LocationMap() {
       isHQ: true,
     },
     {
-      id: "thane",
-      name: "Thane Depot",
-      subhead: "Logistics & Truss Fabrication",
-      role: "Heavy Fabrication Yard & Truss Storage",
-      detail: "Direct fabrication yard for custom stage sets, heavy ground-stacked aluminum truss systems, and audio-visual staging for central Maharashtra corporate belts.",
-      x: 1393,
-      y: 382,
-      zoomViewBox: "1310 310 180 140",
-      stats: "Heavy Rigging Depots",
-      badge: "Fabrication Yard",
-      coordinates: "19°12'N, 72°58'E",
-    },
-    {
       id: "pune",
       name: "Pune Corridor",
       subhead: "Automotive & Industrial Hub",
@@ -92,10 +79,10 @@ export function LocationMap() {
       {/* Editorial Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold block mb-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
             [GEOGRAPHIC OPERATIONAL FOOTPRINT]
           </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
             MUMBAI ROOTS // <br />
             GLOBAL EXECUTION
           </h2>
@@ -103,7 +90,7 @@ export function LocationMap() {
 
         <button
           onClick={handleResetWorld}
-          className="self-start md:self-auto px-5 py-2.5 rounded-full bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all cursor-pointer flex items-center gap-2"
+          className="self-start md:self-auto px-5 py-2.5 rounded-full bg-neutral-100 text-neutral-800 text-xs font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-all cursor-pointer flex items-center gap-2 border border-neutral-200"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           <span>Reset World View</span>
@@ -120,25 +107,25 @@ export function LocationMap() {
               onClick={() => handleSelect(loc)}
               className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 cursor-pointer ${
                 isSelected
-                  ? "bg-white text-black shadow-lg"
-                  : "bg-neutral-900 text-white/70 hover:bg-neutral-800 hover:text-white"
+                  ? "bg-black text-white shadow-md"
+                  : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black border border-neutral-200/60"
               }`}
             >
-              <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? "bg-red-600 animate-pulse" : "bg-white/40"}`} />
+              <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? "bg-red-500 animate-pulse" : "bg-neutral-400"}`} />
               {loc.name}
             </button>
           );
         })}
       </div>
 
-      {/* Expanded Vertical Map Container with Smooth GPU Transitions */}
-      <div className="relative w-full h-[360px] sm:h-[480px] lg:h-[540px] rounded-3xl overflow-hidden bg-black shadow-2xl">
+      {/* Expanded Vertical Map Container with Clean Modern Light Contrast */}
+      <div className="relative w-full h-[360px] sm:h-[480px] lg:h-[540px] rounded-3xl overflow-hidden bg-neutral-950 shadow-2xl">
         <svg
           viewBox={currentViewBox}
           className="w-full h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ willChange: "viewBox" }}
         >
-          <g fill="#18181b" stroke="#27272a" strokeWidth="0.4">
+          <g fill="#27272a" stroke="#3f3f46" strokeWidth="0.4">
             {worldMapData.map((item, idx) => {
               const isIndia = item.id === "IN" || item.name === "India";
               const isUK = item.id === "GB" || item.className === "United Kingdom";
@@ -147,8 +134,8 @@ export function LocationMap() {
                 <path
                   key={idx}
                   d={item.d}
-                  fill={isIndia ? "#3f3f46" : (isUK ? "#27272a" : "#18181b")}
-                  stroke={isIndia ? "#ef4444" : "#27272a"}
+                  fill={isIndia ? "#52525b" : (isUK ? "#3f3f46" : "#27272a")}
+                  stroke={isIndia ? "#ef4444" : "#3f3f46"}
                   strokeWidth={isIndia ? "1" : "0.4"}
                 />
               );
@@ -197,7 +184,7 @@ export function LocationMap() {
                 <text
                   x={loc.x + 10}
                   y={loc.y + 4}
-                  fill={isSelected ? "#ffffff" : "#a1a1aa"}
+                  fill={isSelected ? "#ffffff" : "#d4d4d8"}
                   fontSize={isSelected ? "12" : "10"}
                   fontWeight="800"
                   fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
@@ -210,29 +197,29 @@ export function LocationMap() {
         </svg>
       </div>
 
-      {/* Floating Dossier: Below Map on Mobile, Floating in Desktop (Map NEVER blocked) */}
-      <div className="mt-6 sm:mt-0 sm:absolute sm:bottom-6 sm:left-6 rounded-2xl bg-neutral-950 p-6 sm:max-w-md shadow-2xl relative z-10">
+      {/* Floating Dossier: Below Map on Mobile, Floating in Desktop */}
+      <div className="mt-6 sm:mt-0 sm:absolute sm:bottom-6 sm:left-6 rounded-2xl bg-white/95 backdrop-blur-md p-6 sm:max-w-md shadow-2xl border border-neutral-100 relative z-10 text-neutral-900">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-red-500 font-bold px-3 py-1 rounded-full bg-red-950/40">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-red-600 font-bold px-3 py-1 rounded-full bg-red-50">
             {selectedLoc.badge}
           </span>
-          <span className="text-xs text-white/50 font-mono">
+          <span className="text-xs text-neutral-400 font-mono">
             {selectedLoc.coordinates}
           </span>
         </div>
 
-        <h4 className="text-xl font-bold text-white">
+        <h4 className="text-xl font-bold text-neutral-900">
           {selectedLoc.name}
         </h4>
-        <p className="text-xs text-white/70 mt-1 leading-relaxed">
+        <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
           {selectedLoc.detail}
         </p>
 
         <div className="mt-4 pt-3 flex items-center justify-between text-xs font-mono">
-          <span className="text-white/40">{selectedLoc.stats}</span>
+          <span className="text-neutral-400">{selectedLoc.stats}</span>
           <a
             href="#contact"
-            className="font-bold text-red-500 hover:text-red-400 flex items-center gap-1 no-underline"
+            className="font-bold text-red-600 hover:text-red-500 flex items-center gap-1 no-underline"
           >
             Book In {selectedLoc.name} <ArrowRight className="h-3.5 w-3.5" />
           </a>

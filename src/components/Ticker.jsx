@@ -13,14 +13,14 @@ export function Ticker() {
   ];
 
   return (
-    <div className="py-12 bg-black overflow-hidden select-none w-full">
+    <div className="py-12 bg-neutral-50/60 border-y border-neutral-100 overflow-hidden select-none w-full">
       <div className="flex w-max items-center animate-ticker whitespace-nowrap">
         {[...items, ...items, ...items, ...items].map((item, idx) => (
           <div key={idx} className="flex items-center mx-5 sm:mx-8">
-            <span className="text-sm sm:text-base font-black uppercase tracking-widest text-white">
+            <span className="text-sm sm:text-base font-black uppercase tracking-widest text-neutral-900">
               {item}
             </span>
-            <span className="h-2 w-2 rounded-full bg-red-600 mx-5 sm:mx-8 shadow-[0_0_8px_rgba(220,38,38,0.8)]" />
+            <span className="h-2 w-2 rounded-full bg-red-600 mx-5 sm:mx-8 shadow-[0_0_8px_rgba(220,38,38,0.5)]" />
           </div>
         ))}
       </div>

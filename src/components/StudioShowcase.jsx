@@ -43,7 +43,7 @@ export function StudioShowcase() {
       
       {/* Header with Circular Arrows */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-12">
-        <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-white leading-[0.95]">
+        <h2 className="text-3xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight text-neutral-900 leading-[0.95]">
           A CREATIVE VIDEO <br />
           PRODUCTION STUDIO
         </h2>
@@ -52,14 +52,14 @@ export function StudioShowcase() {
           <button
             onClick={prevSlide}
             aria-label="Previous project"
-            className="h-12 w-12 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all cursor-pointer shadow-lg active:scale-95"
+            className="h-12 w-12 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer shadow-md active:scale-95"
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
           <button
             onClick={nextSlide}
             aria-label="Next project"
-            className="h-12 w-12 rounded-full bg-neutral-900 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all cursor-pointer shadow-lg active:scale-95"
+            className="h-12 w-12 rounded-full bg-neutral-100 flex items-center justify-center text-black hover:bg-black hover:text-white transition-all cursor-pointer shadow-md active:scale-95"
           >
             <ArrowRight className="h-5 w-5" />
           </button>
@@ -67,7 +67,7 @@ export function StudioShowcase() {
       </div>
 
       {/* 100% Unobstructed Image Frame */}
-      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-black shadow-2xl">
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 shadow-xl">
         <img
           src={current.image}
           alt={current.title}
@@ -76,20 +76,20 @@ export function StudioShowcase() {
       </div>
 
       {/* Clean Editorial Caption BELOW Image (Image 100% visible, no messy overlay) */}
-      <div className="mt-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4 text-white">
+      <div className="mt-6 flex flex-col sm:flex-row sm:items-start justify-between gap-4 text-black">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold block mb-1">
+          <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-1">
             [{current.category}]
           </span>
-          <h3 className="text-xl sm:text-3xl font-extrabold text-white">
+          <h3 className="text-xl sm:text-3xl font-extrabold text-neutral-900">
             {current.title}
           </h3>
-          <p className="text-xs sm:text-sm text-white/60 mt-1 font-mono">
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1 font-mono">
             {current.venue} · {current.desc}
           </p>
         </div>
 
-        <div className="text-xs font-mono text-white/40 tracking-widest shrink-0">
+        <div className="text-xs font-mono text-neutral-400 tracking-widest shrink-0">
           0{currentIndex + 1} // 0{slides.length}
         </div>
       </div>

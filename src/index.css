@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  background-color: #000000;
-  color: #ffffff;
-  color-scheme: dark;
+  background-color: #ffffff;
+  color: #000000;
+  color-scheme: light;
 }
 
 html, body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
   overflow-x: hidden;
   font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   margin: 0;

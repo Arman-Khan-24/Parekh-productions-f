@@ -9,14 +9,14 @@ export function ClientDossiers() {
   return (
     <section id="clients" className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
       <div className="mb-10 sm:mb-14">
-        <span className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold block mb-2">
+        <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
           [CLIENT DOSSIER // VERIFIED PRODUCTIONS]
         </span>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
           Our Clients & <br />
           Delivered Productions
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-white/60 max-w-2xl">
+        <p className="mt-3 text-sm sm:text-base text-neutral-600 max-w-2xl">
           Click any client dossier below to inspect on-ground staging, cinema coverage, and technical specifications delivered by Harish Parekh's crew.
         </p>
       </div>
@@ -27,25 +27,25 @@ export function ClientDossiers() {
           <div
             key={client.id}
             onClick={() => setActiveClient(client)}
-            className="cursor-pointer rounded-3xl bg-neutral-950 overflow-hidden transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group shadow-2xl"
+            className="cursor-pointer rounded-3xl bg-neutral-50 overflow-hidden transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between group shadow-lg hover:shadow-2xl"
           >
-            <div className="relative aspect-[16/10] overflow-hidden bg-black">
+            <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
               <img
                 src={client.coverImage}
                 alt={client.name}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
               
               <div className="absolute top-4 left-4">
-                <span className="inline-flex items-center rounded-full bg-black/70 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
+                <span className="inline-flex items-center rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-neutral-900 shadow-sm">
                   {client.category}
                 </span>
               </div>
 
               <div className="absolute bottom-4 left-4 right-4 text-white">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-red-500 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold block">
                   [SCALE // {client.scale}]
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold mt-0.5 text-white">
@@ -54,19 +54,19 @@ export function ClientDossiers() {
               </div>
             </div>
 
-            <div className="p-6 flex-1 flex flex-col justify-between">
+            <div className="p-6 flex-1 flex flex-col justify-between bg-neutral-50">
               <div>
-                <p className="text-xs font-mono text-white/50 mb-1">
+                <p className="text-xs font-mono text-neutral-400 mb-1">
                   {client.venue}
                 </p>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <p className="text-sm text-neutral-600 leading-relaxed">
                   {client.tagline}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 flex items-center justify-between text-xs font-bold text-white group-hover:text-red-500 transition-colors">
+              <div className="mt-6 pt-4 flex items-center justify-between text-xs font-bold text-neutral-900 group-hover:text-red-600 transition-colors">
                 <span>Inspect Project Dossier</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-red-500" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-red-600" />
               </div>
             </div>
           </div>
@@ -75,36 +75,36 @@ export function ClientDossiers() {
 
       {/* Modal Lightbox */}
       {activeClient && (
-        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8 animate-fadeIn">
-          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-neutral-950 text-white p-6 sm:p-10 shadow-2xl">
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 sm:p-8 animate-fadeIn">
+          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white text-neutral-900 p-6 sm:p-10 shadow-2xl border border-neutral-100">
             <button
               onClick={() => setActiveClient(null)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 text-neutral-900 hover:bg-black hover:text-white transition-colors cursor-pointer"
             >
               <X className="h-6 w-6" />
             </button>
 
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">
+              <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
                 [PROJECT SPEC // {activeClient.category} · {activeClient.venue}]
               </span>
-              <h3 className="text-2xl sm:text-4xl font-extrabold text-white mt-1">
+              <h3 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 mt-1">
                 {activeClient.name}
               </h3>
-              <p className="mt-2 text-sm text-white/70 max-w-2xl">
+              <p className="mt-2 text-sm text-neutral-600 max-w-2xl">
                 {activeClient.tagline} ({activeClient.scale})
               </p>
             </div>
 
             {/* Scope Highlights */}
             <div className="mt-6 pt-6">
-              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-500 mb-3">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-3">
                 [VERIFIED ON-GROUND DELIVERABLES]
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {activeClient.highlights.map((item, idx) => (
-                  <div key={idx} className="rounded-2xl bg-black p-3.5 text-xs text-white/90 flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+                  <div key={idx} className="rounded-2xl bg-neutral-50 border border-neutral-100 p-3.5 text-xs text-neutral-800 flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -113,13 +113,13 @@ export function ClientDossiers() {
 
             {/* Media Grid */}
             <div className="mt-8 pt-6">
-              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-500 mb-4">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-4">
                 [PRODUCTION MEDIA FOOTAGE // 4K LOG]
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {activeClient.galleryItems?.map((item, idx) => (
-                  <div key={idx} className="relative rounded-2xl overflow-hidden bg-black aspect-[16/10]">
+                  <div key={idx} className="relative rounded-2xl overflow-hidden bg-neutral-100 aspect-[16/10]">
                     {item.type === "video" ? (
                       <video
                         src={item.src}

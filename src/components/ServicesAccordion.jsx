@@ -54,14 +54,14 @@ export function ServicesAccordion() {
   return (
     <section className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
       <div className="mb-10 sm:mb-14">
-        <span className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold block mb-2">
+        <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
           [WHAT WE DELIVER // 100% IN-HOUSE]
         </span>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
           Production Divisions & <br />
           Technical Capabilities
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-white/60 max-w-2xl">
+        <p className="mt-3 text-sm sm:text-base text-neutral-600 max-w-2xl">
           Click any division below to inspect our internal gear packages, live show execution capabilities, and deliverable standards.
         </p>
       </div>
@@ -76,24 +76,26 @@ export function ServicesAccordion() {
               onClick={() => setActiveTab(d.num)}
               className={`text-left p-6 sm:p-7 rounded-3xl transition-all cursor-pointer ${
                 isSelected
-                  ? "bg-neutral-900 shadow-xl"
-                  : "bg-black hover:bg-neutral-950"
+                  ? "bg-black text-white shadow-xl scale-[1.02]"
+                  : "bg-neutral-50 hover:bg-neutral-100 text-neutral-900 border border-neutral-100"
               }`}
             >
               <div className="flex items-center justify-between mb-4">
                 <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded-md ${
-                  isSelected ? "bg-white text-black" : "bg-neutral-800 text-white/60"
+                  isSelected ? "bg-white text-black" : "bg-neutral-200 text-neutral-700"
                 }`}>
                   {d.num}
                 </span>
-                <span className="text-[10px] font-mono tracking-widest uppercase text-white/40">
+                <span className={`text-[10px] font-mono tracking-widest uppercase ${
+                  isSelected ? "text-white/60" : "text-neutral-400"
+                }`}>
                   {d.category}
                 </span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 leading-snug">
+              <h3 className={`text-lg font-bold mb-2 leading-snug ${isSelected ? "text-white" : "text-neutral-900"}`}>
                 {d.title}
               </h3>
-              <p className="text-xs text-white/60 line-clamp-3 leading-relaxed">
+              <p className={`text-xs line-clamp-3 leading-relaxed ${isSelected ? "text-white/70" : "text-neutral-500"}`}>
                 {d.desc}
               </p>
             </button>
@@ -103,19 +105,19 @@ export function ServicesAccordion() {
 
       {/* Active Subservices Detail Panel */}
       {divisions.find((d) => d.num === activeTab) && (
-        <div className="rounded-3xl bg-neutral-950 p-6 sm:p-10 shadow-2xl">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold mb-4">
+        <div className="rounded-3xl bg-neutral-50 border border-neutral-100 p-6 sm:p-10 shadow-lg">
+          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-4">
             [DELIVERABLE BREAKDOWN // {divisions.find((d) => d.num === activeTab).title}]
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {divisions.find((d) => d.num === activeTab).subservices.map((sub, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-black">
+              <div key={idx} className="p-5 rounded-2xl bg-white border border-neutral-100 shadow-sm">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-bold text-white mb-1">{sub.name}</h4>
-                    <p className="text-xs text-white/60 leading-relaxed">{sub.detail}</p>
+                    <h4 className="text-sm font-bold text-neutral-900 mb-1">{sub.name}</h4>
+                    <p className="text-xs text-neutral-600 leading-relaxed">{sub.detail}</p>
                   </div>
                 </div>
               </div>
