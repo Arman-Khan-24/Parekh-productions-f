@@ -106,11 +106,11 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
               Inquire UK Production &rarr;
             </button>
             <a
-              href="tel:+442081234567"
+              href="mailto:parekhhevents@gmail.com"
               className="px-6 py-3.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-2 no-underline"
             >
-              <Phone className="h-4 w-4 text-blue-600" />
-              <span>Call +44 20 8123 4567</span>
+              <Mail className="h-4 w-4 text-red-600" />
+              <span>Email parekhhevents@gmail.com</span>
             </a>
             <a
               href="/"
@@ -187,22 +187,26 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block">London Office:</strong>
-                    <span>12 Berkeley Square, Mayfair, London W1J 6BD, United Kingdom</span>
+                    <strong className="text-white block">Serviced Region:</strong>
+                    <span>London &amp; Greater London (UK &amp; European Event Deliveries)</span>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block">UK Hotline:</strong>
-                    <a href="tel:+442081234567" className="text-white hover:text-red-400 transition-colors">+44 20 8123 4567</a>
+                    <strong className="text-white block">Central Hotlines:</strong>
+                    <div className="space-x-2">
+                      <a href="tel:+918657754937" className="text-white hover:text-red-400 transition-colors">+91 86577 54937</a>
+                      <span>&bull;</span>
+                      <a href="tel:+919594888516" className="text-white hover:text-red-400 transition-colors">+91 95948 88516</a>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-white block">Email:</strong>
-                    <a href="mailto:london@parekhevents.com" className="text-white hover:text-red-400 transition-colors">london@parekhevents.com</a>
+                    <strong className="text-white block">Inquiries Email:</strong>
+                    <a href="mailto:parekhhevents@gmail.com" className="text-white hover:text-red-400 transition-colors">parekhhevents@gmail.com</a>
                   </div>
                 </div>
               </div>

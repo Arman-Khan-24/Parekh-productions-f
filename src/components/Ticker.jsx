@@ -18,7 +18,7 @@ export function Ticker() {
   return (
     <div className="py-10 bg-white border-y border-neutral-100 overflow-hidden select-none w-full">
       <div className="flex w-max items-center animate-ticker whitespace-nowrap">
-        {[...items, ...items, ...items].map((item, idx) => (
+        {items.map((item, idx) => (
           <div key={idx} className="flex items-center mx-4 sm:mx-6">
             <span className="text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-neutral-900">
               {item}

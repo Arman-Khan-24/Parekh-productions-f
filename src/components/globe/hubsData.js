@@ -1,3 +1,5 @@
+import { GEO_COORDINATES } from "../../data/geoCoordinates";
+
 export const hubsData = [
   {
     id: "mumbai",
@@ -5,7 +7,11 @@ export const hubsData = [
     subhead: "Western & Central Base",
     role: "Corporate Head Office & Central Equipment Vault",
     badge: "Master Base",
-    coordinates: "19°04'N, 72°52'E",
+    coordinates: GEO_COORDINATES.mumbai.displayDMS,
+    geo: {
+      latitude: GEO_COORDINATES.mumbai.lat,
+      longitude: GEO_COORDINATES.mumbai.lng,
+    },
     x: 1386,
     y: 382,
     // Deep zoomed-in cinematic focal box centered on Mumbai

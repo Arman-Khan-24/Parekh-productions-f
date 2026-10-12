@@ -71,7 +71,7 @@ This compiles client bundles and automatically invokes `node scripts/prerender.j
 
 ## 🏢 Corporate Headquarters
 
-- **Mumbai HQ**: Shop No 18, 1st Floor, V-Mall, Thakur Complex, Western Express Highway, Kandivali East, Mumbai, MH 400101
+- **Mumbai HQ**: A/803 Oceanic Tower Chs Ltd, Section 8, Charkop, Kandivali West, Mumbai 400067
 - **Sister Brand**: [Heavenly Weds](https://heavenlyweds.com) (Luxury Royal Destination Wedding Cinema)
 
 ---
@@ -82,4 +82,4 @@ This compiles client bundles and automatically invokes `node scripts/prerender.j
 
 ---
 
-&copy; 2026 Parekh Productions Pvt. Ltd. All rights reserved.
+&copy; 2026 Parekh Productions Pvt Ltd. All rights reserved.

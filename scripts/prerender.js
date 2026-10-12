@@ -16,26 +16,30 @@ const routes = [
     title: "Event Management & Production Company in Mumbai | Parekh Productions",
     description: "Parekh Productions is Mumbai's premier event management, corporate event production, cinematography, sound & AV, and exhibition staging partner. 30-min on-ground dispatch across Mumbai & Pan-India.",
     keywords: "Event management company Mumbai, Corporate event management Mumbai, Event production company Mumbai, Stage setup for events, Event sound AV Mumbai, Corporate video production Mumbai, Event photography Mumbai, Brand video production Mumbai, Harish Parekh",
-    canonical: "https://parekhevents.com/",
+    canonical: "https://parekh-productions-f.vercel.app/",
     locale: "en_IN",
-    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg",
+    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
     schema: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://parekhevents.com/#organization",
-      "name": "Parekh Productions - Mumbai HQ",
-      "url": "https://parekhevents.com/",
-      "logo": "https://parekhevents.com/assets/parekh/parekh-productions-logo.png",
-      "image": "https://parekhevents.com/assets/parekh/parekh-og.jpg",
+      "@id": "https://parekh-productions-f.vercel.app/#organization",
+      "name": "Parekh Productions Pvt Ltd",
+      "url": "https://parekh-productions-f.vercel.app/",
+      "logo": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-productions-logo.png",
+      "image": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
       "description": "Premier event management and media production company in Mumbai specializing in corporate events, plenary stage setups, line-array acoustics, and commercial cinematography.",
+      "founder": {
+        "@type": "Person",
+        "name": "Harish Parekh"
+      },
       "telephone": "+918657754937",
       "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Shop No 18, 1st Floor, V-Mall, Thakur Complex, Western Express Highway, Kandivali East",
+        "streetAddress": "A/803 Oceanic Tower Chs Ltd, Section 8, Charkop, Kandivali West",
         "addressLocality": "Mumbai",
         "addressRegion": "Maharashtra",
-        "postalCode": "400101",
+        "postalCode": "400067",
         "addressCountry": "IN"
       },
       "geo": {
@@ -52,9 +56,9 @@ const routes = [
         "India"
       ],
       "sameAs": [
-        "https://www.instagram.com/parekh_productions/",
-        "https://www.facebook.com/parekhproductions/",
-        "https://www.youtube.com/@parekhproductions",
+        "https://www.instagram.com/parekhevents",
+        "https://www.facebook.com/ParekhProductions",
+        "https://www.youtube.com/@parekhproductions4134",
         "https://heavenlyweds.com"
       ]
     }
@@ -65,42 +69,30 @@ const routes = [
     title: "Event Production & Corporate Cinematography in London | Parekh Productions",
     description: "Parekh Productions London delivers executive event production, bilateral summits, stage AV engineering, and broadcast cinema film coverage across London and the UK.",
     keywords: "Event production company London, Corporate event management London, Bilateral summit production UK, Event videography London, Corporate video production London, Conference staging UK",
-    canonical: "https://parekhevents.com/london",
+    canonical: "https://parekh-productions-f.vercel.app/london",
     locale: "en_GB",
-    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg",
+    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
     schema: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://parekhevents.com/london#organization",
-      "name": "Parekh Productions - London Division",
-      "url": "https://parekhevents.com/london",
-      "logo": "https://parekhevents.com/assets/parekh/parekh-productions-logo.png",
-      "image": "https://parekhevents.com/assets/parekh/parekh-og.jpg",
-      "description": "Executive corporate event production, bilateral summits, and broadcast cinema film coverage across London and the UK.",
-      "telephone": "+442081234567",
+      "@id": "https://parekh-productions-f.vercel.app/london#organization",
+      "name": "Parekh Productions Pvt Ltd - London Division",
+      "url": "https://parekh-productions-f.vercel.app/london",
+      "logo": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-productions-logo.png",
+      "image": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
+      "description": "Executive corporate event production, bilateral summits, and broadcast cinema film coverage servicing London and the UK.",
+      "telephone": "+918657754937",
       "priceRange": "£££",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "12 Berkeley Square, Mayfair",
-        "addressLocality": "London",
-        "postalCode": "W1J 6BD",
-        "addressCountry": "GB"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 51.5094,
-        "longitude": -0.1458
-      },
       "areaServed": [
         "London",
         "Greater London",
-        "Birmingham",
-        "Manchester",
         "United Kingdom",
         "Europe"
       ],
       "sameAs": [
-        "https://www.instagram.com/parekh_productions/",
+        "https://www.instagram.com/parekhevents",
+        "https://www.facebook.com/ParekhProductions",
+        "https://www.youtube.com/@parekhproductions4134",
         "https://heavenlyweds.com"
       ]
     }
@@ -111,9 +103,9 @@ const routes = [
     title: "Event Production & Media Capabilities Directory | Parekh Productions",
     description: "Explore Parekh Productions' complete turnkey services: Stage Fabrication, Concert Acoustics, Broadcast 4K/8K Cinema, Exhibition Staging, and Commercial Food Photography.",
     keywords: "Event production services, Stage setup services Mumbai, Line array concert sound, Broadcast 4K video, Exhibition stall fabrication, Commercial food photography",
-    canonical: "https://parekhevents.com/services",
+    canonical: "https://parekh-productions-f.vercel.app/services",
     locale: "en_IN",
-    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg"
+    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg"
   },
   {
     path: "/gallery",
@@ -121,9 +113,9 @@ const routes = [
     title: "Production Reel & Visual Catalog | Parekh Productions",
     description: "Browse Parekh Productions' live visual catalog and continuous autoplay portfolio of summits, trade expos, stadium acoustics, and commercial TVCs.",
     keywords: "Parekh productions portfolio, Event videos Mumbai, Expo video highlights, Corporate event photography archive",
-    canonical: "https://parekhevents.com/gallery",
+    canonical: "https://parekh-productions-f.vercel.app/gallery",
     locale: "en_IN",
-    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg"
+    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg"
   }
 ];
 
@@ -182,9 +174,9 @@ function injectRouteHead(html, route) {
   }
 
   const hreflangTags = `
-    <link rel="alternate" hreflang="en-IN" href="https://parekhevents.com/" />
-    <link rel="alternate" hreflang="en-GB" href="https://parekhevents.com/london" />
-    <link rel="alternate" hreflang="x-default" href="https://parekhevents.com/" />`;
+    <link rel="alternate" hreflang="en-IN" href="https://parekh-productions-f.vercel.app/" />
+    <link rel="alternate" hreflang="en-GB" href="https://parekh-productions-f.vercel.app/london" />
+    <link rel="alternate" hreflang="x-default" href="https://parekh-productions-f.vercel.app/" />`;
   
   if (!html.includes('hreflang="en-IN"')) {
     html = html.replace('</head>', `${hreflangTags}\n</head>`);

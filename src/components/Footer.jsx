@@ -94,9 +94,9 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
               <span>Headquarters</span>
             </div>
             <p className="text-neutral-400 leading-relaxed font-sans text-xs">
-              Shop No 18, 1st Floor, V-Mall,<br />
-              Thakur Complex, Western Express Highway,<br />
-              Kandivali East, Mumbai, Maharashtra 400101<br />
+              A/803 Oceanic Tower Chs Ltd,<br />
+              Section 8, Charkop, Kandivali West,<br />
+              Mumbai, Maharashtra 400067<br />
               Deployment: NESCO &bull; BKC &bull; Pan-India
             </p>
           </div>
@@ -111,7 +111,7 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
               <a href="tel:+918657754937" className="block hover:text-white transition-colors">+91 86577 54937</a>
               <a href="tel:+919594888516" className="block hover:text-white transition-colors">+91 95948 88516</a>
               <a href="tel:+919167090539" className="block hover:text-white transition-colors">+91 91670 90539</a>
-              <a href="mailto:info@parekhevents.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">info@parekhevents.com</a>
+              <a href="mailto:parekhhevents@gmail.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">parekhhevents@gmail.com</a>
             </div>
           </div>
 
@@ -167,7 +167,7 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
         {/* Bottom Rights Row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-500">
           <div>
-            PAREKH PRODUCTIONS PRIVATE LIMITED &bull; EST. 2018
+            PAREKH PRODUCTIONS PVT LTD &bull; EST. 2021
           </div>
           <div className="flex items-center gap-6">
             <span>Mumbai &bull; London (UK)</span>

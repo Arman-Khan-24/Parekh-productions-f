@@ -5,18 +5,18 @@ export function WhatsAppButton() {
   )}`;
 
   return (
-    <aside aria-label="WhatsApp Contact" className="fixed bottom-6 right-6 z-50">
+    <aside aria-label="WhatsApp Contact" className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50">
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp with Parekh Productions"
-        className="group relative flex h-13 w-13 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-colors hover:bg-[#20ba5a] active:scale-95"
+        className="group relative flex h-16 w-16 sm:h-[68px] sm:w-[68px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(37,211,102,0.45)] transition-all duration-300 hover:bg-[#20ba5a] hover:scale-105 active:scale-95"
       >
-        {/* Clean Official WhatsApp SVG Logo */}
+        {/* Clean Official WhatsApp SVG Logo (Enlarged ~25-30% for distinct responsive readability) */}
         <svg
           viewBox="0 0 32 32"
-          className="h-6 w-6 sm:h-7 sm:w-7 fill-current"
+          className="h-8 w-8 sm:h-9 sm:w-9 fill-current transition-transform duration-300 group-hover:scale-105"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
@@ -24,7 +24,7 @@ export function WhatsAppButton() {
         </svg>
 
         {/* Hover Tooltip */}
-        <span className="pointer-events-none absolute right-full mr-3 hidden rounded-xl bg-neutral-900 px-3 py-1.5 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:inline-block">
+        <span className="pointer-events-none absolute right-full mr-3.5 hidden rounded-xl bg-neutral-900 px-3.5 py-2 text-xs font-semibold whitespace-nowrap text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:inline-block shadow-md">
           WhatsApp Direct
         </span>
       </a>

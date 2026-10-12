@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import worldMapData from "../data/worldMapData.json";
+import { GEO_COORDINATES } from "../data/geoCoordinates";
 import { RotateCcw, ArrowRight, ZoomIn, ZoomOut, Move } from "lucide-react";
 
 export function LocationMap() {
@@ -17,7 +18,7 @@ export function LocationMap() {
       zoomBox: { minX: 1280, minY: 290, width: 240, height: 180 },
       stats: "30-Min On-Ground Dispatch",
       badge: "Master Base",
-      coordinates: "19°04'N, 72°52'E",
+      coordinates: GEO_COORDINATES.mumbai.displayDMS,
       isHQ: true,
     },
     {

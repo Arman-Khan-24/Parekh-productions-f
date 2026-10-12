@@ -298,7 +298,7 @@ export const siteContent = {
       id: "mumbai",
       name: "Mumbai",
       role: "Central HQ & Production Studio",
-      detail: "Kandivali West headquarters with direct dispatch to NESCO, Jio World Convention Centre, and five-star coastal properties.",
+      detail: "Oceanic Tower, Charkop, Kandivali West headquarters with direct dispatch to NESCO, Jio World Convention Centre, and five-star coastal properties.",
       badge: "Global HQ",
       isHQ: true,
       // Map coordinates normalized for SVG 2D view (cx, cy)
@@ -369,14 +369,14 @@ export const siteContent = {
     }
   ],
   contact: {
-    phoneNumbers: ["+91 86577 54937", "+91 95948 88516", "+91 91670 90539"],
+    phoneNumbers: ["8657754937", "9594888516", "9167090539"],
     whatsapp: "https://wa.me/918657754937",
-    email: "parekhevents@gmail.com",
-    address: "Kandivali (West), Mumbai, Maharashtra 400067, India",
+    email: "parekhhevents@gmail.com",
+    address: "A/803 Oceanic Tower Chs Ltd, Section 8, Charkop, Kandivali West, Mumbai 400067",
     region: "Mumbai, Western Mumbai, Maharashtra (Pan-India)",
   },
   socials: [
-    { label: "Instagram", href: "https://www.instagram.com/parekhevents/" },
+    { label: "Instagram", href: "https://www.instagram.com/parekhevents" },
     { label: "Facebook", href: "https://www.facebook.com/ParekhProductions" },
     { label: "YouTube", href: "https://www.youtube.com/@parekhproductions4134" },
   ],
