@@ -10,7 +10,8 @@ export default {
         amoled: "#000000",
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Outfit', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        display: ['Syne', 'Outfit', 'sans-serif'],
       },
     },
   },

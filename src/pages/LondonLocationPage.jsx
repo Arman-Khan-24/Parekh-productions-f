@@ -60,12 +60,12 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
         {/* UK Hero Section */}
         <section className="px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto pb-16 border-b border-neutral-100">
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3.5 py-1 text-xs font-mono uppercase tracking-widest text-neutral-800 font-bold">
-              <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-              <span>UNITED KINGDOM // LONDON EXECUTIVE DIVISION</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-neutral-800">
+              <span className="h-2 w-2 rounded-full bg-blue-600" />
+              <span>United Kingdom · London Executive Division</span>
             </span>
-            <span className="text-xs font-mono text-neutral-400">
-              UK INCORPORATED &bull; HARISH PAREKH DIRECTION
+            <span className="text-xs text-neutral-400 font-medium">
+              UK Incorporated · Harish Parekh Direction
             </span>
           </div>
 
@@ -131,8 +131,8 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
         {/* UK Core Capabilities */}
         <section className="px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto py-20">
           <div className="mb-12">
-            <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
-              [UK CAPABILITIES // DIRECT DEPLOYMENT]
+            <span className="text-xs uppercase tracking-wider text-red-600 font-bold block mb-2">
+              UK Production Capabilities · Direct Deployment
             </span>
             <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-neutral-900">
               Corporate Staging &amp; Media Services in the UK
@@ -149,8 +149,8 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
                 className="p-8 rounded-3xl bg-neutral-50/70 border border-neutral-200 flex flex-col justify-between hover:border-neutral-300 transition-colors"
               >
                 <div>
-                  <span className="text-xs font-mono text-red-600 font-bold uppercase tracking-wider block mb-2">
-                    0{idx + 1} // UK SERVICE
+                  <span className="text-xs text-red-600 font-bold uppercase tracking-wider block mb-2">
+                    0{idx + 1} · UK Service
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-neutral-900 mb-3">
                     {service.title}
@@ -159,7 +159,7 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
                     {service.desc}
                   </p>
                 </div>
-                <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs font-mono text-neutral-500">
+                <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between text-xs text-neutral-500 font-medium">
                   <span>{service.specs}</span>
                   <ArrowRight className="h-4 w-4 text-neutral-400" />
                 </div>
@@ -173,8 +173,8 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-mono uppercase tracking-widest text-red-400 font-bold block">
-                [UK LIAISON &amp; CLIENT SERVICES]
+              <span className="text-xs uppercase tracking-wider text-red-400 font-bold block">
+                UK Liaison &amp; Client Services
               </span>
               <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white leading-tight">
                 Connect with our London Executive Team

@@ -139,9 +139,9 @@ export function PinterestGallery({ onBackHome }) {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [PAREKH ARCHIVE // AUTOPLAY IN-FEED GALLERY]
+            <span className="h-2 w-2 rounded-full bg-red-600" />
+            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+              Parekh Visual Archive · Autoplay Showcase
             </span>
           </div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
@@ -155,8 +155,8 @@ export function PinterestGallery({ onBackHome }) {
 
         {/* Sister Brand Callout inside Gallery */}
         <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 max-w-sm">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 font-bold block mb-1">
-            [LUXURY WEDDINGS SISTER BRAND]
+          <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold block mb-1">
+            Luxury Weddings Division
           </span>
           <p className="text-xs text-neutral-700">
             Looking for luxury bridal cinematography? Visit our dedicated label:{" "}

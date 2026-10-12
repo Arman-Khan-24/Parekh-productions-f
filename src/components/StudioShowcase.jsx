@@ -44,9 +44,10 @@ export function StudioShowcase() {
       {/* Header with Circular Arrows */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-1">
-            [FLAGSHIP STAGING // 100% IN-HOUSE]
-          </span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
+            <span>Master Gear Vault · Heavy Staging &amp; AV Rigging</span>
+          </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-neutral-900 leading-[1]">
             A CREATIVE VIDEO & <br />
             STAGING STUDIO
@@ -83,19 +84,19 @@ export function StudioShowcase() {
       {/* Clean Editorial Caption BELOW Image */}
       <div className="mt-4 sm:mt-5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-black">
         <div>
-          <span className="text-[11px] font-mono uppercase tracking-widest text-red-600 font-bold block">
-            [{current.category}]
+          <span className="text-[11px] font-bold uppercase tracking-widest text-red-600 block">
+            {current.category}
           </span>
           <h3 className="text-lg sm:text-2xl font-black text-neutral-900 mt-0.5">
             {current.title}
           </h3>
-          <p className="text-xs sm:text-sm text-neutral-500 font-mono mt-0.5">
+          <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">
             {current.venue} · {current.desc}
           </p>
         </div>
 
-        <div className="text-xs font-mono text-neutral-400 tracking-widest shrink-0 font-bold">
-          0{currentIndex + 1} // 0{slides.length}
+        <div className="text-xs font-bold text-neutral-400 tracking-wider shrink-0">
+          0{currentIndex + 1} of 0{slides.length}
         </div>
       </div>
 

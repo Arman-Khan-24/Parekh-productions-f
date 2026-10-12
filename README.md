@@ -9,15 +9,20 @@ Parekh Productions is a premier full-service corporate event management, arena s
 
 ## 🌟 Key Features & Architecture
 
-- **Cinematic Hero Experience**: Full-screen 4K event production stream with monumental typography and responsive video delivery.
-- **3D Circular Dial Showcase**: Three.js WebGL aperture wheel showcasing corporate mega-events, arena audio-visual setups, and client portfolios.
-- **Client Dossiers & Capability Showcase**: High-impact editorial capability directories with venue technical credentials.
-- **Split Regional SEO & Location Routes**:
+- **Cinematic Hero Loop**: Full-screen 4K event production stream with monumental typography.
+- **Interactive 2D World Map Engine**:
+  - Built with dynamic vector canvas and high-contrast dark luxury styling.
+  - Permanent, stationary beacon markers for **Mumbai HQ**, **Pune Corridor**, **Pan-India Touring Crew**, and **London (UK)**.
+  - **Water-Smooth Camera Physics**: 60fps quintic ease-out camera flight and smooth momentum-interpolated scroll-to-zoom.
+  - **On-Ground Event Media Dossiers**: Real stage photography, venue badges (NESCO, PCMC Auto Cluster, ExCeL London), and technical metrics for each hub.
+- **Interactive 3D Focus Wheel Showcase**: Real WebGL aperture wheel built with Three.js for browsing selected productions.
+- **Editorial Brand Manifesto & Capabilities Directory**: Modular accordion and service catalogs with refined badge aesthetics.
+- **Dedicated Regional Pages**:
   - London / UK Executive Division (`/london`)
   - Full Capabilities Directory (`/services`)
-  - Pinterest-style Visual Archive (`/gallery`)
-- **Native Vite SSR Prerendering**: High-speed build-time prerendering pipeline optimized for Linux & Vercel deployment without heavy headless browser requirements.
-- **Search Engine Optimization**: Fully integrated structured JSON-LD schemas (`Organization`, `LocalBusiness`), OpenGraph tags, sitemap, and robots.txt.
+  - Curated Pinterest-style Visual Archive (`/gallery`)
+- **Native Vite SSR Prerendering**: 100% Linux/Vercel compliant build-time prerender pipeline without heavy Puppeteer dependencies.
+- **SEO & Schema Engineered**: Organization, LocalBusiness, and Service JSON-LD schema integrations.
 
 ---
 
@@ -25,9 +30,9 @@ Parekh Productions is a premier full-service corporate event management, arena s
 
 - **Framework**: React 19 + Vite 7
 - **Styling**: Tailwind CSS + Custom CSS (`Outfit`, `Syne`, `Plus Jakarta Sans`)
-- **3D & Canvas**: Three.js
+- **3D & Canvas**: Three.js, Leaflet 2D Engine
 - **Icons**: Lucide React
-- **Prerender Engine**: Native Vite SSR (`scripts/prerender.js`)
+- **Build / Prerender**: Node.js Native Vite SSR
 
 ---
 
@@ -41,8 +46,8 @@ Parekh Productions is a premier full-service corporate event management, arena s
 ### Installation
 
 ```bash
-git clone https://github.com/Arman-Khan-24/Parekh-productions-f.git
-cd Parekh-productions-f
+git clone https://github.com/Arman-Khan-24/Parekh-productions.git
+cd Parekh-productions
 npm install
 ```
 
@@ -52,15 +57,15 @@ npm install
 npm run dev
 ```
 
-Local access: `http://localhost:3001` (or next available port)
+Local access: `http://localhost:3001`
 
-### Production Build & Prerender
+### Production Build & SSR Prerender
 
 ```bash
 npm run build
 ```
 
-This compiles client bundles and runs `scripts/prerender.js` to generate static pre-rendered HTML for all routes.
+This compiles client bundles and automatically invokes `node scripts/prerender.js` to output static HTML pages for all routes (`/`, `/london`, `/services`, `/gallery`).
 
 ---
 

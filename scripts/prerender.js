@@ -252,7 +252,11 @@ async function prerender() {
   }
 
   // Clean up temporary server bundle
-  fs.rmSync(serverDistDir, { recursive: true, force: true });
+  try {
+    fs.rmSync(serverDistDir, { recursive: true, force: true });
+  } catch (cleanErr) {
+    // Ignore Windows filesystem file-lock on OneDrive folders
+  }
   console.log("🎉 Native prerendering complete! 100% Vercel & SEO compliant.");
 }
 

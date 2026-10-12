@@ -194,9 +194,9 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [INTERACTIVE CINEMA HALF-WHEEL]
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
+            <span className="text-xs font-bold uppercase tracking-wider text-neutral-600">
+              Featured Portfolio · Dynamic Focus Wheel
             </span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
@@ -249,8 +249,8 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
           <div ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 
           {/* Calibrated Hub Meta */}
-          <div className="absolute top-4 left-4 z-10 text-[10px] font-mono text-neutral-400 uppercase tracking-widest font-bold">
-            3D APERTURE // SWIPE VERTICAL
+          <div className="absolute top-4 left-4 z-10 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
+            3D APERTURE · SWIPE VERTICAL
           </div>
 
           {/* Option Cards (1 to 6) Dynamically Translating along the Curved Circumference */}
@@ -278,13 +278,13 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                   }`}
                 >
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className={`text-[10px] font-mono uppercase tracking-wider font-bold ${
+                    <span className={`text-[10px] uppercase tracking-wider font-bold ${
                       isActive ? "text-red-400" : "text-neutral-500"
                     }`}>
-                      0{idx + 1} // {proj.category}
+                      0{idx + 1} · {proj.category}
                     </span>
                     {isActive && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
                     )}
                   </div>
                   <h4 className="text-xs sm:text-sm font-bold uppercase tracking-tight truncate">
@@ -318,15 +318,15 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               <span className="rounded-full bg-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-black">
                 {currentProject.category}
               </span>
-              <span className="rounded-full bg-black/60 px-3 py-1 text-xs font-mono uppercase tracking-wider text-white border border-white/20">
+              <span className="rounded-full bg-black/60 px-3 py-1 text-xs uppercase tracking-wider text-white border border-white/20">
                 {currentProject.scale}
               </span>
             </div>
 
             {/* Project Title */}
             <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 text-white">
-              <p className="text-xs font-mono uppercase tracking-widest text-red-400 font-bold mb-1">
-                LOCATION // {currentProject.location}
+              <p className="text-xs uppercase tracking-widest text-red-400 font-bold mb-1">
+                {currentProject.location}
               </p>
               <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
                 {currentProject.name}
@@ -336,8 +336,8 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
 
           {/* Narrative Specs */}
           <div className="space-y-1.5">
-            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [DELIVERED BRIEF]
+            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+              Delivered Executive Brief
             </span>
             <p className="text-base text-neutral-800 font-medium leading-relaxed">
               {currentProject.tagline}

@@ -39,10 +39,9 @@ export function Navbar({ onContactClick, onGalleryClick }) {
                 onGalleryClick();
               }
             }} 
-            className="hover:text-black transition-colors no-underline flex items-center gap-1 font-extrabold text-red-600"
+            className="hover:text-black transition-colors no-underline font-extrabold text-neutral-900"
           >
-            <span>Gallery</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+            Gallery
           </a>
           
           {/* Location Split Links */}

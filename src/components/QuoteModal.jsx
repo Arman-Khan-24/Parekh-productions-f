@@ -80,9 +80,10 @@ export function QuoteModal({ open, onClose }) {
       >
         <div className="flex items-start justify-between gap-6 pb-4 border-b border-neutral-100">
           <div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-600">
-              [DIRECT DISPATCH // INSTANT QUOTE]
-            </span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-50 text-[10px] font-bold uppercase tracking-wider text-red-600 mb-1 border border-red-200/50">
+              <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
+              <span>Direct Dispatch · Instant Proposal</span>
+            </div>
             <h2 className="mt-1 text-2xl sm:text-3xl font-black uppercase tracking-tight text-neutral-950">
               Get A Quote
             </h2>

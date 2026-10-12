@@ -9,7 +9,7 @@ import { ServicesAccordion } from "./components/ServicesAccordion";
 import { StudioShowcase } from "./components/StudioShowcase";
 import { WheelProjectsShowcase } from "./components/WheelProjectsShowcase";
 import { PinterestGallery } from "./components/PinterestGallery";
-import { LocationMap } from "./components/LocationMap";
+import { Destinations } from "./components/Destinations";
 import { Footer } from "./components/Footer";
 import { QuoteModal } from "./components/QuoteModal";
 import { WhatsAppButton } from "./components/WhatsAppButton";
@@ -110,8 +110,8 @@ export default function App({ initialPath }) {
             <span>Back to Home</span>
           </button>
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-bold tracking-widest uppercase text-red-600">
-              [PAREKH ARCHIVE // PINTEREST CURATION]
+            <span className="text-xs font-bold tracking-wider uppercase text-red-600">
+              Visual Archive · Curated Works
             </span>
             <button
               onClick={handleOpenQuote}
@@ -165,8 +165,8 @@ export default function App({ initialPath }) {
         {/* Interactive Rotating Half-Dial Focus Wheel Projects Section */}
         <WheelProjectsShowcase onViewAllProjects={() => navigateTo("/gallery")} />
 
-        {/* Draggable & Zoomable Operational Hubs World Map */}
-        <LocationMap />
+        {/* Dynamic Leaflet 2D World Map & Operational Hubs */}
+        <Destinations onContactClick={handleOpenQuote} />
       </main>
 
       <Footer onQuoteClick={handleOpenQuote} onGalleryClick={() => navigateTo("/gallery")} />

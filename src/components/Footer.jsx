@@ -52,9 +52,9 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
         {/* Top Banner Row */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 pb-16 border-b border-white/10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-3.5 py-1 text-[11px] font-mono uppercase tracking-widest text-red-400 font-bold mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
-              <span>DIRECT DISPATCH // 30-MIN ON-GROUND SLA</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-red-400 mb-4 border border-red-500/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+              <span>Direct Deployment · 30-Minute Priority Dispatch</span>
             </div>
             <h3 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">
               Ready to produce <br />

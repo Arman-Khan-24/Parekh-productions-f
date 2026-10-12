@@ -24,9 +24,9 @@ export function ServicesPage({ onOpenQuote, onNavigate }) {
         {/* Services Page Header */}
         <section className="px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto pb-12 border-b border-neutral-100">
           <div className="flex items-center gap-2 mb-3">
-            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 font-bold">
-              [PAREKH PRODUCTIONS // COMPLETE CAPABILITIES DIRECTORY]
+            <span className="h-2 w-2 rounded-full bg-red-600" />
+            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+              Complete Capabilities &amp; Technical Directory
             </span>
           </div>
 

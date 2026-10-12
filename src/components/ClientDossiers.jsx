@@ -9,9 +9,10 @@ export function ClientDossiers() {
   return (
     <section id="clients" className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
       <div className="mb-10 sm:mb-14">
-        <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
-          [CLIENT DOSSIER // VERIFIED PRODUCTIONS]
-        </span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
+          <span>Client Dossier · Verified Arena Productions</span>
+        </div>
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
           Our Clients & <br />
           Delivered Productions
@@ -48,8 +49,8 @@ export function ClientDossiers() {
 
               {/* Bottom In-Image Meta */}
               <div className="absolute bottom-4 left-5 right-5 text-white">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold block mb-0.5">
-                  [SCALE // {client.scale}]
+                <span className="text-[10px] uppercase tracking-wider text-red-400 font-bold block mb-0.5">
+                  {client.scale}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
                   {client.name}
@@ -89,10 +90,11 @@ export function ClientDossiers() {
             </button>
 
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold">
-                [PROJECT SPEC // {activeClient.category} · {activeClient.venue}]
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-xs font-bold uppercase tracking-wider text-red-600 border border-red-200/50">
+                <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
+                <span>Project Specifications · {activeClient.category} · {activeClient.venue}</span>
               </span>
-              <h3 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 mt-1">
+              <h3 className="text-2xl sm:text-4xl font-extrabold text-neutral-900 mt-2">
                 {activeClient.name}
               </h3>
               <p className="mt-2 text-sm text-neutral-600 max-w-2xl">
@@ -102,8 +104,8 @@ export function ClientDossiers() {
 
             {/* Scope Highlights */}
             <div className="mt-6 pt-6">
-              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-3">
-                [VERIFIED ON-GROUND DELIVERABLES]
+              <h4 className="text-xs font-bold uppercase tracking-wider text-red-600 mb-3">
+                Verified On-Ground Deliverables
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {activeClient.highlights.map((item, idx) => (
@@ -117,8 +119,8 @@ export function ClientDossiers() {
 
             {/* Media Grid */}
             <div className="mt-8 pt-6">
-              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-4">
-                [PRODUCTION MEDIA FOOTAGE // 4K LOG]
+              <h4 className="text-xs font-bold uppercase tracking-wider text-red-600 mb-4">
+                Production Media Vault · Cinema Masters
               </h4>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

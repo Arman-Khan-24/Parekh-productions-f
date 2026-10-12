@@ -31,8 +31,8 @@ export function ThreeColumnFeature() {
             VIDEOS THAT <br />
             TURN HEADS
           </h2>
-          <span className="mt-5 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-neutral-400">
-            PAREKH STUDIO // 100% IN-HOUSE
+          <span className="mt-5 text-[11px] sm:text-xs uppercase tracking-widest text-neutral-400 font-bold">
+            PAREKH STUDIO · 100% IN-HOUSE CREW
           </span>
         </div>
 

@@ -54,9 +54,10 @@ export function ServicesAccordion() {
   return (
     <section className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
       <div className="mb-10 sm:mb-14">
-        <span className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold block mb-2">
-          [WHAT WE DELIVER // 100% IN-HOUSE]
-        </span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
+          <span>Full-Spectrum Production · 100% In-House Fleet</span>
+        </div>
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
           Production Divisions & <br />
           Technical Capabilities
@@ -106,8 +107,8 @@ export function ServicesAccordion() {
       {/* Active Subservices Detail Panel */}
       {divisions.find((d) => d.num === activeTab) && (
         <div className="rounded-3xl bg-neutral-50 border border-neutral-100 p-6 sm:p-10 shadow-lg">
-          <div className="text-xs font-mono uppercase tracking-widest text-red-600 font-bold mb-4">
-            [DELIVERABLE BREAKDOWN // {divisions.find((d) => d.num === activeTab).title}]
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-200/70 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-4">
+            <span>Specialized Capabilities · {divisions.find((d) => d.num === activeTab).title}</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -20,12 +20,11 @@ export function HeroVideo() {
 
       {/* Centered Monumental Typography */}
       <div className="relative z-10 w-full px-6 sm:px-12 text-center flex flex-col items-center justify-center">
-        <h1 className="text-3xl xs:text-4xl sm:text-7xl md:text-8xl lg:text-[102px] font-black tracking-tighter uppercase text-white drop-shadow-2xl leading-[1] max-w-5xl">
-          PAREKH // <br />
-          WE MAKE VIDEOS
+        <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[106px] font-black tracking-tight uppercase text-white drop-shadow-2xl leading-[1.02] max-w-5xl">
+          WE MAKE IT HAPPEN
         </h1>
-        <p className="mt-4 text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-neutral-300">
-          EVENT MANAGEMENT &amp; PRODUCTION COMPANY IN MUMBAI
+        <p className="mt-4 text-xs sm:text-sm uppercase tracking-[0.28em] text-neutral-300 font-bold">
+          EVENTS. PRODUCTION. EXPERIENCES.
         </p>
       </div>
 
