@@ -76,6 +76,46 @@ html, body {
   animation: navItemFadeIn 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Sinking Hole / Portal Zoom-In Modal Keyframes */
+@keyframes portalBackdropFade {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(16px);
+  }
+}
+
+@keyframes sinkholePortalZoom {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) scale(0.35) translateZ(-400px);
+    filter: blur(12px);
+  }
+  60% {
+    opacity: 0.95;
+    transform: perspective(1000px) scale(1.02) translateZ(15px);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) scale(1) translateZ(0);
+    filter: blur(0px);
+  }
+}
+
+.animate-portal-backdrop {
+  animation: portalBackdropFade 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-sinkhole-zoom {
+  animation: sinkholePortalZoom 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+  transform-origin: center center;
+}
+
 .zoom-squarish {
   transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;

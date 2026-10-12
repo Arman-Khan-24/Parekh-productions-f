@@ -68,14 +68,14 @@ export function QuoteModal({ open, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[150] flex items-center justify-center bg-black/70 p-4 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-[150] flex items-center justify-center bg-black/75 p-4 backdrop-blur-xl animate-portal-backdrop [perspective:1200px]"
       role="presentation"
       onClick={onClose}
     >
       <div
         role="dialog"
         aria-modal="true"
-        className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 sm:p-8 text-neutral-900 shadow-2xl border border-neutral-100"
+        className="w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-6 sm:p-8 text-neutral-900 shadow-[0_25px_70px_rgba(0,0,0,0.6)] border border-neutral-100 animate-sinkhole-zoom"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-6 pb-4 border-b border-neutral-100">
