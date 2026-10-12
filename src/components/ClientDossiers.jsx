@@ -9,10 +9,9 @@ export function ClientDossiers() {
   return (
     <section id="clients" className="py-20 sm:py-28 px-6 sm:px-12 lg:px-16 w-full max-w-7xl mx-auto">
       <div className="mb-10 sm:mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-3">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
-          <span>Client Dossier · Verified Arena Productions</span>
-        </div>
+        <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">
+          CLIENT DOSSIER &middot; VERIFIED ARENA PRODUCTIONS
+        </p>
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
           Our Clients & <br />
           Delivered Productions

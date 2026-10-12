@@ -193,12 +193,9 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
       {/* Top Header */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
-            <span className="text-xs font-bold uppercase tracking-wider text-neutral-600">
-              Featured Portfolio · Dynamic Focus Wheel
-            </span>
-          </div>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">
+            FEATURED PORTFOLIO &middot; DYNAMIC FOCUS WHEEL
+          </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
             Selected Works <br className="hidden sm:inline" />
             &amp; Productions

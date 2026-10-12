@@ -67,10 +67,9 @@ export function Destinations({ onContactClick }) {
       {/* Editorial Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
-            <span>Geographic Footprint · Active Deployment Engine</span>
-          </div>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">
+            GEOGRAPHIC FOOTPRINT &middot; ACTIVE DEPLOYMENT ENGINE
+          </p>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
             Operational Hubs &amp; <br />
             Global Presence

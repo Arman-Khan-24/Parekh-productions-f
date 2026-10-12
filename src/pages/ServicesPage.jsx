@@ -23,12 +23,9 @@ export function ServicesPage({ onOpenQuote, onNavigate }) {
         
         {/* Services Page Header */}
         <section className="px-6 sm:px-12 lg:px-16 max-w-7xl mx-auto pb-12 border-b border-neutral-100">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="h-2 w-2 rounded-full bg-red-600" />
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
-              Complete Capabilities &amp; Technical Directory
-            </span>
-          </div>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400 mb-3">
+            COMPLETE CAPABILITIES &middot; TECHNICAL DIRECTORY
+          </p>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-neutral-900 leading-[1.05] max-w-5xl">
             Event Management, Staging &amp; Media Production Services
@@ -40,7 +37,7 @@ export function ServicesPage({ onOpenQuote, onNavigate }) {
         </section>
 
         {/* Services Detailed Accordion */}
-        <ServicesAccordion />
+        <ServicesAccordion onOpenQuote={handleQuote} />
 
         {/* Studio and Technical Gear Rigging */}
         <StudioShowcase />

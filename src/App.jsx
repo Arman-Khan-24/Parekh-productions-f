@@ -157,7 +157,7 @@ export default function App({ initialPath }) {
         <Ticker />
 
         {/* Services Accordion */}
-        <ServicesAccordion />
+        <ServicesAccordion onOpenQuote={handleOpenQuote} />
 
         {/* Production Studio & Gear Rigging */}
         <StudioShowcase />

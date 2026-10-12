@@ -44,10 +44,9 @@ export function StudioShowcase() {
       {/* Header with Circular Arrows */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-bold uppercase tracking-wider text-neutral-800 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600/70" />
-            <span>Master Gear Vault · Heavy Staging &amp; AV Rigging</span>
-          </div>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400 mb-2">
+            MASTER GEAR VAULT &middot; HEAVY STAGING &amp; AV RIGGING
+          </p>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-neutral-900 leading-[1]">
             A CREATIVE VIDEO & <br />
             STAGING STUDIO

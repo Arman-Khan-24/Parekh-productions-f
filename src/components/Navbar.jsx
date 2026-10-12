@@ -71,52 +71,97 @@ export function Navbar({ onContactClick, onGalleryClick }) {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenu(!mobileMenu)}
-          className="md:hidden relative flex items-center justify-center h-10 w-10 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-neutral-900 shadow-sm transition-colors active:scale-95 cursor-pointer z-50"
+          className={`md:hidden relative flex items-center justify-center h-10 w-10 rounded-full border transition-all duration-300 active:scale-90 cursor-pointer z-50 ${
+            mobileMenu
+              ? "bg-black text-white border-black rotate-90 shadow-md"
+              : "bg-neutral-100 hover:bg-neutral-200 border-neutral-200 text-neutral-900 shadow-sm"
+          }`}
           aria-label="Toggle mobile navigation menu"
         >
           {mobileMenu ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with Smooth Animations */}
       {mobileMenu && (
-        <div className="md:hidden fixed inset-0 top-[68px] bg-white text-black px-7 py-8 flex flex-col justify-between text-base font-bold uppercase tracking-widest z-[9999] shadow-2xl overflow-y-auto border-t border-neutral-200">
-          <div className="flex flex-col gap-3">
-            <a href="/#about" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">About</a>
-            <a href="/services" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Services Directory</a>
-            <a href="/#clients" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Clients</a>
-            <a href="/#showcase" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Work</a>
+        <div className="md:hidden fixed inset-0 top-[68px] bg-white/95 backdrop-blur-2xl text-black px-7 py-8 flex flex-col justify-between text-base font-bold uppercase tracking-widest z-[9999] shadow-2xl overflow-y-auto border-t border-neutral-200 animate-drawer-down">
+          <div className="flex flex-col gap-2">
+            {[
+              { href: "/#about", label: "About" },
+              { href: "/services", label: "Services Directory" },
+              { href: "/#clients", label: "Clients" },
+              { href: "/#showcase", label: "Work" },
+            ].map((link, idx) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenu(false)}
+                style={{ animationDelay: `${(idx + 1) * 60}ms` }}
+                className="animate-nav-item text-neutral-800 hover:text-red-600 hover:translate-x-1.5 transition-all py-2.5 border-b border-neutral-100/80 flex items-center justify-between"
+              >
+                <span>{link.label}</span>
+                <span className="text-neutral-300 text-xs font-mono">&rarr;</span>
+              </a>
+            ))}
+
             <a 
               href="/gallery" 
               onClick={() => {
                 setMobileMenu(false);
                 if (onGalleryClick) onGalleryClick();
               }} 
-              className="text-red-600 font-extrabold flex items-center justify-between py-2 border-b border-neutral-100"
+              style={{ animationDelay: "300ms" }}
+              className="animate-nav-item text-red-600 font-extrabold flex items-center justify-between py-2.5 border-b border-neutral-100/80 hover:translate-x-1.5 transition-all"
             >
               <span>Gallery Catalog</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-50 text-red-600">NEW</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-50 text-red-600 font-bold border border-red-200/50">NEW</span>
             </a>
             
             {/* Dedicated Location Routes in Mobile Menu */}
-            <div className="py-2 border-b border-neutral-100 flex items-center justify-between">
+            <div 
+              style={{ animationDelay: "360ms" }}
+              className="animate-nav-item py-3 border-b border-neutral-100/80 flex items-center justify-between"
+            >
               <span className="text-xs font-mono text-neutral-400">REGIONS:</span>
               <div className="flex items-center gap-2">
-                <a href="/" onClick={() => setMobileMenu(false)} className="px-3 py-1 rounded-full bg-neutral-100 text-neutral-800 text-xs font-bold">Mumbai (IN)</a>
-                <a href="/london" onClick={() => setMobileMenu(false)} className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">London (UK)</a>
+                <a 
+                  href="/" 
+                  onClick={() => setMobileMenu(false)} 
+                  className="px-3.5 py-1 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold transition-colors"
+                >
+                  Mumbai (IN)
+                </a>
+                <a 
+                  href="/london" 
+                  onClick={() => setMobileMenu(false)} 
+                  className="px-3.5 py-1 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold transition-colors"
+                >
+                  London (UK)
+                </a>
               </div>
             </div>
 
-            <a href="/#contact" onClick={() => setMobileMenu(false)} className="text-neutral-800 hover:text-black py-2 border-b border-neutral-100">Contact</a>
+            <a 
+              href="/#contact" 
+              onClick={() => setMobileMenu(false)} 
+              style={{ animationDelay: "420ms" }}
+              className="animate-nav-item text-neutral-800 hover:text-red-600 hover:translate-x-1.5 transition-all py-2.5 border-b border-neutral-100/80 flex items-center justify-between"
+            >
+              <span>Contact</span>
+              <span className="text-neutral-300 text-xs font-mono">&rarr;</span>
+            </a>
             
             {/* Sister Brand Callout */}
-            <div className="mt-2 p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200">
+            <div 
+              style={{ animationDelay: "480ms" }}
+              className="animate-nav-item mt-3 p-4 rounded-2xl bg-neutral-50/90 border border-neutral-200/80 transition-all hover:border-red-200 hover:bg-red-50/30"
+            >
               <span className="text-[10px] font-mono text-neutral-400 block mb-1">SISTER BRAND:</span>
               <a 
                 href="https://heavenlyweds.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-xs font-bold text-neutral-900 flex items-center justify-between normal-case tracking-normal"
+                className="text-xs font-bold text-neutral-900 hover:text-red-600 flex items-center justify-between normal-case tracking-normal transition-colors"
               >
                 <span>Luxury Wedding Cinematography</span>
                 <ExternalLink className="h-3.5 w-3.5 text-red-600" />
@@ -124,15 +169,18 @@ export function Navbar({ onContactClick, onGalleryClick }) {
             </div>
           </div>
 
-          <div className="pt-4 pb-4">
+          <div 
+            style={{ animationDelay: "540ms" }}
+            className="animate-nav-item pt-5 pb-3"
+          >
             <button
               onClick={() => {
                 setMobileMenu(false);
                 onContactClick();
               }}
-              className="btn-satisfying-cta w-full text-center py-3.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest cursor-pointer shadow-md"
+              className="btn-satisfying-cta w-full text-center py-4 rounded-full bg-black text-white text-xs font-bold uppercase tracking-widest cursor-pointer shadow-lg active:scale-95 transition-transform"
             >
-              Get A Quote
+              Get A Quote &rarr;
             </button>
           </div>
         </div>

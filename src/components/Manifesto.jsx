@@ -3,10 +3,10 @@ import { ExternalLink } from "lucide-react";
 export function Manifesto() {
   return (
     <section id="about" className="py-20 sm:py-28 px-6 sm:px-12 max-w-[1300px] mx-auto text-left">
-      {/* Category Marker */}
-      <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-1.5 text-xs uppercase tracking-widest text-neutral-800 font-bold border border-neutral-200/60">
-        <span>EVENTS. PRODUCTION. EXPERIENCES.</span>
-      </div>
+      {/* Editorial Marker */}
+      <p className="mb-4 text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400">
+        EVENTS &middot; PRODUCTION &middot; EXPERIENCES
+      </p>
 
       {/* Large Scale Editorial Typography on Pure White */}
       <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.25] tracking-tight text-neutral-900 max-w-5xl">
