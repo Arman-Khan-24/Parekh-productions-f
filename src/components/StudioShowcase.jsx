@@ -39,7 +39,7 @@ export function StudioShowcase() {
   const current = slides[currentIndex];
 
   return (
-    <section id="showcase" className="min-h-screen py-10 sm:py-16 px-6 sm:px-12 lg:px-16 w-full max-w-[1400px] mx-auto flex flex-col justify-center">
+    <section id="showcase" className="py-10 sm:py-14 px-6 sm:px-12 lg:px-16 w-full max-w-[1400px] mx-auto flex flex-col justify-center">
       
       {/* Header with Circular Arrows */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">

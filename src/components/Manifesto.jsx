@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 
 export function Manifesto() {
   return (
-    <section id="about" className="py-20 sm:py-28 px-6 sm:px-12 max-w-[1300px] mx-auto text-left">
+    <section id="about" className="py-10 sm:py-14 px-6 sm:px-12 max-w-[1300px] mx-auto text-left">
       {/* Editorial Marker */}
       <p className="mb-4 text-xs font-mono font-bold uppercase tracking-[0.25em] text-neutral-400">
         EVENTS &middot; PRODUCTION &middot; EXPERIENCES

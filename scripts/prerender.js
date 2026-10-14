@@ -143,12 +143,13 @@ function injectRouteHead(html, route) {
       /<link\s+rel=["']canonical["']\s+href=["'].*?["']\s*\/?>/i,
       `<link rel="canonical" href="${route.canonical}" />`
     );
-  }
-
-  if (route.canonical) {
     html = html.replace(
       /<meta\s+property=["']og:url["']\s+content=["'].*?["']\s*\/?>/i,
       `<meta property="og:url" content="${route.canonical}" />`
+    );
+    html = html.replace(
+      /<meta\s+name=["']twitter:url["']\s+content=["'].*?["']\s*\/?>/i,
+      `<meta name="twitter:url" content="${route.canonical}" />`
     );
   }
 
@@ -157,12 +158,20 @@ function injectRouteHead(html, route) {
       /<meta\s+property=["']og:title["']\s+content=["'].*?["']\s*\/?>/i,
       `<meta property="og:title" content="${route.title}" />`
     );
+    html = html.replace(
+      /<meta\s+name=["']twitter:title["']\s+content=["'].*?["']\s*\/?>/i,
+      `<meta name="twitter:title" content="${route.title}" />`
+    );
   }
 
   if (route.description) {
     html = html.replace(
       /<meta\s+property=["']og:description["']\s+content=["'].*?["']\s*\/?>/i,
       `<meta property="og:description" content="${route.description}" />`
+    );
+    html = html.replace(
+      /<meta\s+name=["']twitter:description["']\s+content=["'].*?["']\s*\/?>/i,
+      `<meta name="twitter:description" content="${route.description}" />`
     );
   }
 

@@ -1,8 +1,9 @@
 import { ArrowUpRight, MessageCircle, Mail, MapPin, Phone, ExternalLink } from "lucide-react";
 import { siteContent } from "../data/siteContent";
 
-export function Footer({ onQuoteClick, onGalleryClick }) {
+export function Footer({ onQuoteClick, onGalleryClick, locationMode = "mumbai" }) {
   const { socials } = siteContent;
+  const isUK = locationMode === "london" || locationMode === "uk";
 
   const getSocialIcon = (label) => {
     switch (label.toLowerCase()) {
@@ -46,7 +47,7 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
   };
 
   return (
-    <footer id="contact" className="pt-20 pb-16 px-6 sm:px-12 lg:px-16 bg-neutral-950 text-white w-full rounded-t-[40px] mt-16 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
+    <footer id="contact" className="pt-12 sm:pt-16 pb-12 px-6 sm:px-12 lg:px-16 bg-neutral-950 text-white w-full rounded-t-[32px] sm:rounded-t-[40px] mt-8 sm:mt-12 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
       <div className="max-w-7xl mx-auto">
         
         {/* Top Banner Row */}
@@ -91,28 +92,53 @@ export function Footer({ onQuoteClick, onGalleryClick }) {
           <div>
             <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider mb-3">
               <MapPin className="h-4 w-4 text-red-500" />
-              <span>Headquarters</span>
+              <span>{isUK ? "London Office" : "Headquarters"}</span>
             </div>
-            <p className="text-neutral-400 leading-relaxed font-sans text-xs">
-              A/803 Oceanic Tower Chs Ltd,<br />
-              Section 8, Charkop, Kandivali West,<br />
-              Mumbai, Maharashtra 400067<br />
-              Deployment: NESCO &bull; BKC &bull; Pan-India
-            </p>
+            {isUK ? (
+              <p className="text-neutral-400 leading-relaxed font-sans text-xs">
+                12 Berkeley Square, Mayfair,<br />
+                London W1J 6BD, United Kingdom<br />
+                GMT Hours &bull; London &bull; Europe Deployment
+              </p>
+            ) : (
+              <p className="text-neutral-400 leading-relaxed font-sans text-xs">
+                A/803 Oceanic Tower Chs Ltd,<br />
+                Section 8, Charkop, Kandivali West,<br />
+                Mumbai, Maharashtra 400067<br />
+                Deployment: NESCO &bull; BKC &bull; Pan-India
+              </p>
+            )}
           </div>
 
           {/* Hotlines */}
           <div>
             <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider mb-3">
               <Phone className="h-4 w-4 text-red-500" />
-              <span>Direct Hotlines</span>
+              <span>{isUK ? "UK Hotline" : "Direct Hotlines"}</span>
             </div>
-            <div className="space-y-1.5 text-neutral-400 text-xs">
-              <a href="tel:+918657754937" className="block hover:text-white transition-colors">+91 86577 54937</a>
-              <a href="tel:+919594888516" className="block hover:text-white transition-colors">+91 95948 88516</a>
-              <a href="tel:+919167090539" className="block hover:text-white transition-colors">+91 91670 90539</a>
-              <a href="mailto:parekhhevents@gmail.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">parekhhevents@gmail.com</a>
-            </div>
+            {isUK ? (
+              <div className="space-y-1.5 text-neutral-400 text-xs">
+                <a href="tel:+442081234567" className="block text-white font-semibold hover:text-red-400 transition-colors">+44 20 8123 4567</a>
+                <span className="text-[11px] text-neutral-500 block">London Liaison Desk (Mon–Fri 9am–6pm GMT)</span>
+                <a href="mailto:london@parekhevents.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">london@parekhevents.com</a>
+              </div>
+            ) : (
+              <div className="space-y-1.5 text-neutral-400 text-xs">
+                <div className="text-white font-semibold flex items-center justify-between">
+                  <a href="tel:+918657754937" className="hover:text-red-400 transition-colors">+91 86577 54937</a>
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">Primary</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <a href="tel:+919594888516" className="hover:text-white transition-colors">+91 95948 88516</a>
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">Production</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <a href="tel:+919167090539" className="hover:text-white transition-colors">+91 91670 90539</a>
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">Studio</span>
+                </div>
+                <a href="mailto:parekhhevents@gmail.com" className="block hover:text-white transition-colors pt-1 text-neutral-300">parekhhevents@gmail.com</a>
+              </div>
+            )}
           </div>
 
           {/* Sister Brand: Heavenly Weds */}

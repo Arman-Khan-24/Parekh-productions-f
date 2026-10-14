@@ -20,6 +20,8 @@ const galleryItems = [
     poster: "/assets/parekh/portfolio/finbridge-stage.jpg",
     aspect: "aspect-[16/10]",
     tag: "LIVE BROADCAST",
+    desc: "Plenary stage engineering featuring ground-stacked curved LED walls, intelligent moving head illumination, and multicam switching at NESCO Exhibition Centre.",
+    venue: "NESCO, Goregaon",
   },
   {
     id: 2,
@@ -30,6 +32,8 @@ const galleryItems = [
     poster: "/assets/parekh/client_media/stage-lighting.jpg",
     aspect: "aspect-[4/3]",
     tag: "AV ENGINEERING",
+    desc: "High-output concert audio systems, heavy aluminum box trussing, and dynamic automotive lighting for nationwide pavilion launch.",
+    venue: "Auto Expo Pavilion",
   },
   {
     id: 3,
@@ -40,6 +44,8 @@ const galleryItems = [
     poster: "/assets/parekh/portfolio/biryani-commercial.jpg",
     aspect: "aspect-[4/5]",
     tag: "SIGNATURE REEL",
+    desc: "Compilation of director-led corporate brand documentaries, 4K commercial TVCs, and high-energy aftermovies shot across India.",
+    venue: "Mumbai & Pan-India",
   },
   {
     id: 4,
@@ -49,6 +55,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/portfolio/finbridge-crowd.jpg",
     aspect: "aspect-[16/11]",
     tag: "TRADE EXPO",
+    desc: "Turnkey trade expo crowd flow management, exhibition hall sound distribution, and high-visibility digital signage rigging.",
+    venue: "Hall 4, NESCO Mumbai",
   },
   {
     id: 5,
@@ -58,6 +66,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/screentex-expo.jpg",
     aspect: "aspect-[16/10]",
     tag: "BOOTH STAGING",
+    desc: "Custom modular exhibition stall fabrication with halo-lit fascias, product display counters, and VIP conference lounges.",
+    venue: "Trade Expo Centre",
   },
   {
     id: 6,
@@ -67,6 +77,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/commercial-food-1.jpg",
     aspect: "aspect-[3/4]",
     tag: "STUDIO MACRO",
+    desc: "Studio culinary styling, macro aperture captures, and high-speed lighting capturing artisan food textures for national FMCG ad campaign.",
+    venue: "Parekh In-House Studio",
   },
   {
     id: 7,
@@ -76,6 +88,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/rcb-himalaya-press.jpg",
     aspect: "aspect-[16/10]",
     tag: "PRESS CORRIDOR",
+    desc: "Broadcast media risers, multi-mic press distribution boxes, brand step-and-repeat backdrops, and high-CRI white stage lighting.",
+    venue: "Luxury Hotel Ballroom, Mumbai",
   },
   {
     id: 8,
@@ -85,6 +99,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/sports-action-1.jpg",
     aspect: "aspect-[4/5]",
     tag: "ACTION SHUTTER",
+    desc: "High-speed sports action photojournalism with telephoto lenses capturing dynamic motion, athlete emotion, and track highlights.",
+    venue: "Stadium Complex, Mumbai",
   },
   {
     id: 9,
@@ -94,6 +110,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/auditorium.jpg",
     aspect: "aspect-[16/10]",
     tag: "KEYNOTE HALL",
+    desc: "Acoustic stage treatment, line-array front-fill calibration, and theater profile spots for 2,500-seat plenary leadership session.",
+    venue: "State Convention Hall",
   },
   {
     id: 10,
@@ -103,6 +121,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/conference-hall.jpg",
     aspect: "aspect-[16/11]",
     tag: "LEADERSHIP FORUM",
+    desc: "Executive conference setup with seamless ultra-wide projection, stage furniture, wireless presenter clickers, and live transcription.",
+    venue: "BKC Executive Centre",
   },
   {
     id: 11,
@@ -112,6 +132,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/commercial-food-2.jpg",
     aspect: "aspect-[4/3]",
     tag: "COMMERCIAL FOOD",
+    desc: "Artisan menu photography, beverage splash capture, and controlled studio illumination for premium restaurant hospitality clients.",
+    venue: "Studio Culinary Kitchen",
   },
   {
     id: 12,
@@ -121,6 +143,8 @@ const galleryItems = [
     mediaUrl: "/assets/parekh/client_media/sports-action-2.jpg",
     aspect: "aspect-[3/4]",
     tag: "DYNAMIC MOTION",
+    desc: "Multi-photographer trackside sports documentation, real-time photo tagging, and same-day press delivery for athletic associations.",
+    venue: "Athletics Arena",
   },
 ];
 
@@ -234,12 +258,24 @@ export function PinterestGallery({ onBackHome }) {
 
             {/* In-Card Metadata */}
             <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block mb-1">
-                [{item.tag}]
-              </span>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block">
+                  [{item.tag}]
+                </span>
+                {item.venue && (
+                  <span className="text-[9px] font-mono text-neutral-300 uppercase tracking-wider bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded">
+                    {item.venue}
+                  </span>
+                )}
+              </div>
               <h3 className="text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
                 {item.title}
               </h3>
+              {item.desc && (
+                <p className="mt-1 text-[11px] text-neutral-300 line-clamp-2 leading-relaxed drop-shadow">
+                  {item.desc}
+                </p>
+              )}
             </div>
           </div>
         ))}

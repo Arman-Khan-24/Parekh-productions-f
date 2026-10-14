@@ -1,6 +1,6 @@
 export function ThreeColumnFeature() {
   return (
-    <section id="services" className="py-16 sm:py-24 px-6 sm:px-12 lg:px-16 w-full max-w-[1400px] mx-auto overflow-hidden">
+    <section id="services" className="py-8 sm:py-12 px-6 sm:px-12 lg:px-16 w-full max-w-[1400px] mx-auto overflow-hidden">
       
       {/* 3-Column Grid with Horizontal 16:10 Aspect Ratios (Fluid Responsive, No Clipping or Overflow) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full">

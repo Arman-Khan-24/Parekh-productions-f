@@ -140,13 +140,13 @@ export function ServicesAccordion({ onOpenQuote }) {
   };
 
   return (
-    <section id="capabilities" className="py-20 sm:py-28 px-4 sm:px-8 max-w-3xl mx-auto scroll-mt-24">
-      {/* Title: Elegant Bright Scarlet-to-Soft Faint Graphite Gradient */}
+    <section id="capabilities" className="py-10 sm:py-16 px-4 sm:px-8 max-w-3xl mx-auto scroll-mt-24">
+      {/* Title: Pure Luxury Monochrome Theme */}
       <div className="text-center mb-8">
-        <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight font-display bg-gradient-to-r from-[#ff2a2a] via-[#e11d48] to-neutral-400/80 bg-clip-text text-transparent">
+        <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight font-display text-neutral-900">
           Our Services
         </h2>
-        <p className="mt-2 text-xs sm:text-sm text-neutral-400 font-medium tracking-wide">
+        <p className="mt-2 text-xs sm:text-sm text-neutral-500 font-medium tracking-wide">
           Production Divisions &amp; Technical Capabilities &middot; Mumbai &amp; London
         </p>
       </div>

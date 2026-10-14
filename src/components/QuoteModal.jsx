@@ -5,6 +5,8 @@ const initialForm = {
   name: "",
   phone: "",
   email: "",
+  eventDate: "",
+  eventCity: "",
   service: "",
   description: "",
 };
@@ -12,10 +14,12 @@ const initialForm = {
 const serviceOptions = [
   "Corporate Events & Conferences",
   "Event Production & Stage Rigging",
+  "Luxury Wedding (Heavenly Weds)",
+  "Pre-Wedding Shoot & Candid Photography",
   "Commercial & Food Photography",
   "Cinematic Videography & Film",
-  "Exhibition & Industry Expos",
-  "Luxury Weddings (Heavenly Weds)",
+  "Exhibition Stalls & Industry Expos",
+  "Sound & AV Line-Array Setup",
   "Other / Custom Production Brief",
 ];
 
@@ -53,11 +57,13 @@ export function QuoteModal({ open, onClose }) {
     event.preventDefault();
 
     const message = [
-      "Hello Parekh Productions! I would like to request a quote.",
+      "Hello Parekh Productions! I would like to request an event quote.",
       `Name: ${form.name}`,
       `Phone: ${form.phone}`,
       `Email: ${form.email || "Not provided"}`,
       `Service: ${form.service}`,
+      `Event Date: ${form.eventDate || "Not finalized"}`,
+      `Event City/Venue: ${form.eventCity || "Not provided"}`,
       `Brief: ${form.description}`,
     ].join("\n");
 
@@ -154,6 +160,29 @@ export function QuoteModal({ open, onClose }) {
             </select>
           </label>
 
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block">
+              <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-neutral-600">Event Date</span>
+              <input
+                type="date"
+                value={form.eventDate}
+                onChange={updateField("eventDate")}
+                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 outline-none focus:border-black focus:bg-white transition-all"
+              />
+            </label>
+
+            <label className="block">
+              <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-neutral-600">Event City / Venue</span>
+              <input
+                type="text"
+                value={form.eventCity}
+                onChange={updateField("eventCity")}
+                placeholder="e.g. Mumbai, NESCO, Goa"
+                className="w-full rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 outline-none focus:border-black focus:bg-white transition-all"
+              />
+            </label>
+          </div>
+
           <label className="block">
             <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-neutral-600">Brief Overview *</span>
             <textarea
@@ -161,7 +190,7 @@ export function QuoteModal({ open, onClose }) {
               rows={3}
               value={form.description}
               onChange={updateField("description")}
-              placeholder="Tell us venue, date, scale, or gear specifications..."
+              placeholder="Tell us attendee count, stage specs, cinema deliverables..."
               className="w-full resize-none rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 outline-none focus:border-black focus:bg-white transition-all"
             />
           </label>

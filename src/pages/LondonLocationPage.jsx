@@ -235,7 +235,7 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
 
       </main>
 
-      <Footer onQuoteClick={handleQuote} onGalleryClick={() => onNavigate && onNavigate("/gallery")} />
+      <Footer onQuoteClick={handleQuote} onGalleryClick={() => onNavigate && onNavigate("/gallery")} locationMode="london" />
       <WhatsAppButton />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </div>

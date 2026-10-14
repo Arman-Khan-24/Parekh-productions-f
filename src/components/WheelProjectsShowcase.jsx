@@ -188,7 +188,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
   return (
     <section 
       id="clients" 
-      className="relative w-full min-h-[92vh] py-14 lg:py-20 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
+      className="relative w-full py-10 lg:py-14 bg-white overflow-hidden flex flex-col justify-between selection:bg-black selection:text-white"
     >
       {/* Top Header */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4">

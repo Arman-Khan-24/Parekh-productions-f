@@ -15,7 +15,7 @@ export function FannedCardsShowcase() {
   }, []);
 
   return (
-    <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-white overflow-hidden">
+    <section className="relative w-full py-6 sm:py-10 bg-white overflow-hidden">
       <div className="relative mx-auto max-w-5xl px-4 sm:px-10">
         
         {/* Ambient Backlight glow */}
