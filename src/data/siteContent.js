@@ -148,26 +148,8 @@ export const siteContent = {
       ],
       galleryItems: [
         { type: "image", src: "/assets/parekh/portfolio/finbridge-stage.jpg", caption: "Plenary Stage Keynote" },
-        { type: "image", src: "/assets/parekh/portfolio/finbridge-crowd.jpg", caption: "NESCO Exhibition Floor" },
-        { type: "video", src: "/assets/parekh/finbridge-2026-max-quality.mp4", caption: "Official Mumbai Aftermovie" }
-      ]
-    },
-    {
-      id: "auto-expo",
-      name: "Auto Expo",
-      category: "Automotive Pavilion",
-      venue: "Mega Exhibition Pavilion",
-      scale: "Vehicle Reveals & Dynamic Staging",
-      tagline: "Automotive showcase, vehicle reveal lighting, and drone capture.",
-      coverImage: "/assets/parekh/client_media/stage-lighting.jpg",
-      highlights: [
-        "Dynamic vehicle reveal lighting synchronized to audio cues",
-        "Low-angle dolly and FPV drone runs through pavilion displays",
-        "Fast-cut cinema reel edited for investor and public broadcast"
-      ],
-      galleryItems: [
-        { type: "video", src: "/assets/parekh/autoexpo-max-quality.mp4", caption: "Auto Expo Cinematic Recap" },
-        { type: "image", src: "/assets/parekh/client_media/stage-lighting.jpg", caption: "Pavilion Staging & Lighting" }
+        { type: "image", src: "/assets/drive_slides/finbridge-2.jpg", caption: "Finbridge Expo Showcase 02" },
+        { type: "image", src: "/assets/drive_slides/finbridge-3.jpg", caption: "Finbridge Expo Showcase 03" }
       ]
     },
     {
@@ -184,9 +166,9 @@ export const siteContent = {
         "Digital social campaign cuts with precise color grading"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/parekh/client_media/commercial-food-1.jpg", caption: "Signature Culinary Styling" },
-        { type: "image", src: "/assets/parekh/client_media/commercial-food-2.jpg", caption: "Deluxe Feast Shoot" },
-        { type: "image", src: "/assets/parekh/portfolio/biryani-commercial.jpg", caption: "Commercial Print Select" }
+        { type: "image", src: "/assets/parekh/portfolio/biryani-commercial.jpg", caption: "Commercial Print Select" },
+        { type: "image", src: "/assets/drive_slides/biryani-2.jpg", caption: "Biryani Of India Campaign 02" },
+        { type: "image", src: "/assets/drive_slides/biryani-3.jpg", caption: "Biryani Of India Campaign 03" }
       ]
     },
     {
@@ -204,7 +186,8 @@ export const siteContent = {
       ],
       galleryItems: [
         { type: "image", src: "/assets/parekh/client_media/sports-action-1.jpg", caption: "Track & Field Action" },
-        { type: "image", src: "/assets/parekh/client_media/sports-action-2.jpg", caption: "Corporate Team Spirit" }
+        { type: "image", src: "/assets/drive_slides/concern-fresh-slide2.jpg", caption: "Corporate Sports Action 02" },
+        { type: "image", src: "/assets/drive_slides/concern-fresh-slide3.jpg", caption: "Corporate Sports Action 03" }
       ]
     },
     {
@@ -222,7 +205,8 @@ export const siteContent = {
       ],
       galleryItems: [
         { type: "image", src: "/assets/parekh/client_media/screentex-expo.jpg", caption: "Machinery Exhibition Staging" },
-        { type: "image", src: "/assets/parekh/client_media/expo-booth.jpg", caption: "Trade Visitors & Networking" }
+        { type: "image", src: "/assets/drive_slides/screentex-2.jpg", caption: "Screentex India Showcase 02" },
+        { type: "image", src: "/assets/drive_slides/screentex-3.jpg", caption: "Screentex India Showcase 03" }
       ]
     },
     {
@@ -239,8 +223,9 @@ export const siteContent = {
         "High-definition product demonstration video reels"
       ],
       galleryItems: [
-        { type: "image", src: "/assets/parekh/client_media/rcb-himalaya-press.jpg", caption: "Athlete Sponsorship Shoot" },
-        { type: "image", src: "/assets/parekh/client_media/sports-action-2.jpg", caption: "Brand Ambassador Campaign" }
+        { type: "image", src: "/assets/parekh/client_media/summit-speaker.jpg", caption: "Precision Optical Summit Staging" },
+        { type: "image", src: "/assets/drive_slides/zeiss-2.jpg", caption: "ZEISS Brand Campaign 02" },
+        { type: "image", src: "/assets/drive_slides/zeiss-3.jpg", caption: "ZEISS Brand Campaign 03" }
       ]
     }
   ],

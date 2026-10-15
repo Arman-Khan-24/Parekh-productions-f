@@ -285,3 +285,37 @@ html, body {
   animation: dashAnimation 1.6s linear infinite;
 }
 
+/* 3D Popover Modal Smooth Zoom In Animation */
+@keyframes modalBackdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popoverZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(24px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-backdrop {
+  animation: modalBackdropFade 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-popover-zoom {
+  animation: popoverZoomIn 450ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+

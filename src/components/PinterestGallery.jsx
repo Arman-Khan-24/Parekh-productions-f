@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Sparkles, ArrowLeft } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sparkles, ArrowLeft, X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 
 const galleryCategories = [
   "All",
@@ -9,147 +9,205 @@ const galleryCategories = [
   "Sports & Impact",
 ];
 
-// Rich catalog with all available high quality videos and imagery from the assets repository
+// Rich catalog with all unique images and videos across local & drive archives (zero duplicates)
 const galleryItems = [
   {
     id: 1,
     title: "Finbridge Expo Mumbai 2026 Main Stage",
     category: "Events & Stage",
-    type: "video",
-    mediaUrl: "/assets/parekh/finbridge-2026-max-quality.mp4",
-    poster: "/assets/parekh/portfolio/finbridge-stage.jpg",
     aspect: "aspect-[16/10]",
     tag: "LIVE BROADCAST",
     desc: "Plenary stage engineering featuring ground-stacked curved LED walls, intelligent moving head illumination, and multicam switching at NESCO Exhibition Centre.",
     venue: "NESCO, Goregaon",
-  },
-  {
-    id: 2,
-    title: "Auto Expo Dynamic Arena Staging",
-    category: "Events & Stage",
-    type: "video",
-    mediaUrl: "/assets/parekh/autoexpo-max-quality.mp4",
-    poster: "/assets/parekh/client_media/stage-lighting.jpg",
-    aspect: "aspect-[4/3]",
-    tag: "AV ENGINEERING",
-    desc: "High-output concert audio systems, heavy aluminum box trussing, and dynamic automotive lighting for nationwide pavilion launch.",
-    venue: "Auto Expo Pavilion",
+    slides: [
+      { type: "video", src: "/assets/parekh/finbridge-2026-max-quality.mp4", poster: "/assets/parekh/portfolio/finbridge-stage.jpg", caption: "Official Mumbai Plenary Broadcast" },
+      { type: "image", src: "/assets/drive_slides/finbridge-2.jpg", caption: "Indiabulls Securities Showcase Pavilion" },
+      { type: "image", src: "/assets/drive_slides/finbridge-3.jpg", caption: "NESCO Exhibition Ground Floor Architecture" },
+      { type: "image", src: "/assets/parekh/portfolio/finbridge-stage.jpg", caption: "Keynote Audio & Lighting Rigging" },
+    ],
   },
   {
     id: 3,
     title: "Parekh Cinema Signature Showreel",
     category: "Commercial Production",
-    type: "video",
-    mediaUrl: "/assets/parekh/hero-showreel-mumbai.mp4",
-    poster: "/assets/parekh/portfolio/biryani-commercial.jpg",
     aspect: "aspect-[4/5]",
     tag: "SIGNATURE REEL",
     desc: "Compilation of director-led corporate brand documentaries, 4K commercial TVCs, and high-energy aftermovies shot across India.",
     venue: "Mumbai & Pan-India",
+    slides: [
+      { type: "video", src: "/assets/parekh/hero-showreel-mumbai.mp4", poster: "/assets/parekh/client_media/commercial-food-1.jpg", caption: "Signature Showreel Cinematic Cut" },
+      { type: "video", src: "/assets/parekh/hero-showreel.mp4", poster: "/assets/parekh/client_media/conference-hall.jpg", caption: "Nationwide Commercial Production Reel" },
+    ],
   },
   {
     id: 4,
     title: "NESCO Exhibition Ground Production",
     category: "Exhibitions",
-    type: "image",
-    mediaUrl: "/assets/parekh/portfolio/finbridge-crowd.jpg",
     aspect: "aspect-[16/11]",
     tag: "TRADE EXPO",
     desc: "Turnkey trade expo crowd flow management, exhibition hall sound distribution, and high-visibility digital signage rigging.",
     venue: "Hall 4, NESCO Mumbai",
+    slides: [
+      { type: "image", src: "/assets/parekh/portfolio/finbridge-crowd.jpg", caption: "NESCO Exhibition Hall 4 Crowd Flow" },
+      { type: "image", src: "/assets/parekh/portfolio/expo-mumbai-2026.jpg", caption: "Trade Visitors & Commercial Corridor" },
+      { type: "image", src: "/assets/parekh/client_media/expo-booth.jpg", caption: "Exhibition Pavilions & Booth Display" },
+    ],
   },
   {
     id: 5,
     title: "Screentex International Trade Expo Pavilions",
     category: "Exhibitions",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/screentex-expo.jpg",
     aspect: "aspect-[16/10]",
     tag: "BOOTH STAGING",
     desc: "Custom modular exhibition stall fabrication with halo-lit fascias, product display counters, and VIP conference lounges.",
     venue: "Trade Expo Centre",
+    slides: [
+      { type: "image", src: "/assets/drive_slides/screentex-2.jpg", caption: "Artline Modular Pavilion Booth Architecture" },
+      { type: "image", src: "/assets/drive_slides/screentex-3.jpg", caption: "B2B Exhibition Visitor Showcase & Lighting" },
+      { type: "image", src: "/assets/parekh/client_media/screentex-expo.jpg", caption: "Heavy Machinery Demonstration Stage" },
+    ],
   },
   {
     id: 6,
     title: "Biryani Of India Hero Food Commercial",
     category: "Commercial Production",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/commercial-food-1.jpg",
     aspect: "aspect-[3/4]",
     tag: "STUDIO MACRO",
     desc: "Studio culinary styling, macro aperture captures, and high-speed lighting capturing artisan food textures for national FMCG ad campaign.",
     venue: "Parekh In-House Studio",
+    slides: [
+      { type: "image", src: "/assets/drive_slides/biryani-2.jpg", caption: "Artisan Biryani Pot & Culinary Setup" },
+      { type: "image", src: "/assets/drive_slides/biryani-3.jpg", caption: "Curry, Sauces & Side Delicacies" },
+      { type: "image", src: "/assets/parekh/client_media/commercial-food-1.jpg", caption: "High-Speed Studio Flare & Texture" },
+      { type: "image", src: "/assets/parekh/portfolio/commercial-styling.jpg", caption: "Billboard Campaign Raw Master Asset" },
+    ],
   },
   {
     id: 7,
     title: "RCB Himalaya Grand Press Conference",
     category: "Events & Stage",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/rcb-himalaya-press.jpg",
     aspect: "aspect-[16/10]",
     tag: "PRESS CORRIDOR",
     desc: "Broadcast media risers, multi-mic press distribution boxes, brand step-and-repeat backdrops, and high-CRI white stage lighting.",
     venue: "Luxury Hotel Ballroom, Mumbai",
+    slides: [
+      { type: "image", src: "/assets/drive_slides/zeiss-2.jpg", caption: "Press Media Conference Stage Setup" },
+      { type: "image", src: "/assets/drive_slides/zeiss-3.jpg", caption: "VIP Athlete & Ambassador Keynote Podium" },
+      { type: "image", src: "/assets/parekh/client_media/rcb-himalaya-press.jpg", caption: "RCB Himalaya Brand Ambassador Press Room" },
+    ],
   },
   {
     id: 8,
     title: "Concern India Sports Day Action Stills",
     category: "Sports & Impact",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/sports-action-1.jpg",
     aspect: "aspect-[4/5]",
     tag: "ACTION SHUTTER",
     desc: "High-speed sports action photojournalism with telephoto lenses capturing dynamic motion, athlete emotion, and track highlights.",
     venue: "Stadium Complex, Mumbai",
+    slides: [
+      { type: "image", src: "/assets/drive_slides/concern-fresh-slide2.jpg", caption: "Differently-Abled Sports Day Ceremony & Honors" },
+      { type: "image", src: "/assets/drive_slides/concern-fresh-slide3.jpg", caption: "Track & Field Sprint Highlights" },
+      { type: "image", src: "/assets/parekh/client_media/sports-action-1.jpg", caption: "Annual Sports Day Participant Cheers" },
+      { type: "image", src: "/assets/parekh/portfolio/sports-event.jpg", caption: "Stadium Trackside Field Coverage" },
+    ],
   },
   {
     id: 9,
     title: "State Auditorium Keynote Lighting",
     category: "Events & Stage",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/auditorium.jpg",
     aspect: "aspect-[16/10]",
     tag: "KEYNOTE HALL",
     desc: "Acoustic stage treatment, line-array front-fill calibration, and theater profile spots for 2,500-seat plenary leadership session.",
     venue: "State Convention Hall",
+    slides: [
+      { type: "image", src: "/assets/parekh/client_media/auditorium.jpg", caption: "State Convention Hall Acoustic Staging" },
+    ],
   },
   {
     id: 10,
     title: "Corporate Leadership Summit",
     category: "Events & Stage",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/conference-hall.jpg",
     aspect: "aspect-[16/11]",
     tag: "LEADERSHIP FORUM",
     desc: "Executive conference setup with seamless ultra-wide projection, stage furniture, wireless presenter clickers, and live transcription.",
     venue: "BKC Executive Centre",
+    slides: [
+      { type: "image", src: "/assets/parekh/client_media/conference-hall.jpg", caption: "BKC Executive Centre Conference Setup" },
+      { type: "image", src: "/assets/parekh/client_media/summit-speaker.jpg", caption: "Executive Plenary Podium & VIP Keynote" },
+    ],
   },
   {
     id: 11,
     title: "Culinary Macro Food Styling Stills",
     category: "Commercial Production",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/commercial-food-2.jpg",
     aspect: "aspect-[4/3]",
     tag: "COMMERCIAL FOOD",
     desc: "Artisan menu photography, beverage splash capture, and controlled studio illumination for premium restaurant hospitality clients.",
     venue: "Studio Culinary Kitchen",
+    slides: [
+      { type: "image", src: "/assets/parekh/client_media/commercial-food-2.jpg", caption: "Sizzling Kebab Platter & Delicacies" },
+      { type: "image", src: "/assets/parekh/client_media/commercial-product.jpg", caption: "Controlled Studio Splash & Beverage Macro" },
+    ],
   },
   {
     id: 12,
     title: "Annual Sports Sprint Coverage",
     category: "Sports & Impact",
-    type: "image",
-    mediaUrl: "/assets/parekh/client_media/sports-action-2.jpg",
     aspect: "aspect-[3/4]",
     tag: "DYNAMIC MOTION",
     desc: "Multi-photographer trackside sports documentation, real-time photo tagging, and same-day press delivery for athletic associations.",
     venue: "Athletics Arena",
+    slides: [
+      { type: "image", src: "/assets/parekh/client_media/sports-action-2.jpg", caption: "Trackside Sports Awardees & Champions" },
+      { type: "image", src: "/assets/drive_slides/concern-india-2.jpg", caption: "Podium Honours & Press Photo" },
+      { type: "image", src: "/assets/drive_slides/concern-india-3.jpg", caption: "Athlete Motion & Sprint Coverage" },
+    ],
   },
 ];
 
 export function PinterestGallery({ onBackHome }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [activeModalItem, setActiveModalItem] = useState(null);
+  const [modalSlideIndex, setModalSlideIndex] = useState(0);
+
+  // Close modal with ESC key or Arrow navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setActiveModalItem(null);
+      } else if (e.key === "ArrowLeft") {
+        handleModalSlidePrev();
+      } else if (e.key === "ArrowRight") {
+        handleModalSlideNext();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeModalItem, modalSlideIndex]);
+
+  const openModal = (item) => {
+    setActiveModalItem(item);
+    setModalSlideIndex(0);
+  };
+
+  const closeModal = () => {
+    setActiveModalItem(null);
+    setModalSlideIndex(0);
+  };
+
+  const handleModalSlidePrev = () => {
+    if (!activeModalItem?.slides?.length) return;
+    setModalSlideIndex((prev) =>
+      prev > 0 ? prev - 1 : activeModalItem.slides.length - 1
+    );
+  };
+
+  const handleModalSlideNext = () => {
+    if (!activeModalItem?.slides?.length) return;
+    setModalSlideIndex((prev) =>
+      prev < activeModalItem.slides.length - 1 ? prev + 1 : 0
+    );
+  };
 
   const filteredItems =
     selectedCategory === "All"
@@ -158,40 +216,32 @@ export function PinterestGallery({ onBackHome }) {
 
   return (
     <section className="py-16 sm:py-24 px-6 sm:px-12 lg:px-16 w-full max-w-[1600px] mx-auto bg-white min-h-screen">
-      
-      {/* Header Row */}
+      {/* Top Navigation */}
+      <div className="flex items-center justify-between mb-8 pb-6 border-b border-neutral-200">
+        <button
+          onClick={onBackHome}
+          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-600 hover:text-black transition-colors cursor-pointer"
+        >
+          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+          <span>Back to Home</span>
+        </button>
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+          Curated Gallery &middot; {filteredItems.length} Productions
+        </span>
+      </div>
+
+      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="h-2 w-2 rounded-full bg-red-600" />
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
-              Parekh Visual Archive · Autoplay Showcase
-            </span>
+          <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-2">
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Interactive Media Catalog</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
-            Production Reel &amp; <br />
-            Visual Catalog
+          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-none">
+            Production Archives
           </h1>
-          <p className="mt-3 text-sm sm:text-base text-neutral-600 max-w-2xl">
-            Uninterrupted live visual archive. All cinematography streams play in continuous loop without intrusive popups or playback interruptions.
-          </p>
-        </div>
-
-        {/* Sister Brand Callout inside Gallery */}
-        <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 max-w-sm">
-          <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold block mb-1">
-            Luxury Weddings Division
-          </span>
-          <p className="text-xs text-neutral-700">
-            Looking for luxury bridal cinematography? Visit our dedicated label:{" "}
-            <a
-              href="https://heavenlyweds.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-red-600 hover:text-black underline transition-colors"
-            >
-              HeavenlyWeds.com &rarr;
-            </a>
+          <p className="mt-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
+            Explore uncompressed video aftermovies, stage fabrication records, and corporate media captures. Click any card to expand into the 3D showcase view with complete photo &amp; video slides.
           </p>
         </div>
       </div>
@@ -216,70 +266,291 @@ export function PinterestGallery({ onBackHome }) {
         })}
       </div>
 
-      {/* Responsive Pinterest-Style Masonry Columns (NO MODALS, AUTOPLAYING VIDEOS IN LOOP) */}
+      {/* Responsive Pinterest-Style Masonry Grid */}
       <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-        {filteredItems.map((item) => (
-          <div
-            key={item.id}
-            className="break-inside-avoid group relative rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200/70 transition-all duration-500 hover:shadow-xl"
-          >
-            {item.type === "video" ? (
-              /* Autoplay in loop at mute with NO popup or controls */
-              <div className={`relative w-full ${item.aspect} overflow-hidden bg-black`}>
-                <video
-                  src={item.mediaUrl}
-                  poster={item.poster}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
-                
-                {/* Live Stream Tag */}
-                <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono font-bold text-white border border-white/20">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e] animate-pulse" />
-                  <span>AUTOPLAY REEL</span>
+        {filteredItems.map((item) => {
+          const primarySlide = item.slides[0];
+          return (
+            <div
+              key={item.id}
+              onClick={() => openModal(item)}
+              className="break-inside-avoid group relative rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-200/70 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer"
+            >
+              {primarySlide.type === "video" ? (
+                <div className={`relative w-full ${item.aspect} overflow-hidden bg-black`}>
+                  <video
+                    src={primarySlide.src}
+                    poster={primarySlide.poster}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                  
+                  {/* Video Badge */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono font-bold text-white border border-white/20">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e] animate-pulse" />
+                    <span>AUTOPLAY REEL</span>
+                  </div>
+                </div>
+              ) : (
+                <div className={`relative w-full ${item.aspect} overflow-hidden bg-neutral-900`}>
+                  <img
+                    src={primarySlide.src}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                </div>
+              )}
+
+              {/* Slide Count Indicator Badge */}
+              {item.slides.length > 1 && (
+                <div className="absolute top-3 right-3 z-10 rounded-full bg-black/65 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono font-bold text-white border border-white/20 flex items-center gap-1">
+                  <span>{item.slides.length} SLIDES</span>
+                </div>
+              )}
+
+              {/* Hover 3D Popover Hint Overlay */}
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-10">
+                <div className="px-4 py-2 rounded-full bg-white text-black text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                  <Eye className="h-3.5 w-3.5 text-red-600" />
+                  <span>Expand 3D Showcase</span>
                 </div>
               </div>
-            ) : (
-              <div className={`relative w-full ${item.aspect} overflow-hidden bg-neutral-100`}>
-                <img
-                  src={item.mediaUrl}
-                  alt={item.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
-              </div>
-            )}
 
-            {/* In-Card Metadata */}
-            <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block">
-                  [{item.tag}]
-                </span>
-                {item.venue && (
-                  <span className="text-[9px] font-mono text-neutral-300 uppercase tracking-wider bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded">
-                    {item.venue}
+              {/* In-Card Metadata */}
+              <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none z-10">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold block">
+                    [{item.tag}]
                   </span>
+                  {item.venue && (
+                    <span className="text-[9px] font-mono text-neutral-300 uppercase tracking-wider bg-black/50 backdrop-blur-sm px-2 py-0.5 rounded">
+                      {item.venue}
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
+                  {item.title}
+                </h3>
+                {item.desc && (
+                  <p className="mt-1 text-[11px] text-neutral-300 line-clamp-2 leading-relaxed drop-shadow">
+                    {item.desc}
+                  </p>
                 )}
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-white leading-snug drop-shadow-md">
-                {item.title}
-              </h3>
-              {item.desc && (
-                <p className="mt-1 text-[11px] text-neutral-300 line-clamp-2 leading-relaxed drop-shadow">
-                  {item.desc}
-                </p>
-              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* 3D Floating Popover Modal (Matching User Reference Image) */}
+      {activeModalItem && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/80 backdrop-blur-md animate-modal-backdrop"
+          onClick={closeModal}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeModal}
+            aria-label="Close Preview"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 backdrop-blur-lg flex items-center justify-center transition-all duration-200 cursor-pointer shadow-2xl hover:scale-105 active:scale-95"
+          >
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
+          </button>
+
+          {/* Modal Container: 3D Layered Card with Smooth Spring Zoom Animation */}
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl rounded-[32px] sm:rounded-[40px] p-4 sm:p-8 md:p-10 bg-[#e8edf2] shadow-[0_30px_90px_rgba(0,0,0,0.55)] border border-white/40 flex items-center justify-center animate-popover-zoom"
+          >
+            {/* Polka Dot Background Texture (matching reference design) */}
+            <div 
+              className="absolute inset-0 rounded-[32px] sm:rounded-[40px] pointer-events-none opacity-40 -z-10"
+              style={{
+                backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
+                backgroundSize: "18px 18px",
+              }}
+            />
+
+            {/* Accent Corner Polka Dots Grid */}
+            <div 
+              className="absolute -bottom-3 -left-3 sm:bottom-4 sm:left-4 w-16 h-16 pointer-events-none opacity-60 -z-10"
+              style={{
+                backgroundImage: "radial-gradient(#ef4444 2px, transparent 2px)",
+                backgroundSize: "10px 10px",
+              }}
+            />
+
+            {/* Compound Two-Tone Floating Card System (Reference Match) */}
+            <div className="relative w-full flex flex-col md:flex-row items-center justify-center">
+              
+              {/* Overlapping Elevated Left 3D Media Card (With Smooth Horizontal Slider) */}
+              <div className="relative z-20 w-full md:w-[48%] lg:w-[46%] aspect-[4/5] sm:aspect-[4/5] md:aspect-[3/4] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black shadow-[0_25px_60px_rgba(0,0,0,0.4)] border-4 border-white md:-mr-12 group/slider select-none">
+                {/* Horizontal Sliding Track */}
+                <div
+                  className="flex h-full w-full will-change-transform"
+                  style={{
+                    transform: `translate3d(-${modalSlideIndex * 100}%, 0, 0)`,
+                    transition: "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                >
+                  {activeModalItem.slides.map((slide, sIdx) => {
+                    const isCurrent = sIdx === modalSlideIndex;
+                    return (
+                      <div
+                        key={sIdx}
+                        className="relative h-full w-full flex-shrink-0 overflow-hidden bg-black flex items-center justify-center"
+                      >
+                        {slide.type === "video" ? (
+                          <video
+                            key={`modal-vid-${activeModalItem.id}-${sIdx}-${isCurrent}`}
+                            ref={(el) => {
+                              if (el && isCurrent) {
+                                el.currentTime = 0;
+                                const playPromise = el.play();
+                                if (playPromise !== undefined) {
+                                  playPromise.catch(() => {
+                                    // Fallback to muted if browser blocks unmuted autoplay
+                                    el.muted = true;
+                                    el.play().catch(() => {});
+                                  });
+                                }
+                              }
+                            }}
+                            src={slide.src}
+                            poster={slide.poster}
+                            autoPlay
+                            loop
+                            playsInline
+                            controls
+                            className="h-full w-full object-cover relative z-10"
+                          />
+                        ) : (
+                          <img
+                            src={slide.src}
+                            alt={slide.caption || activeModalItem.title}
+                            className="h-full w-full object-cover transition-all"
+                            style={{
+                              transform: isCurrent ? "scale(1)" : "scale(1.08)",
+                              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease",
+                              opacity: isCurrent ? 1 : 0.6,
+                            }}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Left / Right Slider Arrows */}
+                {activeModalItem.slides.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleModalSlidePrev}
+                      aria-label="Previous Slide"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleModalSlideNext}
+                      aria-label="Next Slide"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </>
+                )}
+
+                {/* Top Badge & Slide Count */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-30 pointer-events-none">
+                  <span className="rounded-full bg-red-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+                    {activeModalItem.category}
+                  </span>
+                  {activeModalItem.slides.length > 1 && (
+                    <span className="rounded-full bg-black/70 backdrop-blur-md px-2.5 py-1 text-[11px] font-mono font-bold text-white border border-white/20">
+                      {modalSlideIndex + 1} / {activeModalItem.slides.length}
+                    </span>
+                  )}
+                </div>
+
+                {/* Top Slide Dots Indicator (Positioned nicely above without interfering with video controls) */}
+                {activeModalItem.slides.length > 1 && (
+                  <div className="absolute top-14 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-30 bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto">
+                    {activeModalItem.slides.map((_, sIdx) => (
+                      <button
+                        key={sIdx}
+                        onClick={() => setModalSlideIndex(sIdx)}
+                        aria-label={`Slide ${sIdx + 1}`}
+                        className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                          sIdx === modalSlideIndex
+                            ? "w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+                            : "w-1.5 bg-white/60 hover:bg-white"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Dark Slate Navy Background Information Panel (Exact Match to Reference) */}
+              <div className="relative z-10 w-full md:w-[62%] lg:w-[64%] bg-[#122338] text-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-8 md:p-12 md:pl-20 shadow-[0_20px_50px_rgba(18,35,56,0.35)] border border-[#1e3a5f] mt-4 md:mt-0 flex flex-col justify-between">
+                <div>
+                  {/* Category Accent Subheading */}
+                  <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#ff6b6b] block mb-2">
+                    {activeModalItem.tag} &middot; {activeModalItem.venue}
+                  </span>
+
+                  {/* Main Event Title */}
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight mb-4">
+                    {activeModalItem.title}
+                  </h2>
+
+                  {/* Narrative Body Copy */}
+                  <p className="text-xs sm:text-sm md:text-base text-neutral-300 leading-relaxed font-normal mb-4">
+                    {activeModalItem.desc}
+                  </p>
+
+                  {/* Active Slide Caption Highlight */}
+                  {activeModalItem.slides[modalSlideIndex]?.caption && (
+                    <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 mb-6">
+                      <span className="text-[10px] uppercase font-mono tracking-widest text-red-400 block font-bold mb-1">
+                        Active Slide {modalSlideIndex + 1}
+                      </span>
+                      <p className="text-xs sm:text-sm text-neutral-200 font-medium">
+                        {activeModalItem.slides[modalSlideIndex].caption}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Action Footer with Clean Outline Pill Button */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+                  <div className="flex items-center gap-2 text-xs text-neutral-400 font-mono">
+                    <span>{activeModalItem.slides.length} Production Assets Available</span>
+                  </div>
+
+                  <button
+                    onClick={closeModal}
+                    className="px-6 py-2.5 rounded-xl border border-white/30 hover:border-white bg-transparent hover:bg-white text-white hover:text-[#122338] text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+                  >
+                    Close Showcase
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
 
     </section>
   );

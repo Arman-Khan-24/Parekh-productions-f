@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { siteContent } from "../data/siteContent";
-import { ArrowRight, ChevronUp, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 
 export function WheelProjectsShowcase({ onViewAllProjects }) {
   const projects = siteContent.clients;
@@ -184,6 +184,30 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
   };
 
   const currentProject = projects[activeIndex];
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  // Reset slide index when active project changes
+  useEffect(() => {
+    setSlideIndex(0);
+  }, [activeIndex]);
+
+  // Collect up to 3 slides from currentProject (galleryItems or coverImage fallback)
+  const slides = currentProject?.galleryItems?.length
+    ? currentProject.galleryItems.slice(0, 3)
+    : [{ type: "image", src: currentProject?.coverImage, caption: currentProject?.name }];
+
+  const currentSlideIndex = Math.min(slideIndex, Math.max(0, slides.length - 1));
+  const [slideDirection, setSlideDirection] = useState("right");
+
+  const handleSlidePrev = () => {
+    setSlideDirection("left");
+    setSlideIndex((prev) => (prev > 0 ? prev - 1 : slides.length - 1));
+  };
+
+  const handleSlideNext = () => {
+    setSlideDirection("right");
+    setSlideIndex((prev) => (prev < slides.length - 1 ? prev + 1 : 0));
+  };
 
   return (
     <section 
@@ -300,34 +324,152 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
 
         {/* Right Column: Active Project Media & Specifications (Zero Shadow, Pure White Background) */}
         <div className="lg:col-span-7 flex flex-col justify-center space-y-5">
-          {/* Media Player Container - Zero Harsh Shadows */}
-          <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-100 border border-neutral-200">
-            <img
-              src={currentProject.coverImage}
-              alt={currentProject.name}
-              key={currentProject.id}
-              className="h-full w-full object-cover transition-opacity duration-300"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+          {/* Media Slider Container with Bold Smooth Image Sliding Animation */}
+          <div 
+            className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-200 group/slider select-none shadow-sm"
+            onTouchStart={(e) => {
+              const touch = e.touches[0];
+              e.currentTarget.dataset.startX = touch.clientX;
+            }}
+            onTouchEnd={(e) => {
+              const startX = parseFloat(e.currentTarget.dataset.startX || "0");
+              const endX = e.changedTouches[0].clientX;
+              const diff = startX - endX;
+              if (Math.abs(diff) > 40) {
+                if (diff > 0) handleSlideNext();
+                else handleSlidePrev();
+              }
+            }}
+          >
+            {/* Sliding Image Window Track */}
+            <div
+              className="flex h-full w-full will-change-transform"
+              style={{
+                transform: `translate3d(-${currentSlideIndex * 100}%, 0, 0)`,
+                transition: "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              {slides.map((slide, sIdx) => {
+                const isCurrent = sIdx === currentSlideIndex;
+                return (
+                  <div
+                    key={`${currentProject.id}-${sIdx}`}
+                    className="relative h-full w-full flex-shrink-0 overflow-hidden bg-neutral-950"
+                  >
+                    {slide.type === "video" ? (
+                      <video
+                        src={slide.src}
+                        poster={slide.poster || currentProject.coverImage}
+                        controls={isCurrent}
+                        playsInline
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out"
+                        style={{
+                          transform: isCurrent ? "scale(1)" : "scale(1.08)",
+                          transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease",
+                          opacity: isCurrent ? 1 : 0.6,
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={slide.src || currentProject.coverImage}
+                        alt={slide.caption || currentProject.name}
+                        className="h-full w-full object-cover transition-all"
+                        style={{
+                          transform: isCurrent ? "scale(1)" : "scale(1.08)",
+                          transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease",
+                          opacity: isCurrent ? 1 : 0.6,
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none z-10" />
+
+            {/* Left & Right Slider Arrow Buttons */}
+            {slides.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSlidePrev();
+                  }}
+                  aria-label="Previous Slide"
+                  className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-lg"
+                >
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSlideNext();
+                  }}
+                  aria-label="Next Slide"
+                  className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-lg"
+                >
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+                </button>
+              </>
+            )}
 
             {/* Badges */}
-            <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex items-center gap-2">
-              <span className="rounded-full bg-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-black">
+            <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex items-center gap-2 z-20 pointer-events-none">
+              <span className="rounded-full bg-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-black shadow-sm">
                 {currentProject.category}
               </span>
-              <span className="rounded-full bg-black/60 px-3 py-1 text-xs uppercase tracking-wider text-white border border-white/20">
+              <span className="rounded-full bg-black/60 px-3 py-1 text-xs uppercase tracking-wider text-white border border-white/20 backdrop-blur-sm">
                 {currentProject.scale}
               </span>
             </div>
 
-            {/* Project Title */}
-            <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 text-white">
-              <p className="text-xs uppercase tracking-widest text-red-400 font-bold mb-1">
-                {currentProject.location}
-              </p>
+            {/* Slide Dots Indicator */}
+            {slides.length > 1 && (
+              <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5 z-20 bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+                {slides.map((_, sIdx) => (
+                  <button
+                    key={sIdx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSlideIndex(sIdx);
+                    }}
+                    aria-label={`Go to slide ${sIdx + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      sIdx === currentSlideIndex
+                        ? "w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+                        : "w-1.5 bg-white/60 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Project Title & Slide Caption with Fade Transition */}
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white pointer-events-none z-20">
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-xs uppercase tracking-widest text-red-400 font-bold">
+                  {currentProject.venue || currentProject.location}
+                </p>
+                {slides.length > 1 && (
+                  <span className="text-[11px] font-mono tracking-wider text-neutral-300 bg-black/40 px-2 py-0.5 rounded-full border border-white/10">
+                    {currentSlideIndex + 1} / {slides.length}
+                  </span>
+                )}
+              </div>
               <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
                 {currentProject.name}
               </h3>
+              {slides[currentSlideIndex]?.caption && (
+                <p 
+                  key={currentSlideIndex}
+                  className="text-xs sm:text-sm text-neutral-200 mt-1 line-clamp-1 font-medium transition-opacity duration-300"
+                >
+                  {slides[currentSlideIndex].caption}
+                </p>
+              )}
             </div>
           </div>
 
