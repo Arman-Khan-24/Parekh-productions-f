@@ -147,8 +147,10 @@ export default function App({ initialPath }) {
   return (
     <div className="min-h-screen w-full bg-white text-black selection:bg-black selection:text-white overflow-x-hidden">
       <Navbar 
+        currentLocation="mumbai"
         onContactClick={handleOpenQuote} 
         onGalleryClick={() => navigateTo("/gallery")}
+        onNavigate={navigateTo}
       />
       <main className="w-full">
         {/* Hero Cinema Stream */}

@@ -227,6 +227,25 @@ export const siteContent = {
         { type: "image", src: "/assets/drive_slides/zeiss-2.jpg", caption: "ZEISS Brand Campaign 02" },
         { type: "image", src: "/assets/drive_slides/zeiss-3.jpg", caption: "ZEISS Brand Campaign 03" }
       ]
+    },
+    {
+      id: "auto-expo",
+      name: "Auto Expo Pavilion",
+      category: "Automotive Pavilion",
+      venue: "Auto Expo Arena · Major Pavilion",
+      scale: "Turnkey Pavilion & Reveal Lighting",
+      tagline: "Automotive show architecture, moving head beam arrays, and reveal cinematography.",
+      coverImage: "/assets/parekh/client_media/stage-lighting.jpg",
+      highlights: [
+        "Synchronized reveal illumination and motorized automotive turntable lighting",
+        "Multi-angle 4K cinematography & broadcast live streaming",
+        "Complete structural pavilion trussing and VIP media lounges"
+      ],
+      galleryItems: [
+        { type: "video", src: "/assets/parekh/autoexpo-max-quality.mp4", poster: "/assets/parekh/client_media/stage-lighting.jpg", caption: "Auto Expo Pavilion Reveal Reel" },
+        { type: "image", src: "/assets/parekh/client_media/stage-lighting.jpg", caption: "Arena Lighting Rigging" },
+        { type: "image", src: "/assets/parekh/client_media/auditorium.jpg", caption: "Concert Acoustic Tuning" }
+      ]
     }
   ],
   galleryPreview: [

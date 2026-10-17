@@ -56,8 +56,9 @@ export function QuoteModal({ open, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const message = [
+    const textLines = [
       "Hello Parekh Productions! I would like to request an event quote.",
+      "",
       `Name: ${form.name}`,
       `Phone: ${form.phone}`,
       `Email: ${form.email || "Not provided"}`,
@@ -65,10 +66,21 @@ export function QuoteModal({ open, onClose }) {
       `Event Date: ${form.eventDate || "Not finalized"}`,
       `Event City/Venue: ${form.eventCity || "Not provided"}`,
       `Brief: ${form.description}`,
-    ].join("\n");
+    ];
 
-    const whatsappUrl = `https://wa.me/918657754937?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    const message = textLines.join("\n");
+    const encodedText = encodeURIComponent(message);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=918657754937&text=${encodedText}`;
+
+    // Reliable cross-device open: create and click invisible anchor
+    const link = document.createElement("a");
+    link.href = whatsappUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     onClose();
   };
 

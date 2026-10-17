@@ -290,11 +290,11 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                   onClick={() => selectProject(idx)}
                   style={{
                     transform: `translateX(${translateX}px) scale(${scale})`,
-                    transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1), background-color 250ms ease, color 250ms ease",
+                    transition: "transform 180ms cubic-bezier(0.16, 1, 0.3, 1), background-color 100ms ease, color 100ms ease",
                   }}
-                  className={`w-full text-left p-3 rounded-2xl transition-all cursor-pointer border ${
+                  className={`w-full text-left p-3 rounded-2xl cursor-pointer border ${
                     isActive
-                      ? "bg-black text-white border-black z-20"
+                      ? "bg-black text-white border-black z-20 shadow-sm"
                       : "bg-white text-neutral-800 hover:bg-neutral-100 border-neutral-200 z-10"
                   }`}
                 >
@@ -386,7 +386,8 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               })}
             </div>
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none z-10" />
+            {/* Ambient vignette - only on desktop where text sits on image */}
+            <div className="hidden sm:block absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none z-10" />
 
             {/* Left & Right Slider Arrow Buttons */}
             {slides.length > 1 && (
@@ -398,9 +399,9 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                     handleSlidePrev();
                   }}
                   aria-label="Previous Slide"
-                  className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-lg"
+                  className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
                 >
-                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+                  <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
                 </button>
                 <button
                   type="button"
@@ -409,15 +410,15 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                     handleSlideNext();
                   }}
                   aria-label="Next Slide"
-                  className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] shadow-lg"
+                  className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 sm:h-12 sm:w-12 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
                 >
-                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 transition-transform group-hover:scale-110" />
+                  <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
                 </button>
               </>
             )}
 
-            {/* Badges */}
-            <div className="absolute top-4 left-4 sm:top-5 sm:left-5 flex items-center gap-2 z-20 pointer-events-none">
+            {/* Badges - Desktop Only to keep Mobile Image completely clean */}
+            <div className="hidden sm:flex absolute top-5 left-5 items-center gap-2 z-20 pointer-events-none">
               <span className="rounded-full bg-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-black shadow-sm">
                 {currentProject.category}
               </span>

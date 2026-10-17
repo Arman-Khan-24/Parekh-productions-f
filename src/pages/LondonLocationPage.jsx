@@ -53,7 +53,12 @@ export function LondonLocationPage({ onOpenQuote, onNavigate }) {
 
   return (
     <div className="min-h-screen w-full bg-white text-black selection:bg-black selection:text-white overflow-x-hidden">
-      <Navbar onContactClick={handleQuote} onGalleryClick={() => onNavigate && onNavigate("/gallery")} />
+      <Navbar 
+        currentLocation="london" 
+        onContactClick={handleQuote} 
+        onGalleryClick={() => onNavigate && onNavigate("/gallery")} 
+        onNavigate={onNavigate}
+      />
 
       <main className="w-full pt-28 sm:pt-36">
         
