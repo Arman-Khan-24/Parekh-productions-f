@@ -13,7 +13,6 @@ import { Destinations } from "./components/Destinations";
 import { Footer } from "./components/Footer";
 import { QuoteModal } from "./components/QuoteModal";
 import { WhatsAppButton } from "./components/WhatsAppButton";
-import { LondonLocationPage } from "./pages/LondonLocationPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ArrowLeft } from "lucide-react";
 
@@ -36,6 +35,24 @@ export default function App({ initialPath }) {
     if (path === "/gallery" || hash === "#/gallery") {
       return "/gallery";
     }
+
+    // Smart non-intrusive Geo Detection:
+    // If the user arrives on the root URL "/" with no manual preference set,
+    // detect their device timezone. If outside of Indian Standard Time,
+    // gracefully route them to the London / UK division.
+    try {
+      const savedPref = localStorage.getItem("parekh_region_pref");
+      if (!savedPref && (path === "" || path === "/")) {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+        const isIndiaTz = timeZone.includes("Calcutta") || timeZone.includes("Kolkata") || timeZone === "Asia/Colombo";
+        if (!isIndiaTz && timeZone) {
+          return "/london";
+        }
+      }
+    } catch (e) {
+      // Ignore localStorage restrictions in privacy mode
+    }
+
     return "/";
   };
 
@@ -67,6 +84,16 @@ export default function App({ initialPath }) {
 
   const navigateTo = (route) => {
     if (typeof window !== "undefined") {
+      try {
+        if (route === "/london" || route === "/uk") {
+          localStorage.setItem("parekh_region_pref", "london");
+        } else if (route === "/") {
+          localStorage.setItem("parekh_region_pref", "mumbai");
+        }
+      } catch (e) {
+        // Ignore localStorage error
+      }
+
       try {
         window.history.pushState({}, "", route);
       } catch (e) {
