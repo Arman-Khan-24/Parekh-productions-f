@@ -204,22 +204,22 @@ export function ServicesAccordion({ onOpenQuote }) {
                 <button
                   type="button"
                   onClick={() => toggle(service.id)}
-                  className="w-full py-4 sm:py-5 flex items-center justify-between gap-4 text-left cursor-pointer group px-2 sm:px-3 transition-all"
+                  className="w-full py-3.5 sm:py-5 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer group px-2 sm:px-3 transition-all"
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                  <div className="flex items-center gap-2.5 sm:gap-4 flex-1 min-w-0">
                     {/* Solid Cinematic Red Bullet Dot */}
                     <span 
-                      className={`w-2.5 h-2.5 rounded-full shrink-0 transition-transform duration-300 ${service.dotColor} ${
+                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full shrink-0 transition-transform duration-300 ${service.dotColor} ${
                         isExpanded ? "scale-125" : "group-hover:scale-110"
                       }`} 
                     />
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-base sm:text-lg font-bold text-neutral-900 group-hover:text-black tracking-tight truncate">
+                        <span className="text-sm xs:text-base sm:text-lg font-bold text-neutral-900 group-hover:text-black tracking-tight truncate">
                           {service.title}
                         </span>
-                        <span className={`hidden sm:inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md border font-bold ${service.badgeBg}`}>
+                        <span className={`hidden md:inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md border font-bold shrink-0 ${service.badgeBg}`}>
                           {service.tag}
                         </span>
                       </div>
@@ -229,13 +229,13 @@ export function ServicesAccordion({ onOpenQuote }) {
                   {/* Clean Chevron Arrow > that rotates & turns pure red */}
                   <div className="shrink-0 flex items-center">
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                         isExpanded
                           ? service.arrowActive
                           : service.arrowStyle
                       }`}
                     >
-                      <ChevronRight className="h-4 w-4" />
+                      <ChevronRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     </div>
                   </div>
                 </button>

@@ -253,12 +253,37 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
         </div>
       </div>
 
+      {/* Mobile Horizontal Project Selector (Replaces crowded 440px wheel on small screens) */}
+      <div className="lg:hidden w-full px-6 sm:px-12 mt-4">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {projects.map((proj, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <button
+                key={proj.id}
+                onClick={() => selectProject(idx)}
+                className={`shrink-0 px-3.5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer border ${
+                  isActive
+                    ? "bg-black text-white border-black shadow-sm"
+                    : "bg-neutral-100 text-neutral-700 border-neutral-200/80 hover:bg-neutral-200"
+                }`}
+              >
+                <span className={`text-[10px] font-mono ${isActive ? "text-red-400" : "text-neutral-400"}`}>
+                  0{idx + 1}
+                </span>
+                <span>{proj.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Main Split Showcase: Pure White Theme, 3D Half-Wheel Stuck to Left, Dynamic Arc Shift on Cards */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-6 lg:my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* Left Column: Pure White Canvas with 3D Half-Wheel stuck to screen */}
+        {/* Left Column: Pure White Canvas with 3D Half-Wheel (Desktop lg:flex, hidden on mobile for clean UX) */}
         <div 
-          className="lg:col-span-5 relative h-[440px] sm:h-[520px] rounded-3xl bg-white overflow-hidden flex items-center select-none cursor-grab active:cursor-grabbing border border-neutral-100"
+          className="hidden lg:flex lg:col-span-5 relative h-[520px] rounded-3xl bg-white overflow-hidden items-center select-none cursor-grab active:cursor-grabbing border border-neutral-100"
           onMouseDown={onPointerDown}
           onMouseMove={onPointerMove}
           onMouseUp={onPointerUp}
@@ -428,7 +453,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
 
             {/* Slide Dots Indicator */}
             {slides.length > 1 && (
-              <div className="absolute top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-1.5 z-20 bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
+              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 flex items-center gap-1.5 z-20 bg-black/60 px-2.5 py-1 rounded-full backdrop-blur-md border border-white/10">
                 {slides.map((_, sIdx) => (
                   <button
                     key={sIdx}
@@ -439,7 +464,7 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                     aria-label={`Go to slide ${sIdx + 1}`}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                       sIdx === currentSlideIndex
-                        ? "w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+                        ? "w-5 sm:w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
                         : "w-1.5 bg-white/60 hover:bg-white"
                     }`}
                   />
@@ -447,8 +472,8 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
               </div>
             )}
 
-            {/* Project Title & Slide Caption with Fade Transition */}
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white pointer-events-none z-20">
+            {/* Desktop-Only In-Image Overlay Caption */}
+            <div className="hidden sm:block absolute bottom-6 left-6 right-6 text-white pointer-events-none z-20">
               <div className="flex items-center justify-between mb-1">
                 <p className="text-xs uppercase tracking-widest text-red-400 font-bold">
                   {currentProject.venue || currentProject.location}
@@ -471,6 +496,28 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
                 </p>
               )}
             </div>
+          </div>
+
+          {/* Clean Mobile Caption Directly BELOW the Image (Unobstructed View) */}
+          <div className="sm:hidden px-1 pt-1">
+            <div className="flex items-center justify-between mb-1 text-xs font-mono">
+              <span className="text-red-600 font-bold uppercase tracking-wider">
+                {currentProject.venue || currentProject.location}
+              </span>
+              {slides.length > 1 && (
+                <span className="text-neutral-500 font-bold">
+                  Slide {currentSlideIndex + 1} of {slides.length}
+                </span>
+              )}
+            </div>
+            <h3 className="text-xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
+              {currentProject.name}
+            </h3>
+            {slides[currentSlideIndex]?.caption && (
+              <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+                {slides[currentSlideIndex].caption}
+              </p>
+            )}
           </div>
 
           {/* Narrative Specs */}

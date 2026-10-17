@@ -215,39 +215,25 @@ export function PinterestGallery({ onBackHome }) {
       : galleryItems.filter((item) => item.category === selectedCategory);
 
   return (
-    <section className="py-16 sm:py-24 px-6 sm:px-12 lg:px-16 w-full max-w-[1600px] mx-auto bg-white min-h-screen">
-      {/* Top Navigation */}
-      <div className="flex items-center justify-between mb-8 pb-6 border-b border-neutral-200">
-        <button
-          onClick={onBackHome}
-          className="group flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-600 hover:text-black transition-colors cursor-pointer"
-        >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          <span>Back to Home</span>
-        </button>
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
-          Curated Gallery &middot; {filteredItems.length} Productions
-        </span>
-      </div>
-
+    <section className="py-8 sm:py-16 lg:py-20 px-4 sm:px-12 lg:px-16 w-full max-w-[1600px] mx-auto bg-white min-h-screen">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-red-600 mb-2">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Interactive Media Catalog</span>
+            <span>Curated Catalog &middot; {filteredItems.length} Productions</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-none">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-900 leading-none">
             Production Archives
           </h1>
-          <p className="mt-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
-            Explore uncompressed video aftermovies, stage fabrication records, and corporate media captures. Click any card to expand into the 3D showcase view with complete photo &amp; video slides.
+          <p className="mt-3 text-xs sm:text-base text-neutral-600 max-w-2xl leading-relaxed">
+            Explore uncompressed video aftermovies, stage fabrication records, and corporate media captures. Click any card to expand full photo &amp; video slides.
           </p>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-neutral-200/70 pb-6">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-8 sm:mb-12 border-b border-neutral-200/70 pb-4 sm:pb-6">
         {galleryCategories.map((cat) => {
           const isActive = selectedCategory === cat;
           return (

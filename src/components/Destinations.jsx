@@ -113,7 +113,7 @@ export function Destinations({ onContactClick }) {
       </div>
 
       {/* Interactive Map Canvas Container */}
-      <div className="relative w-full h-[520px] sm:h-[620px] lg:h-[660px] rounded-3xl overflow-hidden bg-[#0a0c12] border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+      <div className="relative w-full h-[340px] sm:h-[500px] lg:h-[640px] rounded-3xl overflow-hidden bg-[#0a0c12] border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
         {/* World Vector Map Canvas */}
         <div className="w-full h-full relative z-0">
           <WorldMap2D

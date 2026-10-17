@@ -101,25 +101,26 @@ export default function App({ initialPath }) {
   if (currentRoute === "/gallery") {
     return (
       <div className="min-h-screen w-full bg-white text-black selection:bg-black selection:text-white">
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-neutral-200 px-6 sm:px-12 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-neutral-200 px-4 sm:px-12 py-3 sm:py-4 flex items-center justify-between">
           <button
             onClick={() => navigateTo("/")}
-            className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-800 hover:text-black bg-neutral-100 hover:bg-neutral-200 px-4 py-2 rounded-full transition-colors cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-800 hover:text-black bg-neutral-100 hover:bg-neutral-200 px-3.5 py-2 rounded-full transition-colors cursor-pointer shrink-0"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to Home</span>
+            <span>Home</span>
           </button>
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-bold tracking-wider uppercase text-red-600">
-              Visual Archive · Curated Works
-            </span>
-            <button
-              onClick={handleOpenQuote}
-              className="btn-satisfying-cta text-xs font-bold uppercase tracking-widest text-white bg-black rounded-full px-5 py-2 cursor-pointer"
-            >
-              Get A Quote
-            </button>
+          
+          <div className="hidden xs:flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-neutral-500">
+            <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="truncate">Production Visual Archive</span>
           </div>
+
+          <button
+            onClick={handleOpenQuote}
+            className="btn-satisfying-cta text-xs font-bold uppercase tracking-widest text-white bg-black rounded-full px-4 sm:px-6 py-2 cursor-pointer shrink-0"
+          >
+            Get A Quote
+          </button>
         </header>
 
         <main className="w-full">
