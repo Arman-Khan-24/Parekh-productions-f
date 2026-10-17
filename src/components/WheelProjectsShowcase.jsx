@@ -253,37 +253,12 @@ export function WheelProjectsShowcase({ onViewAllProjects }) {
         </div>
       </div>
 
-      {/* Mobile Horizontal Project Selector (Replaces crowded 440px wheel on small screens) */}
-      <div className="lg:hidden w-full px-6 sm:px-12 mt-4">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {projects.map((proj, idx) => {
-            const isActive = idx === activeIndex;
-            return (
-              <button
-                key={proj.id}
-                onClick={() => selectProject(idx)}
-                className={`shrink-0 px-3.5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer border ${
-                  isActive
-                    ? "bg-black text-white border-black shadow-sm"
-                    : "bg-neutral-100 text-neutral-700 border-neutral-200/80 hover:bg-neutral-200"
-                }`}
-              >
-                <span className={`text-[10px] font-mono ${isActive ? "text-red-400" : "text-neutral-400"}`}>
-                  0{idx + 1}
-                </span>
-                <span>{proj.name}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Main Split Showcase: Pure White Theme, 3D Half-Wheel Stuck to Left, Dynamic Arc Shift on Cards */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 my-6 lg:my-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* Left Column: Pure White Canvas with 3D Half-Wheel (Desktop lg:flex, hidden on mobile for clean UX) */}
+        {/* Left Column: Pure White Canvas with 3D Half-Wheel Stuck to Left */}
         <div 
-          className="hidden lg:flex lg:col-span-5 relative h-[520px] rounded-3xl bg-white overflow-hidden items-center select-none cursor-grab active:cursor-grabbing border border-neutral-100"
+          className="lg:col-span-5 relative h-[440px] sm:h-[520px] rounded-3xl bg-white overflow-hidden flex items-center select-none cursor-grab active:cursor-grabbing border border-neutral-100"
           onMouseDown={onPointerDown}
           onMouseMove={onPointerMove}
           onMouseUp={onPointerUp}

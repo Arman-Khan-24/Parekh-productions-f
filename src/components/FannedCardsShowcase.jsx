@@ -15,21 +15,21 @@ export function FannedCardsShowcase() {
   }, []);
 
   return (
-    <section className="relative w-full py-6 sm:py-10 bg-white overflow-hidden">
-      <div className="relative mx-auto max-w-5xl px-4 sm:px-10">
+    <section className="relative w-full py-4 sm:py-10 bg-white overflow-hidden">
+      <div className="relative mx-auto max-w-5xl px-1 sm:px-10">
         
         {/* Ambient Backlight glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[320px] sm:h-[420px] bg-gradient-to-tr from-neutral-200/50 via-neutral-100/40 to-neutral-200/30 blur-3xl rounded-full pointer-events-none -z-10" />
 
-        {/* 3-Card Fanned Container with 3D perspective */}
-        <div className="group/showcase relative flex items-center justify-center h-[340px] xs:h-[390px] sm:h-[480px] md:h-[530px] [perspective:1200px]">
+        {/* 3-Card Fanned Container with 3D perspective - Covers almost full width with 2-4px margin */}
+        <div className="group/showcase relative flex items-center justify-center h-[380px] xs:h-[430px] sm:h-[480px] md:h-[530px] [perspective:1200px] w-full">
           
           {/* Left Card: Auto Expo Lighting & Pavilion Rigging */}
           <div
             style={{
-              transform: `translateX(-${22 + fanProgress * 16}%) translateY(${4 - fanProgress * 4}px) rotate(-${6 - fanProgress * 2}deg) scale(0.92)`,
+              transform: `translateX(-${24 + fanProgress * 14}%) translateY(${4 - fanProgress * 4}px) rotate(-${5 - fanProgress * 2}deg) scale(0.94)`,
             }}
-            className="absolute z-10 w-[145px] xs:w-[185px] sm:w-[280px] md:w-[340px] aspect-[4/5] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.14)] border border-neutral-200/80 bg-zinc-800 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!-translate-x-[40%] hover:!-translate-y-4 hover:!rotate-[-9deg] hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] group-hover/showcase:translate-x-[-32%]"
+            className="absolute z-10 w-[78%] sm:w-[280px] md:w-[340px] aspect-[4/5] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.14)] border border-neutral-200/80 bg-zinc-800 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!-translate-x-[32%] hover:!-translate-y-4 hover:!rotate-[-7deg] hover:scale-[1.02] hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] group-hover/showcase:translate-x-[-28%]"
           >
             <img
               src="/assets/parekh/client_media/stage-lighting.jpg"
@@ -39,22 +39,22 @@ export function FannedCardsShowcase() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             
             {/* Badge */}
-            <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 rounded-lg sm:rounded-2xl bg-[#ff4d4f] px-2 py-0.5 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white shadow-lg backdrop-blur-md">
+            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 rounded-lg sm:rounded-2xl bg-[#ff4d4f] px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-white shadow-lg backdrop-blur-md">
               Stage &amp; AV
             </div>
             
-            <div className="absolute bottom-2.5 left-2.5 sm:bottom-5 sm:left-5 text-white pr-2">
-              <span className="text-[9px] sm:text-xs uppercase font-mono tracking-wider text-neutral-300 block">Arena Lighting</span>
-              <p className="text-[11px] sm:text-sm font-bold truncate">Auto Expo</p>
+            <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 text-white pr-2">
+              <span className="text-[10px] sm:text-xs uppercase font-mono tracking-wider text-neutral-300 block">Arena Lighting</span>
+              <p className="text-xs sm:text-sm font-bold truncate">Auto Expo</p>
             </div>
           </div>
 
-          {/* Center Card: High-Energy Auto Expo Commercial Video Loop */}
+          {/* Center Card: High-Energy Auto Expo Commercial Video Loop (Dominant Full-Width Center) */}
           <div
             style={{
               transform: `translateY(-${fanProgress * 10}px) scale(1)`,
             }}
-            className="relative z-20 w-[165px] xs:w-[205px] sm:w-[310px] md:w-[370px] aspect-[4/5] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.22)] border-2 border-white bg-zinc-900 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!scale-[1.05] hover:!-translate-y-4 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)]"
+            className="relative z-20 w-[84%] sm:w-[310px] md:w-[370px] aspect-[4/5] rounded-[22px] sm:rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.24)] border-2 border-white bg-zinc-900 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!scale-[1.03] hover:!-translate-y-3 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)]"
           >
             <video
               src="/assets/parekh/autoexpo-max-quality.mp4"
@@ -69,25 +69,25 @@ export function FannedCardsShowcase() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/20 pointer-events-none" />
 
             {/* Floating Live Reel indicator on Center Card */}
-            <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 flex items-center gap-1.5">
-              <span className="flex items-center gap-1.5 rounded-full bg-black/65 px-2 py-0.5 sm:px-3 sm:py-1 text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md border border-white/20">
+            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex items-center gap-1.5">
+              <span className="flex items-center gap-1.5 rounded-full bg-black/65 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md border border-white/20">
                 <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#22c55e] animate-pulse" />
                 Live Broadcast Reel
               </span>
             </div>
 
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 text-white">
-              <span className="text-[9px] sm:text-xs uppercase font-mono tracking-wider text-neutral-300 block">Harish Parekh</span>
-              <p className="text-xs sm:text-base font-bold truncate">Turnkey Event Coverage</p>
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-[10px] sm:text-xs uppercase font-mono tracking-wider text-neutral-300 block">Harish Parekh</span>
+              <p className="text-sm sm:text-base font-bold truncate">Turnkey Event Coverage</p>
             </div>
           </div>
 
           {/* Right Card: High-Octane RCB Himalaya Press Meet */}
           <div
             style={{
-              transform: `translateX(${22 + fanProgress * 16}%) translateY(${6 - fanProgress * 4}px) rotate(${6 - fanProgress * 2}deg) scale(0.92)`,
+              transform: `translateX(${24 + fanProgress * 14}%) translateY(${6 - fanProgress * 4}px) rotate(${5 - fanProgress * 2}deg) scale(0.94)`,
             }}
-            className="absolute z-10 w-[145px] xs:w-[185px] sm:w-[280px] md:w-[340px] aspect-[4/5] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.14)] border border-neutral-200/80 bg-zinc-800 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!translate-x-[40%] hover:!-translate-y-4 hover:!rotate-[9deg] hover:scale-[1.03] hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] group-hover/showcase:translate-x-[32%]"
+            className="absolute z-10 w-[78%] sm:w-[280px] md:w-[340px] aspect-[4/5] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.14)] border border-neutral-200/80 bg-zinc-800 transition-all duration-500 ease-out cursor-pointer hover:z-30 hover:!translate-x-[32%] hover:!-translate-y-4 hover:!rotate-[7deg] hover:scale-[1.02] hover:shadow-[0_25px_50px_rgba(0,0,0,0.25)] group-hover/showcase:translate-x-[28%]"
           >
             <img
               src="/assets/parekh/client_media/rcb-himalaya-press.jpg"
