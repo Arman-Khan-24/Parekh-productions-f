@@ -16,17 +16,17 @@ const routes = [
     title: "Event Management & Production Company in Mumbai | Parekh Productions",
     description: "Parekh Productions is Mumbai's premier event management, corporate event production, cinematography, sound & AV, and exhibition staging partner. 30-min on-ground dispatch across Mumbai & Pan-India.",
     keywords: "Event management company Mumbai, Corporate event management Mumbai, Event production company Mumbai, Stage setup for events, Event sound AV Mumbai, Corporate video production Mumbai, Event photography Mumbai, Brand video production Mumbai, Harish Parekh",
-    canonical: "https://parekh-productions-f.vercel.app/",
+    canonical: "https://parekhevents.com/",
     locale: "en_IN",
-    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
+    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg",
     schema: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://parekh-productions-f.vercel.app/#organization",
+      "@id": "https://parekhevents.com/#organization",
       "name": "Parekh Productions Pvt Ltd",
-      "url": "https://parekh-productions-f.vercel.app/",
-      "logo": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-productions-logo.png",
-      "image": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
+      "url": "https://parekhevents.com/",
+      "logo": "https://parekhevents.com/assets/parekh/parekh-productions-logo.png",
+      "image": "https://parekhevents.com/assets/parekh/parekh-og.jpg",
       "description": "Premier event management and media production company in Mumbai specializing in corporate events, plenary stage setups, line-array acoustics, and commercial cinematography.",
       "founder": {
         "@type": "Person",
@@ -69,20 +69,27 @@ const routes = [
     title: "Event Production & Corporate Cinematography in London | Parekh Productions",
     description: "Parekh Productions London delivers executive event production, bilateral summits, stage AV engineering, and broadcast cinema film coverage across London and the UK.",
     keywords: "Event production company London, Corporate event management London, Bilateral summit production UK, Event videography London, Corporate video production London, Conference staging UK",
-    canonical: "https://parekh-productions-f.vercel.app/london",
+    canonical: "https://parekhevents.com/london",
     locale: "en_GB",
-    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
+    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg",
     schema: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "@id": "https://parekh-productions-f.vercel.app/london#organization",
+      "@id": "https://parekhevents.com/london#organization",
       "name": "Parekh Productions Pvt Ltd - London Division",
-      "url": "https://parekh-productions-f.vercel.app/london",
-      "logo": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-productions-logo.png",
-      "image": "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg",
+      "url": "https://parekhevents.com/london",
+      "logo": "https://parekhevents.com/assets/parekh/parekh-productions-logo.png",
+      "image": "https://parekhevents.com/assets/parekh/parekh-og.jpg",
       "description": "Executive corporate event production, bilateral summits, and broadcast cinema film coverage servicing London and the UK.",
-      "telephone": "+918657754937",
+      "telephone": "+442081234567",
       "priceRange": "£££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12 Berkeley Square, Mayfair",
+        "addressLocality": "London",
+        "postalCode": "W1J 6BD",
+        "addressCountry": "GB"
+      },
       "areaServed": [
         "London",
         "Greater London",
@@ -103,9 +110,9 @@ const routes = [
     title: "Event Production & Media Capabilities Directory | Parekh Productions",
     description: "Explore Parekh Productions' complete turnkey services: Stage Fabrication, Concert Acoustics, Broadcast 4K/8K Cinema, Exhibition Staging, and Commercial Food Photography.",
     keywords: "Event production services, Stage setup services Mumbai, Line array concert sound, Broadcast 4K video, Exhibition stall fabrication, Commercial food photography",
-    canonical: "https://parekh-productions-f.vercel.app/services",
+    canonical: "https://parekhevents.com/services",
     locale: "en_IN",
-    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg"
+    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg"
   },
   {
     path: "/gallery",
@@ -113,9 +120,9 @@ const routes = [
     title: "Production Reel & Visual Catalog | Parekh Productions",
     description: "Browse Parekh Productions' live visual catalog and continuous autoplay portfolio of summits, trade expos, stadium acoustics, and commercial TVCs.",
     keywords: "Parekh productions portfolio, Event videos Mumbai, Expo video highlights, Corporate event photography archive",
-    canonical: "https://parekh-productions-f.vercel.app/gallery",
+    canonical: "https://parekhevents.com/gallery",
     locale: "en_IN",
-    ogImage: "https://parekh-productions-f.vercel.app/assets/parekh/parekh-og.jpg"
+    ogImage: "https://parekhevents.com/assets/parekh/parekh-og.jpg"
   }
 ];
 
@@ -183,9 +190,9 @@ function injectRouteHead(html, route) {
   }
 
   const hreflangTags = `
-    <link rel="alternate" hreflang="en-IN" href="https://parekh-productions-f.vercel.app/" />
-    <link rel="alternate" hreflang="en-GB" href="https://parekh-productions-f.vercel.app/london" />
-    <link rel="alternate" hreflang="x-default" href="https://parekh-productions-f.vercel.app/" />`;
+    <link rel="alternate" hreflang="en-IN" href="https://parekhevents.com/" />
+    <link rel="alternate" hreflang="en-GB" href="https://parekhevents.com/london" />
+    <link rel="alternate" hreflang="x-default" href="https://parekhevents.com/" />`;
   
   if (!html.includes('hreflang="en-IN"')) {
     html = html.replace('</head>', `${hreflangTags}\n</head>`);
