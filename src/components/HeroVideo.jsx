@@ -1,4 +1,6 @@
-export function HeroVideo() {
+export function HeroVideo({ locationMode = "mumbai" }) {
+  const isUK = locationMode === "london" || locationMode === "uk";
+
   return (
     <section id="hero" className="relative w-full h-[100dvh] overflow-hidden bg-black flex items-center justify-center">
       
@@ -20,11 +22,17 @@ export function HeroVideo() {
 
       {/* Centered Monumental Typography */}
       <div className="relative z-10 w-full px-6 sm:px-12 text-center flex flex-col items-center justify-center">
+        {isUK && (
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-[11px] font-bold uppercase tracking-widest text-white mb-4 backdrop-blur-md border border-white/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+            <span>London Executive Division · UK &amp; Europe</span>
+          </div>
+        )}
         <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[106px] font-black tracking-tight uppercase text-white drop-shadow-2xl leading-[1.02] max-w-5xl">
           WE MAKE IT HAPPEN
         </h1>
         <p className="mt-4 text-xs sm:text-sm uppercase tracking-[0.28em] text-neutral-300 font-bold">
-          EVENTS. PRODUCTION. EXPERIENCES.
+          {isUK ? "LONDON · BILATERAL SUMMITS · GLOBAL CINEMA" : "EVENTS. PRODUCTION. EXPERIENCES."}
         </p>
       </div>
 

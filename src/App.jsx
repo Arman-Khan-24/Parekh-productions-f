@@ -82,15 +82,8 @@ export default function App({ initialPath }) {
     setQuoteModalOpen(true);
   };
 
-  // Route: /london (UK Location Page)
-  if (currentRoute === "/london") {
-    return (
-      <LondonLocationPage
-        onOpenQuote={handleOpenQuote}
-        onNavigate={navigateTo}
-      />
-    );
-  }
+  // Flagship Landing Page (Mumbai Primary or London UK Division)
+  const isUK = currentRoute === "/london";
 
   // Route: /services (Complete Services Directory)
   if (currentRoute === "/services") {
@@ -143,18 +136,18 @@ export default function App({ initialPath }) {
     );
   }
 
-  // Route: / or /mumbai (India Primary Homepage)
+  // Route: / or /london (Flagship Cinematic Landing Page with Dynamic Location Mode)
   return (
     <div className="min-h-screen w-full bg-white text-black selection:bg-black selection:text-white overflow-x-hidden">
       <Navbar 
-        currentLocation="mumbai"
+        currentLocation={isUK ? "london" : "mumbai"}
         onContactClick={handleOpenQuote} 
         onGalleryClick={() => navigateTo("/gallery")}
         onNavigate={navigateTo}
       />
       <main className="w-full">
-        {/* Hero Cinema Stream */}
-        <HeroVideo />
+        {/* Hero Cinema Stream with Location-Specific Tagline */}
+        <HeroVideo locationMode={isUK ? "london" : "mumbai"} />
 
         {/* 3-Card Fanned Scroll Showcase placed directly between Hero Video and Manifesto */}
         <FannedCardsShowcase />
@@ -181,7 +174,12 @@ export default function App({ initialPath }) {
         <Destinations onContactClick={handleOpenQuote} />
       </main>
 
-      <Footer onQuoteClick={handleOpenQuote} onGalleryClick={() => navigateTo("/gallery")} />
+      {/* Dynamic Location Footer: Displays Mayfair London or Kandivali Mumbai HQ */}
+      <Footer 
+        locationMode={isUK ? "london" : "mumbai"}
+        onQuoteClick={handleOpenQuote} 
+        onGalleryClick={() => navigateTo("/gallery")} 
+      />
       
       {/* Dedicated Floating Official WhatsApp Button */}
       <WhatsAppButton />
