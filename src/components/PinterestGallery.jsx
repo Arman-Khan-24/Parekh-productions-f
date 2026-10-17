@@ -349,55 +349,37 @@ export function PinterestGallery({ onBackHome }) {
         })}
       </div>
 
-      {/* 3D Floating Popover Modal (Matching User Reference Image) */}
+      {/* Luxury Cinematic Popover Modal (Monochrome Theme + Fully Responsive) */}
       {activeModalItem && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/80 backdrop-blur-md animate-modal-backdrop"
+          className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/80 backdrop-blur-sm animate-modal-backdrop"
           onClick={closeModal}
         >
           {/* Close Button */}
           <button
             onClick={closeModal}
             aria-label="Close Preview"
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 backdrop-blur-lg flex items-center justify-center transition-all duration-200 cursor-pointer shadow-2xl hover:scale-105 active:scale-95"
+            className="absolute top-3 right-3 sm:top-5 sm:right-5 z-[160] h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-neutral-900/90 hover:bg-white text-white hover:text-black border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xl hover:scale-105 active:scale-95"
           >
-            <X className="h-5 w-5 sm:h-6 sm:w-6" />
+            <X className="h-5 w-5" />
           </button>
 
-          {/* Modal Container: 3D Layered Card with Smooth Spring Zoom Animation */}
+          {/* Modal Container: Max 92vh, scrollable on mobile, luxury clean white container */}
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl rounded-[32px] sm:rounded-[40px] p-4 sm:p-8 md:p-10 bg-[#e8edf2] shadow-[0_30px_90px_rgba(0,0,0,0.55)] border border-white/40 flex items-center justify-center animate-popover-zoom"
+            className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-[24px] sm:rounded-[36px] bg-white p-4 sm:p-6 lg:p-8 shadow-[0_25px_80px_rgba(0,0,0,0.5)] border border-neutral-200/80 animate-popover-zoom"
           >
-            {/* Polka Dot Background Texture (matching reference design) */}
-            <div 
-              className="absolute inset-0 rounded-[32px] sm:rounded-[40px] pointer-events-none opacity-40 -z-10"
-              style={{
-                backgroundImage: "radial-gradient(#94a3b8 1.2px, transparent 1.2px)",
-                backgroundSize: "18px 18px",
-              }}
-            />
-
-            {/* Accent Corner Polka Dots Grid */}
-            <div 
-              className="absolute -bottom-3 -left-3 sm:bottom-4 sm:left-4 w-16 h-16 pointer-events-none opacity-60 -z-10"
-              style={{
-                backgroundImage: "radial-gradient(#ef4444 2px, transparent 2px)",
-                backgroundSize: "10px 10px",
-              }}
-            />
-
-            {/* Compound Two-Tone Floating Card System (Reference Match) */}
-            <div className="relative w-full flex flex-col md:flex-row items-center justify-center">
+            {/* Responsive Compound Split System */}
+            <div className="relative w-full flex flex-col lg:flex-row items-stretch justify-center gap-5 lg:gap-6">
               
-              {/* Overlapping Elevated Left 3D Media Card (With Smooth Horizontal Slider) */}
-              <div className="relative z-20 w-full md:w-[48%] lg:w-[46%] aspect-[4/5] sm:aspect-[4/5] md:aspect-[3/4] rounded-[28px] sm:rounded-[36px] overflow-hidden bg-black shadow-[0_25px_60px_rgba(0,0,0,0.4)] border-4 border-white md:-mr-12 group/slider select-none">
+              {/* Media Card (Smooth Slider with Video / Image support) */}
+              <div className="relative z-20 w-full lg:w-[48%] min-h-[260px] xs:min-h-[320px] sm:min-h-[380px] lg:min-h-[460px] aspect-[4/3] xs:aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] rounded-[20px] sm:rounded-[28px] overflow-hidden bg-black shadow-lg border border-neutral-200 group/slider select-none">
                 {/* Horizontal Sliding Track */}
                 <div
                   className="flex h-full w-full will-change-transform"
                   style={{
                     transform: `translate3d(-${modalSlideIndex * 100}%, 0, 0)`,
-                    transition: "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)",
+                    transition: "transform 500ms cubic-bezier(0.16, 1, 0.3, 1)",
                   }}
                 >
                   {activeModalItem.slides.map((slide, sIdx) => {
@@ -416,7 +398,6 @@ export function PinterestGallery({ onBackHome }) {
                                 const playPromise = el.play();
                                 if (playPromise !== undefined) {
                                   playPromise.catch(() => {
-                                    // Fallback to muted if browser blocks unmuted autoplay
                                     el.muted = true;
                                     el.play().catch(() => {});
                                   });
@@ -437,8 +418,8 @@ export function PinterestGallery({ onBackHome }) {
                             alt={slide.caption || activeModalItem.title}
                             className="h-full w-full object-cover transition-all"
                             style={{
-                              transform: isCurrent ? "scale(1)" : "scale(1.08)",
-                              transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease",
+                              transform: isCurrent ? "scale(1)" : "scale(1.05)",
+                              transition: "transform 500ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease",
                               opacity: isCurrent ? 1 : 0.6,
                             }}
                           />
@@ -455,36 +436,36 @@ export function PinterestGallery({ onBackHome }) {
                       type="button"
                       onClick={handleModalSlidePrev}
                       aria-label="Previous Slide"
-                      className="absolute left-3 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl"
+                      className="absolute left-2.5 sm:left-3.5 top-1/2 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg"
                     >
-                      <ChevronLeft className="h-5 w-5" />
+                      <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                     </button>
                     <button
                       type="button"
                       onClick={handleModalSlideNext}
                       aria-label="Next Slide"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 z-30 h-10 w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl"
+                      className="absolute right-2.5 sm:right-3.5 top-1/2 -translate-y-1/2 z-30 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-black/60 hover:bg-black text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg"
                     >
-                      <ChevronRight className="h-5 w-5" />
+                      <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                     </button>
                   </>
                 )}
 
                 {/* Top Badge & Slide Count */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-30 pointer-events-none">
-                  <span className="rounded-full bg-red-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+                <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between z-30 pointer-events-none">
+                  <span className="rounded-full bg-red-600 px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
                     {activeModalItem.category}
                   </span>
                   {activeModalItem.slides.length > 1 && (
-                    <span className="rounded-full bg-black/70 backdrop-blur-md px-2.5 py-1 text-[11px] font-mono font-bold text-white border border-white/20">
+                    <span className="rounded-full bg-black/75 backdrop-blur-md px-2.5 py-1 text-[10px] sm:text-[11px] font-mono font-bold text-white border border-white/20">
                       {modalSlideIndex + 1} / {activeModalItem.slides.length}
                     </span>
                   )}
                 </div>
 
-                {/* Top Slide Dots Indicator (Positioned nicely above without interfering with video controls) */}
+                {/* Slide Dots Indicator */}
                 {activeModalItem.slides.length > 1 && (
-                  <div className="absolute top-14 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-30 bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto">
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-30 bg-black/70 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/10 pointer-events-auto">
                     {activeModalItem.slides.map((_, sIdx) => (
                       <button
                         key={sIdx}
@@ -492,7 +473,7 @@ export function PinterestGallery({ onBackHome }) {
                         aria-label={`Slide ${sIdx + 1}`}
                         className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                           sIdx === modalSlideIndex
-                            ? "w-6 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+                            ? "w-5 bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"
                             : "w-1.5 bg-white/60 hover:bg-white"
                         }`}
                       />
@@ -501,30 +482,38 @@ export function PinterestGallery({ onBackHome }) {
                 )}
               </div>
 
-              {/* Dark Slate Navy Background Information Panel (Exact Match to Reference) */}
-              <div className="relative z-10 w-full md:w-[62%] lg:w-[64%] bg-[#122338] text-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-8 md:p-12 md:pl-20 shadow-[0_20px_50px_rgba(18,35,56,0.35)] border border-[#1e3a5f] mt-4 md:mt-0 flex flex-col justify-between">
+              {/* Information Panel: Pure Dark Luxe (Theme-Aligned with Zero Slate-Blue) */}
+              <div className="relative z-10 w-full lg:w-[52%] bg-neutral-950 text-white rounded-[20px] sm:rounded-[28px] p-5 sm:p-7 lg:p-9 shadow-lg border border-neutral-800 flex flex-col justify-between">
                 <div>
-                  {/* Category Accent Subheading */}
-                  <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#ff6b6b] block mb-2">
-                    {activeModalItem.tag} &middot; {activeModalItem.venue}
-                  </span>
+                  {/* Category Accent Subheading with Red Indicator */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                    <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest text-neutral-400">
+                      {activeModalItem.tag} &middot; {activeModalItem.venue}
+                    </span>
+                  </div>
 
                   {/* Main Event Title */}
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight mb-4">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight text-white leading-snug mb-3 sm:mb-4">
                     {activeModalItem.title}
                   </h2>
 
                   {/* Narrative Body Copy */}
-                  <p className="text-xs sm:text-sm md:text-base text-neutral-300 leading-relaxed font-normal mb-4">
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal mb-4">
                     {activeModalItem.desc}
                   </p>
 
                   {/* Active Slide Caption Highlight */}
                   {activeModalItem.slides[modalSlideIndex]?.caption && (
-                    <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 mb-6">
-                      <span className="text-[10px] uppercase font-mono tracking-widest text-red-400 block font-bold mb-1">
-                        Active Slide {modalSlideIndex + 1}
-                      </span>
+                    <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 mb-4 sm:mb-6">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[10px] uppercase font-mono tracking-widest text-red-400 font-bold">
+                          Active Slide Asset {modalSlideIndex + 1}
+                        </span>
+                        <span className="text-[10px] font-mono text-neutral-400 uppercase">
+                          {activeModalItem.slides[modalSlideIndex].type}
+                        </span>
+                      </div>
                       <p className="text-xs sm:text-sm text-neutral-200 font-medium">
                         {activeModalItem.slides[modalSlideIndex].caption}
                       </p>
@@ -532,15 +521,16 @@ export function PinterestGallery({ onBackHome }) {
                   )}
                 </div>
 
-                {/* Bottom Action Footer with Clean Outline Pill Button */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
-                  <div className="flex items-center gap-2 text-xs text-neutral-400 font-mono">
-                    <span>{activeModalItem.slides.length} Production Assets Available</span>
+                {/* Bottom Action Footer */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10 mt-2">
+                  <div className="flex items-center gap-2 text-[11px] text-neutral-400 font-mono">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    <span>{activeModalItem.slides.length} Production Assets</span>
                   </div>
 
                   <button
                     onClick={closeModal}
-                    className="px-6 py-2.5 rounded-xl border border-white/30 hover:border-white bg-transparent hover:bg-white text-white hover:text-[#122338] text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
+                    className="px-5 sm:px-6 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer shadow-sm active:scale-95"
                   >
                     Close Showcase
                   </button>
